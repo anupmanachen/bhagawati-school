@@ -129,12 +129,12 @@
     .leadership-img-box img { width: 100%; height: 100%; object-fit: cover; }
     .leadership-message-content h3 { font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 6px; font-weight: 800; }
     .leadership-title { color: var(--secondary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 16px; display: block; }
-    .leadership-text { color: var(--slate-600); font-size: 0.96rem; line-height: 1.7; }
+    .leadership-text { color: var(--slate-600); font-size: 0.96rem; line-height: 1.7; white-space: pre-line; }
     .leadership-signature { margin-top: 20px; font-weight: 700; color: var(--primary-dark); }
     .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
     .slider-btn { background-color: var(--primary); color: white; border: none; padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; }
 
-    /* Staff Roster Grid */
+    /* Dynamic Staff Grid */
     .staff-section { margin-top: 60px; padding-top: 40px; border-top: 1px dashed var(--slate-200); }
     .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
     .staff-card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); overflow: hidden; text-align: center; position: relative; transition: var(--transition); }
@@ -322,12 +322,12 @@
         <h2 data-i18n="academicsTitle">Our Educational Programs</h2>
       </div>
       <div class="cards-grid">
-        <div class="card"><div class="card-icon"><i class="fa-child fa-solid"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-book-open fa-solid"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-laptop-code fa-solid"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-hotel fa-solid"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-scale-balanced fa-solid"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-pen-nib fa-solid"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -341,9 +341,9 @@
       </div>
       <div class="facilities-grid">
         <div class="facility-item"><i class="fa-solid fa-flask"></i><h4>Science Labs</h4><p>Physics, Chemistry, and Biology practical labs.</p></div>
-        <div class="facility-item"><i class="fa-desktop fa-solid"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
-        <div class="facility-item"><i class="fa-trophy fa-solid"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
-        <div class="facility-item"><i class="fa-utensils fa-solid"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-desktop"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-trophy"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-utensils"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
       </div>
     </div>
   </section>
@@ -358,6 +358,7 @@
 
       <!-- Leadership Slider -->
       <div class="leadership-slider-container">
+        <!-- Principal Card -->
         <div class="leadership-card active" id="card-principal">
           <div class="leadership-img-box">
             <img id="principal-img-display" src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal" onerror="this.src='https://placehold.co/300x350?text=Principal'">
@@ -365,10 +366,12 @@
           <div class="leadership-message-content">
             <h3>Welcome to Shree Bhagawati Secondary School</h3>
             <span class="leadership-title">Message from the Principal</span>
-            <div class="leadership-text"><p>Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</p></div>
-            <div class="leadership-signature">— Shree Bhagawati Secondary School</div>
+            <div class="leadership-text" id="principal-msg-display">Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</div>
+            <div class="leadership-signature" id="principal-name-display">— Shree Bhagawati Secondary School</div>
           </div>
         </div>
+
+        <!-- Vice Principal Card -->
         <div class="leadership-card" id="card-vice-principal">
           <div class="leadership-img-box">
             <img id="vp-img-display" src="VicePrincipal.jpeg" alt="Vice Principal" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'">
@@ -376,10 +379,11 @@
           <div class="leadership-message-content">
             <h3>Message from the Vice Principal</h3>
             <span class="leadership-title">Vice Principal</span>
-            <div class="leadership-text"><p>We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.</p></div>
-            <div class="leadership-signature">Vice Principal, SBSS</div>
+            <div class="leadership-text" id="vp-msg-display">We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.</div>
+            <div class="leadership-signature" id="vp-name-display">Vice Principal, SBSS</div>
           </div>
         </div>
+
         <div class="slider-controls">
           <button class="slider-btn" id="prev-leader-btn"><i class="fa-solid fa-arrow-left"></i> Principal</button>
           <span id="leader-counter-text" style="font-weight:700;">1 of 2</span>
@@ -458,12 +462,12 @@
     </div>
   </section>
 
-  <!-- Full Dynamic Admin Control Center -->
+  <!-- Secure Admin Modal -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
       <h2>Admin Control Center</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Manage school documents, leadership portraits, teachers/staff, and campus photos.</p>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized credentials to manage school portal content.</p>
 
       <div id="auth-section">
         <div class="form-group">
@@ -474,8 +478,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="admin-passcode-input">Admin Passcode / School PIN:</label>
-          <input type="password" id="admin-passcode-input" placeholder="Enter PIN (2039)" />
+          <label for="admin-passcode-input">Password:</label>
+          <input type="password" id="admin-passcode-input" placeholder="••••••••" autocomplete="current-password" />
         </div>
         <button class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 8px;" id="direct-login-btn">
           <i class="fa-solid fa-lock-open"></i> Unlock Control Center
@@ -491,37 +495,56 @@
         </div>
 
         <div class="form-group">
-          <label for="upload-type">What would you like to add or update?</label>
+          <label for="upload-type">What would you like to update?</label>
           <select id="upload-type">
-            <option value="staff">1. Add Teacher / Staff Member</option>
-            <option value="notice">2. Notice Board Document(s)</option>
-            <option value="result">3. Examination Result Marksheet</option>
-            <option value="leader_photo">4. Principal / Vice Principal Portrait</option>
+            <option value="leader_photo">1. Principal / Vice Principal Photo & Message</option>
+            <option value="staff">2. Add Teacher / Faculty Member</option>
+            <option value="notice">3. Notice Board Document(s)</option>
+            <option value="result">4. Examination Result Marksheet</option>
             <option value="hero_slide">5. Hero Slideshow Photo</option>
           </select>
         </div>
 
-        <!-- Teacher / Staff Form Fields -->
-        <div id="staff-fields-group">
+        <!-- 1. Principal & VP Update Fields -->
+        <div id="leader-fields-group">
+          <div class="form-group">
+            <label for="leader-key-select">Select Leader Profile:</label>
+            <select id="leader-key-select">
+              <option value="principal_photo">Principal (Your Dad's Section)</option>
+              <option value="vp_photo">Vice Principal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="leader-name-input">Leader Name / Signature (Optional):</label>
+            <input type="text" id="leader-name-input" placeholder="e.g. Principal — Shree Bhagawati Secondary School" />
+          </div>
+          <div class="form-group">
+            <label for="leader-msg-input">Message / Welcome Speech (Optional):</label>
+            <textarea id="leader-msg-input" rows="3" placeholder="Enter updated message from the Principal..."></textarea>
+          </div>
+        </div>
+
+        <!-- 2. Teacher / Staff Fields -->
+        <div id="staff-fields-group" style="display: none;">
           <div class="form-group">
             <label for="staff-name-input">Staff Full Name:</label>
             <input type="text" id="staff-name-input" placeholder="e.g. Ramesh Shrestha" />
           </div>
           <div class="form-group">
             <label for="staff-designation-input">Designation / Subject:</label>
-            <input type="text" id="staff-designation-input" placeholder="e.g. Senior Science Teacher / IT Coordinator" />
+            <input type="text" id="staff-designation-input" placeholder="e.g. Senior Science Teacher" />
           </div>
           <div class="form-group">
             <label for="staff-qual-input">Qualification (Optional):</label>
             <input type="text" id="staff-qual-input" placeholder="e.g. M.Sc. Physics, B.Ed." />
           </div>
           <div class="form-group">
-            <label for="staff-msg-input">Short Message / Quote (Optional):</label>
-            <textarea id="staff-msg-input" rows="2" placeholder="e.g. Inspiring curious minds to innovate every day."></textarea>
+            <label for="staff-msg-input">Short Quote / Message (Optional):</label>
+            <textarea id="staff-msg-input" rows="2" placeholder="e.g. Inspiring curious minds every day."></textarea>
           </div>
         </div>
 
-        <!-- Exam Result Target Class -->
+        <!-- 3. Exam Result Target Class -->
         <div class="form-group" id="target-class-group" style="display: none;">
           <label for="target-class-select">Target Class for Result:</label>
           <select id="target-class-select">
@@ -533,25 +556,16 @@
           </select>
         </div>
 
-        <!-- Leadership Portrait Key -->
-        <div class="form-group" id="leader-select-group" style="display: none;">
-          <label for="leader-key-select">Select Leader Photo to Replace:</label>
-          <select id="leader-key-select">
-            <option value="principal_photo">Principal's Official Portrait</option>
-            <option value="vp_photo">Vice Principal's Official Portrait</option>
-          </select>
-        </div>
-
-        <!-- Hero Slide Caption -->
+        <!-- 4. Hero Slide Caption -->
         <div class="form-group" id="hero-caption-group" style="display: none;">
           <label for="hero-caption-input">Slideshow Caption (Optional):</label>
-          <input type="text" id="hero-caption-input" placeholder="e.g. Science Exhibition / Annual Sports" />
+          <input type="text" id="hero-caption-input" placeholder="e.g. Campus Grounds / Sports Day" />
         </div>
 
         <!-- Dynamic Drop Zone -->
         <div class="drop-zone" id="drop-zone">
           <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 10px;"></i>
-          <p id="drop-text">Click or drag & drop photo/document (.jpg, .png, .pdf)</p>
+          <p id="drop-text">Click or drag & drop photo (.jpg, .png, .pdf)</p>
           <input type="file" id="file-input" accept="image/*,.pdf" />
         </div>
 
@@ -601,16 +615,32 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
-    // Dynamic Settings Fetch (Principal/VP Photos)
+    // Dynamic Leadership Settings Fetch (Photos, Names, Messages)
     async function fetchDynamicSettings() {
       try {
         const res = await fetch(`${API}/settings`);
         const settings = await res.json();
+        
+        // Principal Dynamic Settings
         if (settings.principal_photo) {
           document.getElementById('principal-img-display').src = `${BACKEND_URL}${settings.principal_photo}`;
         }
+        if (settings.principal_message) {
+          document.getElementById('principal-msg-display').textContent = settings.principal_message;
+        }
+        if (settings.principal_name) {
+          document.getElementById('principal-name-display').textContent = settings.principal_name;
+        }
+
+        // Vice Principal Dynamic Settings
         if (settings.vp_photo) {
           document.getElementById('vp-img-display').src = `${BACKEND_URL}${settings.vp_photo}`;
+        }
+        if (settings.vp_message) {
+          document.getElementById('vp-msg-display').textContent = settings.vp_message;
+        }
+        if (settings.vp_name) {
+          document.getElementById('vp-name-display').textContent = settings.vp_name;
         }
       } catch (e) {
         console.log('Dynamic settings fallback');
@@ -723,7 +753,7 @@
         if (pin === "2039" || pin === "bhagawati2039") {
           unlockAdmin(email);
         } else {
-          authError.textContent = "Incorrect Passcode. Enter: 2039";
+          authError.textContent = "Incorrect password. Please try again.";
           authError.style.display = "block";
         }
       });
@@ -837,9 +867,9 @@
       // Form Field Switching
       const modal = document.getElementById("admin-modal");
       const uploadTypeSelect = document.getElementById("upload-type");
+      const leaderFieldsGroup = document.getElementById("leader-fields-group");
       const staffFieldsGroup = document.getElementById("staff-fields-group");
       const targetClassGroup = document.getElementById("target-class-group");
-      const leaderSelectGroup = document.getElementById("leader-select-group");
       const heroCaptionGroup = document.getElementById("hero-caption-group");
       const dropZone = document.getElementById("drop-zone");
       const fileInput = document.getElementById("file-input");
@@ -849,9 +879,9 @@
       document.getElementById("close-admin-btn").addEventListener("click", () => modal.classList.remove("active"));
 
       uploadTypeSelect.addEventListener("change", function() {
+        leaderFieldsGroup.style.display = this.value === "leader_photo" ? "block" : "none";
         staffFieldsGroup.style.display = this.value === "staff" ? "block" : "none";
         targetClassGroup.style.display = this.value === "result" ? "block" : "none";
-        leaderSelectGroup.style.display = this.value === "leader_photo" ? "block" : "none";
         heroCaptionGroup.style.display = this.value === "hero_slide" ? "block" : "none";
       });
 
@@ -865,6 +895,8 @@
         const uploadType = uploadTypeSelect.value;
         const targetClass = document.getElementById("target-class-select").value;
         const settingKey = document.getElementById("leader-key-select").value;
+        const leaderName = document.getElementById("leader-name-input").value;
+        const leaderMessage = document.getElementById("leader-msg-input").value;
         const caption = document.getElementById("hero-caption-input").value;
         
         const staffName = document.getElementById("staff-name-input").value;
@@ -875,15 +907,19 @@
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
-        if (!files || files.length === 0) return alert("Please select an image or document first.");
+        if (uploadType !== 'leader_photo' && (!files || files.length === 0)) {
+          return alert("Please select an image or document first.");
+        }
 
         status.textContent = "Uploading to database...";
 
         const formData = new FormData();
-        formData.append('file', files[0]);
+        if (files && files.length > 0) formData.append('file', files[0]);
         formData.append('uploadType', uploadType);
         formData.append('targetClass', targetClass);
         formData.append('settingKey', settingKey);
+        formData.append('leaderName', leaderName);
+        formData.append('leaderMessage', leaderMessage);
         formData.append('caption', caption);
         formData.append('staffName', staffName);
         formData.append('staffDesignation', staffDesignation);
@@ -908,7 +944,9 @@
           document.getElementById("staff-designation-input").value = "";
           document.getElementById("staff-qual-input").value = "";
           document.getElementById("staff-msg-input").value = "";
-          dropText.textContent = "Click or drag & drop photo/document (.jpg, .png, .pdf)";
+          document.getElementById("leader-name-input").value = "";
+          document.getElementById("leader-msg-input").value = "";
+          dropText.textContent = "Click or drag & drop photo (.jpg, .png, .pdf)";
           
           if (uploadType === "notice") fetchLiveNotices();
           else if (uploadType === "result") fetchLiveResult(targetClass);
