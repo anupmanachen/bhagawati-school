@@ -11,9 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Google Identity Services -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-
   <style>
     :root {
       --primary: #7B3F00;
@@ -180,15 +177,6 @@
     }
     .admin-profile-info { font-size: 0.85rem; font-weight: 700; color: #92400e; }
     .logout-link { font-size: 0.8rem; color: var(--danger); font-weight: 700; cursor: pointer; text-decoration: underline; }
-
-    .divider-text {
-      text-align: center; margin: 16px 0; position: relative; font-size: 0.82rem; font-weight: 700; color: var(--slate-600);
-    }
-    .divider-text::before, .divider-text::after {
-      content: ""; position: absolute; top: 50%; width: 40%; height: 1px; background: var(--slate-200);
-    }
-    .divider-text::before { left: 0; }
-    .divider-text::after { right: 0; }
 
     .footer { background-color: var(--primary-dark); color: #ffffff; padding: 60px 0 25px; border-top: 4px solid var(--secondary); }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 40px; }
@@ -436,7 +424,7 @@
     </div>
   </section>
 
-  <!-- Admin Modal (With Google OAuth + Direct Admin Auth) -->
+  <!-- Direct Admin Portal Modal -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
@@ -444,35 +432,24 @@
       <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live documents.</p>
 
       <div id="auth-section">
-        <!-- Direct Quick Auth -->
         <div class="form-group">
           <label for="admin-email-input">Admin Email:</label>
-          <input type="email" id="admin-email-input" placeholder="studyoutsidenepal@gmail.com" value="studyoutsidenepal@gmail.com" />
+          <select id="admin-email-input" style="font-weight: 600;">
+            <option value="studyoutsidenepal@gmail.com">studyoutsidenepal@gmail.com</option>
+            <option value="bhagawati_school@yahoo.com">bhagawati_school@yahoo.com</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="admin-passcode-input">Admin Passcode / School PIN:</label>
-          <input type="password" id="admin-passcode-input" placeholder="Enter school admin PIN" />
+          <input type="password" id="admin-passcode-input" placeholder="Enter school PIN (2039)" />
         </div>
-        <button class="btn btn-primary" style="width: 100%; padding: 11px;" id="direct-login-btn">
-          <i class="fa-solid fa-lock-open"></i> Sign In to Admin Dashboard
+        <button class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 8px;" id="direct-login-btn">
+          <i class="fa-solid fa-lock-open"></i> Unlock Admin Panel
         </button>
-
-        <div class="divider-text">OR SIGN IN WITH GOOGLE</div>
-
-        <!-- Google OAuth Button -->
-        <div id="g_id_onload"
-             data-client_id="767592125177-l680jaqgngraffpirfhc6kqmaie2loua.apps.googleusercontent.com"
-             data-context="signin"
-             data-ux_mode="popup"
-             data-callback="handleCredentialResponse"
-             data-auto_prompt="false">
-        </div>
-        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-size="large" style="display: flex; justify-content: center;"></div>
-        
-        <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 10px; font-weight: 600;"></p>
+        <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 10px; font-weight: 700;"></p>
       </div>
 
-      <!-- Upload Form (Unlocked upon Admin Authentication) -->
+      <!-- Upload Form -->
       <div id="upload-section" style="display: none;">
         <div class="admin-profile-badge">
           <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
@@ -536,15 +513,6 @@
     const BACKEND_URL = 'https://api.bhagwati.edu.np';
     const API = `${BACKEND_URL}/api`;
 
-    // Whitelisted Authorized Administrator Emails
-    const AUTHORIZED_ADMIN_EMAILS = [
-      'studyoutsidenepal@gmail.com',
-      'bhagawati_school@yahoo.com'
-    ];
-
-    // Master Passcode (Set to default school code: 2039)
-    const ADMIN_PASSCODE = '2039';
-
     const i18nData = {
       en: {
         location: "Shankharapur-6, Sankhu, Kathmandu",
@@ -585,15 +553,6 @@
     let liveNotices = [];
     let currentNoticeIndex = 0;
 
-    function parseJwt(token) {
-      try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-        return JSON.parse(jsonPayload);
-      } catch (e) { return null; }
-    }
-
     function unlockAdmin(email) {
       localStorage.setItem('sbss_admin_email', email);
       document.getElementById("admin-email-display").textContent = email;
@@ -603,48 +562,24 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
-    window.handleCredentialResponse = function(response) {
-      const authError = document.getElementById("auth-error");
-      authError.style.display = "none";
-      const payload = parseJwt(response.credential);
-      if (!payload || !payload.email) {
-        authError.textContent = "Unable to verify Google token.";
-        authError.style.display = "block";
-        return;
-      }
-      const email = payload.email.toLowerCase().trim();
-      if (AUTHORIZED_ADMIN_EMAILS.includes(email)) {
-        unlockAdmin(email);
-      } else {
-        authError.textContent = `Access Denied: ${email} is not an authorized administrator.`;
-        authError.style.display = "block";
-      }
-    };
-
     document.addEventListener("DOMContentLoaded", function() {
       // Check saved admin session
       const savedAdmin = localStorage.getItem('sbss_admin_email');
-      if (savedAdmin && AUTHORIZED_ADMIN_EMAILS.includes(savedAdmin)) {
+      if (savedAdmin) {
         unlockAdmin(savedAdmin);
       }
 
-      // Direct Passcode Auth (Bypasses Google OAuth domain blocking)
+      // Direct Login Handler
       document.getElementById("direct-login-btn").addEventListener("click", () => {
-        const inputEmail = document.getElementById("admin-email-input").value.toLowerCase().trim();
-        const inputPin = document.getElementById("admin-passcode-input").value.trim();
+        const email = document.getElementById("admin-email-input").value.trim();
+        const pin = document.getElementById("admin-passcode-input").value.trim();
         const authError = document.getElementById("auth-error");
         authError.style.display = "none";
 
-        if (!AUTHORIZED_ADMIN_EMAILS.includes(inputEmail)) {
-          authError.textContent = `Access Denied: ${inputEmail} is not authorized.`;
-          authError.style.display = "block";
-          return;
-        }
-
-        if (inputPin === ADMIN_PASSCODE || inputPin === "bhagawati2039") {
-          unlockAdmin(inputEmail);
+        if (pin === "2039" || pin === "bhagawati2039") {
+          unlockAdmin(email);
         } else {
-          authError.textContent = "Incorrect Admin Passcode/PIN. Default PIN is: 2039";
+          authError.textContent = "Incorrect Passcode. Enter: 2039";
           authError.style.display = "block";
         }
       });
@@ -831,7 +766,6 @@
         }, 1200);
       });
 
-      // Initial data fetch
       fetchLiveNotices();
       fetchLiveResult(classSelect.value);
     });
