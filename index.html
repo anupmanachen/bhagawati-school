@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Google Identity Services -->
+  <!-- Google Identity Services (Sign In with Google) -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <style>
@@ -165,7 +165,7 @@
     .slider-btn:hover { background-color: var(--primary-hover); }
 
     /* ==========================================================================
-       LIVE NOTICE BOARD & EXAM RESULTS (CONNECTED TO API)
+       LIVE NOTICE BOARD & EXAM RESULTS
        ========================================================================== */
     .notices { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
     .notice-viewer-card, .results-card { max-width: 860px; margin: 0 auto; background: #ffffff; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--slate-200); padding: 26px; }
@@ -190,7 +190,7 @@
     .result-display-area h3 { color: var(--primary-dark); margin-bottom: 18px; font-size: 1.35rem; font-weight: 700; }
     .result-image-box { width: 100%; display: flex; justify-content: center; align-items: center; }
 
-    /* Admin Quick Actions */
+    /* Admin Action Bars */
     .admin-action-bar { display: none; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--slate-200); justify-content: center; gap: 12px; }
     .admin-action-bar.active { display: flex; }
 
@@ -207,7 +207,7 @@
     .share-btn.copy-link { background-color: var(--primary); }
 
     /* ==========================================================================
-       ADMIN MODAL & LIVE DRAG-AND-DROP UPLOAD
+       ADMIN MODAL & LIVE DRAG-AND-DROP UPLOADER
        ========================================================================== */
     .admin-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -234,6 +234,14 @@
     .drop-zone i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
     .drop-zone p { font-size: 0.9rem; color: var(--slate-600); font-weight: 600; }
     .drop-zone input[type="file"] { display: none; }
+
+    /* Logged In Status Pill */
+    .admin-profile-badge {
+      display: flex; align-items: center; justify-content: space-between; background: var(--secondary-light);
+      padding: 8px 14px; border-radius: var(--radius-md); margin-bottom: 18px; border: 1px solid #fde68a;
+    }
+    .admin-profile-info { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: #92400e; }
+    .logout-link { font-size: 0.8rem; color: var(--danger); font-weight: 700; cursor: pointer; text-decoration: underline; }
 
     /* ==========================================================================
        FOOTER
@@ -274,7 +282,6 @@
       
       .notice-controls, .slider-controls { flex-direction: column; gap: 12px; width: 100%; }
       .notice-btn, .slider-btn, .btn-danger { width: 100%; justify-content: center; }
-      .share-buttons span { display: inline-block; }
     }
   </style>
 </head>
@@ -633,20 +640,41 @@
     </div>
   </section>
 
-  <!-- Admin Modal & Drag-and-Drop Live Uploader -->
+  <!-- Admin Modal & Live Google Workspace Uploader -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
       <h2>Admin Upload Portal</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized Google Workspace credentials to sync updates directly with the school database.</p>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized Google Workspace credentials to sync notices and results directly to the live server.</p>
 
+      <!-- Google Authentication Area -->
       <div id="auth-section">
-        <button class="btn btn-primary" style="width: 100%; padding: 12px;" id="google-login-btn">
-          <i class="fa-brands fa-google"></i> Login with Authorized Google Account
-        </button>
+        <div id="g_id_onload"
+             data-client_id="767592125177-l680jaqgngraffpirfhc6kqmaie2loua.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleCredentialResponse"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signin_with"
+             data-size="large"
+             data-logo_alignment="left"
+             style="display: flex; justify-content: center; margin: 15px 0;">
+        </div>
+        <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 8px; font-weight: 600;"></p>
       </div>
 
+      <!-- Upload Form (Unlocked upon Admin Authentication) -->
       <div id="upload-section" style="display: none;">
+        <div class="admin-profile-badge">
+          <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
+          <span class="logout-link" id="logout-btn">Log out</span>
+        </div>
+
         <div class="form-group">
           <label for="upload-type">Upload Category:</label>
           <select id="upload-type">
@@ -724,9 +752,6 @@
     // ==========================================================================
     const BACKEND_URL = 'https://api.bhagwati.edu.np';
     const API = `${BACKEND_URL}/api`;
-
-    // Google Workspace OAuth Client ID
-    const CLIENT_ID = '767592125177-l680jaqgngraffpirfhc6kqmaie2loua.apps.googleusercontent.com';
 
     // Whitelisted Authorized Admin Accounts
     const AUTHORIZED_ADMIN_EMAILS = [
@@ -817,12 +842,71 @@
       }
     };
 
-    let tokenClient;
-    let accessToken = null;
     let liveNotices = [];
     let currentNoticeIndex = 0;
 
+    // JWT Token Decoder for Google Identity Services
+    function parseJwt(token) {
+      try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // Google Sign-In Callback Handler
+    window.handleCredentialResponse = function(response) {
+      const authError = document.getElementById("auth-error");
+      authError.style.display = "none";
+
+      const payload = parseJwt(response.credential);
+      if (!payload || !payload.email) {
+        authError.textContent = "Unable to verify Google credentials. Please try again.";
+        authError.style.display = "block";
+        return;
+      }
+
+      const email = payload.email.toLowerCase().trim();
+
+      // Check if user email is authorized
+      if (AUTHORIZED_ADMIN_EMAILS.includes(email)) {
+        localStorage.setItem('sbss_admin_email', email);
+        document.getElementById("admin-email-display").textContent = email;
+        document.getElementById("auth-section").style.display = "none";
+        document.getElementById("upload-section").style.display = "block";
+        document.getElementById("admin-notice-bar").classList.add("active");
+        document.getElementById("admin-result-bar").classList.add("active");
+      } else {
+        authError.textContent = `Access Denied: ${email} is not authorized as a school administrator.`;
+        authError.style.display = "block";
+      }
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
+      // Restore Admin Session if already logged in
+      const savedAdmin = localStorage.getItem('sbss_admin_email');
+      if (savedAdmin && AUTHORIZED_ADMIN_EMAILS.includes(savedAdmin)) {
+        document.getElementById("admin-email-display").textContent = savedAdmin;
+        document.getElementById("auth-section").style.display = "none";
+        document.getElementById("upload-section").style.display = "block";
+        document.getElementById("admin-notice-bar").classList.add("active");
+        document.getElementById("admin-result-bar").classList.add("active");
+      }
+
+      // Logout handler
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        localStorage.removeItem('sbss_admin_email');
+        document.getElementById("auth-section").style.display = "block";
+        document.getElementById("upload-section").style.display = "none";
+        document.getElementById("admin-notice-bar").classList.remove("active");
+        document.getElementById("admin-result-bar").classList.remove("active");
+      });
+
       // 1. Mobile Menu Toggle
       const mobileToggle = document.getElementById("mobile-toggle");
       const navMenu = document.getElementById("nav-menu");
@@ -861,7 +945,7 @@
       document.getElementById("prev-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex - 1 + leaderCards.length) % leaderCards.length; updateLeaderDisplay(); });
       document.getElementById("next-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex + 1) % leaderCards.length; updateLeaderDisplay(); });
 
-      // 5. LIVE NOTICES ENGINE (FETCHED FROM BACKEND API)
+      // 5. LIVE NOTICES ENGINE (DATABASE BOUND)
       const noticeDisplayContainer = document.getElementById("notice-display-container");
       const noticeCounterText = document.getElementById("notice-counter-text");
       const noticeDateSelect = document.getElementById("notice-date-select");
@@ -1023,7 +1107,6 @@
       const modal = document.getElementById("admin-modal");
       const openBtn = document.getElementById("open-admin-btn");
       const closeBtn = document.getElementById("close-admin-btn");
-      const loginBtn = document.getElementById("google-login-btn");
       const uploadBtn = document.getElementById("upload-file-btn");
       const uploadStatus = document.getElementById("upload-status");
       const dropZone = document.getElementById("drop-zone");
@@ -1053,28 +1136,7 @@
         dropText.textContent = files.length === 1 ? `Selected: ${files[0].name}` : `Selected ${files.length} files`;
       }
 
-      function initAuth() {
-        tokenClient = google.accounts.oauth2.initTokenClient({
-          client_id: CLIENT_ID,
-          scope: 'email profile',
-          callback: (response) => {
-            if (response.access_token) {
-              accessToken = response.access_token;
-              document.getElementById("auth-section").style.display = "none";
-              document.getElementById("upload-section").style.display = "block";
-              document.getElementById("admin-notice-bar").classList.add("active");
-              document.getElementById("admin-result-bar").classList.add("active");
-            }
-          },
-        });
-      }
-
-      loginBtn.addEventListener("click", () => {
-        if (!tokenClient) initAuth();
-        tokenClient.requestAccessToken();
-      });
-
-      // UPLOAD FILE TO LAPTOP DATABASE
+      // UPLOAD FILE DIRECTLY TO LAPTOP DATABASE
       uploadBtn.addEventListener("click", async () => {
         const uploadType = uploadTypeSelect.value;
         const targetClass = document.getElementById("target-class-select").value;
