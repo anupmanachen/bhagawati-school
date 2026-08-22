@@ -78,6 +78,7 @@
 
     .hero-stacked { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); }
     .hero-slideshow-banner { position: relative; width: 100%; height: 48vh; min-height: 280px; max-height: 520px; overflow: hidden; background: #000; }
+    .hero-slideshow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .hero-slideshow img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out, transform 8s ease; }
     .hero-slideshow img.active { opacity: 1; transform: scale(1.04); }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%); }
@@ -119,8 +120,9 @@
     .facility-item h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--primary-dark); font-weight: 700; }
     .facility-item p { font-size: 0.88rem; color: var(--slate-600); }
 
+    /* Leadership Slider */
     .teachers { background-color: #ffffff; padding: 75px 0; border-top: 1px solid var(--slate-200); }
-    .leadership-slider-container { max-width: 980px; margin: 0 auto; }
+    .leadership-slider-container { max-width: 980px; margin: 0 auto 50px; }
     .leadership-card { display: none; grid-template-columns: 290px 1fr; gap: 32px; background: var(--slate-50); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); align-items: center; }
     .leadership-card.active { display: grid; }
     .leadership-img-box { width: 100%; height: 320px; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--primary); }
@@ -131,6 +133,21 @@
     .leadership-signature { margin-top: 20px; font-weight: 700; color: var(--primary-dark); }
     .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
     .slider-btn { background-color: var(--primary); color: white; border: none; padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; }
+
+    /* Staff Roster Grid */
+    .staff-section { margin-top: 60px; padding-top: 40px; border-top: 1px dashed var(--slate-200); }
+    .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .staff-card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); overflow: hidden; text-align: center; position: relative; transition: var(--transition); }
+    .staff-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .staff-card-img { width: 100%; height: 260px; overflow: hidden; background: #e2e8f0; }
+    .staff-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .staff-card-body { padding: 18px 16px; }
+    .staff-card-name { font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+    .staff-card-role { font-size: 0.84rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 6px; }
+    .staff-card-qual { font-size: 0.8rem; color: var(--slate-600); font-weight: 600; margin-bottom: 10px; }
+    .staff-card-msg { font-size: 0.88rem; color: var(--slate-600); font-style: italic; background: #ffffff; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); }
+    .staff-delete-btn { display: none; position: absolute; top: 10px; right: 10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+    .admin-logged-in .staff-delete-btn { display: flex; }
 
     .notices { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
     .notice-viewer-card, .results-card { max-width: 860px; margin: 0 auto; background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); padding: 26px; }
@@ -156,14 +173,14 @@
     }
     .admin-modal.active { display: flex; }
     .admin-box {
-      background: #ffffff; padding: 30px; border-radius: var(--radius-lg); max-width: 500px; width: 100%;
+      background: #ffffff; padding: 30px; border-radius: var(--radius-lg); max-width: 540px; width: 100%;
       box-shadow: var(--shadow-lg); position: relative; max-height: 90vh; overflow-y: auto;
     }
     .admin-box h2 { color: var(--primary-dark); margin-bottom: 6px; font-size: 1.45rem; font-weight: 800; }
     .admin-box .close-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.4rem; color: var(--slate-600); cursor: pointer; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.88rem; color: var(--slate-800); }
-    .form-group select, .form-group input { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); font-size: 0.92rem; outline: none; }
+    .form-group select, .form-group input, .form-group textarea { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); font-size: 0.92rem; outline: none; font-family: inherit; }
     
     .drop-zone {
       border: 2px dashed var(--primary); border-radius: var(--radius-md); padding: 25px 20px;
@@ -237,7 +254,7 @@
         <a href="#about" data-i18n="navAbout">About Us</a>
         <a href="#academics" data-i18n="navAcademics">Academics</a>
         <a href="#facilities" data-i18n="navFacilities">Facilities</a>
-        <a href="#teachers" data-i18n="navTeachers">Teachers</a>
+        <a href="#teachers" data-i18n="navTeachers">Teachers & Staff</a>
         <a href="#notices" data-i18n="navNotices">Notices</a>
         <a href="#results" data-i18n="navResults">Results</a>
         <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> Admin Portal</button>
@@ -248,7 +265,7 @@
   <!-- Hero Section -->
   <section id="home" class="hero-stacked">
     <div class="hero-slideshow-banner">
-      <div class="hero-slideshow">
+      <div class="hero-slideshow" id="hero-slideshow-container">
         <img src="20260430_101202.jpg" alt="Campus" class="active" onerror="this.src='https://placehold.co/1200x500?text=Shree+Bhagawati+Secondary+School'">
         <img src="20260612_085037.jpg" alt="Academics" onerror="this.src='https://placehold.co/1200x500?text=Academic+Excellence'">
         <img src="20260612_085059.jpg" alt="Labs" onerror="this.src='https://placehold.co/1200x500?text=Modern+Labs+%26+Sports'">
@@ -305,12 +322,12 @@
         <h2 data-i18n="academicsTitle">Our Educational Programs</h2>
       </div>
       <div class="cards-grid">
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-child fa-solid"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-book-open fa-solid"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-laptop-code fa-solid"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-hotel fa-solid"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-scale-balanced fa-solid"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-pen-nib fa-solid"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -324,23 +341,27 @@
       </div>
       <div class="facilities-grid">
         <div class="facility-item"><i class="fa-solid fa-flask"></i><h4>Science Labs</h4><p>Physics, Chemistry, and Biology practical labs.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-desktop"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-trophy"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-utensils"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
+        <div class="facility-item"><i class="fa-desktop fa-solid"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
+        <div class="facility-item"><i class="fa-trophy fa-solid"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
+        <div class="facility-item"><i class="fa-utensils fa-solid"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Leadership -->
+  <!-- Leadership & Faculty Section -->
   <section id="teachers" class="teachers">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="teachersSubtitle">Leadership</span>
-        <h2 data-i18n="teachersTitle">Messages from Leadership</h2>
+        <span class="section-subtitle" data-i18n="teachersSubtitle">Leadership & Faculty</span>
+        <h2 data-i18n="teachersTitle">Messages from School Leadership</h2>
       </div>
+
+      <!-- Leadership Slider -->
       <div class="leadership-slider-container">
         <div class="leadership-card active" id="card-principal">
-          <div class="leadership-img-box"><img src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal" onerror="this.src='https://placehold.co/300x350?text=Principal'"></div>
+          <div class="leadership-img-box">
+            <img id="principal-img-display" src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal" onerror="this.src='https://placehold.co/300x350?text=Principal'">
+          </div>
           <div class="leadership-message-content">
             <h3>Welcome to Shree Bhagawati Secondary School</h3>
             <span class="leadership-title">Message from the Principal</span>
@@ -349,7 +370,9 @@
           </div>
         </div>
         <div class="leadership-card" id="card-vice-principal">
-          <div class="leadership-img-box"><img src="VicePrincipal.jpeg" alt="Vice Principal" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'"></div>
+          <div class="leadership-img-box">
+            <img id="vp-img-display" src="VicePrincipal.jpeg" alt="Vice Principal" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'">
+          </div>
           <div class="leadership-message-content">
             <h3>Message from the Vice Principal</h3>
             <span class="leadership-title">Vice Principal</span>
@@ -361,6 +384,17 @@
           <button class="slider-btn" id="prev-leader-btn"><i class="fa-solid fa-arrow-left"></i> Principal</button>
           <span id="leader-counter-text" style="font-weight:700;">1 of 2</span>
           <button class="slider-btn" id="next-leader-btn">Vice Principal <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Dynamic Staff Directory -->
+      <div class="staff-section">
+        <div class="section-header" style="margin-bottom: 25px;">
+          <span class="section-subtitle">Our Dedicated Educators & Staff</span>
+          <h3 style="font-size: 1.6rem; color: var(--primary-dark); font-weight: 800;">Faculty Members & Staff</h3>
+        </div>
+        <div class="staff-grid" id="staff-roster-container">
+          <p style="text-align:center; grid-column: 1/-1; color: var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading faculty directory...</p>
         </div>
       </div>
     </div>
@@ -424,12 +458,12 @@
     </div>
   </section>
 
-  <!-- Direct Admin Portal Modal -->
+  <!-- Full Dynamic Admin Control Center -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
-      <h2>Admin Upload Portal</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live documents.</p>
+      <h2>Admin Control Center</h2>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Manage school documents, leadership portraits, teachers/staff, and campus photos.</p>
 
       <div id="auth-section">
         <div class="form-group">
@@ -441,15 +475,15 @@
         </div>
         <div class="form-group">
           <label for="admin-passcode-input">Admin Passcode / School PIN:</label>
-          <input type="password" id="admin-passcode-input" placeholder="Enter school PIN (2039)" />
+          <input type="password" id="admin-passcode-input" placeholder="Enter PIN (2039)" />
         </div>
         <button class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 8px;" id="direct-login-btn">
-          <i class="fa-solid fa-lock-open"></i> Unlock Admin Panel
+          <i class="fa-solid fa-lock-open"></i> Unlock Control Center
         </button>
         <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 10px; font-weight: 700;"></p>
       </div>
 
-      <!-- Upload Form -->
+      <!-- Live Dynamic Upload Center -->
       <div id="upload-section" style="display: none;">
         <div class="admin-profile-badge">
           <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
@@ -457,13 +491,37 @@
         </div>
 
         <div class="form-group">
-          <label for="upload-type">Upload Category:</label>
+          <label for="upload-type">What would you like to add or update?</label>
           <select id="upload-type">
-            <option value="notice">Notice Board Document(s)</option>
-            <option value="result">Examination Result</option>
+            <option value="staff">1. Add Teacher / Staff Member</option>
+            <option value="notice">2. Notice Board Document(s)</option>
+            <option value="result">3. Examination Result Marksheet</option>
+            <option value="leader_photo">4. Principal / Vice Principal Portrait</option>
+            <option value="hero_slide">5. Hero Slideshow Photo</option>
           </select>
         </div>
 
+        <!-- Teacher / Staff Form Fields -->
+        <div id="staff-fields-group">
+          <div class="form-group">
+            <label for="staff-name-input">Staff Full Name:</label>
+            <input type="text" id="staff-name-input" placeholder="e.g. Ramesh Shrestha" />
+          </div>
+          <div class="form-group">
+            <label for="staff-designation-input">Designation / Subject:</label>
+            <input type="text" id="staff-designation-input" placeholder="e.g. Senior Science Teacher / IT Coordinator" />
+          </div>
+          <div class="form-group">
+            <label for="staff-qual-input">Qualification (Optional):</label>
+            <input type="text" id="staff-qual-input" placeholder="e.g. M.Sc. Physics, B.Ed." />
+          </div>
+          <div class="form-group">
+            <label for="staff-msg-input">Short Message / Quote (Optional):</label>
+            <textarea id="staff-msg-input" rows="2" placeholder="e.g. Inspiring curious minds to innovate every day."></textarea>
+          </div>
+        </div>
+
+        <!-- Exam Result Target Class -->
         <div class="form-group" id="target-class-group" style="display: none;">
           <label for="target-class-select">Target Class for Result:</label>
           <select id="target-class-select">
@@ -475,10 +533,26 @@
           </select>
         </div>
 
+        <!-- Leadership Portrait Key -->
+        <div class="form-group" id="leader-select-group" style="display: none;">
+          <label for="leader-key-select">Select Leader Photo to Replace:</label>
+          <select id="leader-key-select">
+            <option value="principal_photo">Principal's Official Portrait</option>
+            <option value="vp_photo">Vice Principal's Official Portrait</option>
+          </select>
+        </div>
+
+        <!-- Hero Slide Caption -->
+        <div class="form-group" id="hero-caption-group" style="display: none;">
+          <label for="hero-caption-input">Slideshow Caption (Optional):</label>
+          <input type="text" id="hero-caption-input" placeholder="e.g. Science Exhibition / Annual Sports" />
+        </div>
+
+        <!-- Dynamic Drop Zone -->
         <div class="drop-zone" id="drop-zone">
           <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 10px;"></i>
-          <p id="drop-text">Click or drag & drop files (.jpg, .png, .pdf)</p>
-          <input type="file" id="file-input" accept="image/*,.pdf" multiple />
+          <p id="drop-text">Click or drag & drop photo/document (.jpg, .png, .pdf)</p>
+          <input type="file" id="file-input" accept="image/*,.pdf" />
         </div>
 
         <button class="btn btn-primary" id="upload-file-btn" style="width: 100%; padding: 12px;">
@@ -513,48 +587,13 @@
     const BACKEND_URL = 'https://api.bhagwati.edu.np';
     const API = `${BACKEND_URL}/api`;
 
-    const i18nData = {
-      en: {
-        location: "Shankharapur-6, Sankhu, Kathmandu",
-        schoolName: "Bhagawati Secondary School",
-        schoolTagline: "Excellence in Education Since 2039 B.S.",
-        navHome: "Home", navAbout: "About Us", navAcademics: "Academics", navFacilities: "Facilities",
-        navTeachers: "Teachers", navNotices: "Notices", navResults: "Results",
-        heroTitle: "Empowering Minds, Shaping Brighter Futures",
-        heroSubtitle: "Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.",
-        btnExplore: "Explore Programs", btnLearn: "Learn More", statYears: "Years of Academic Excellence",
-        statStudents: "Enrolled Students", statLearning: "Practical Learning", statStreams: "+2 Streams Offered",
-        aboutSubtitle: "Welcome to Our School", aboutTitle: "Shree Bhagawati Secondary School",
-        aboutDesc: "Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.",
-        academicsSubtitle: "Academic Excellence", academicsTitle: "Our Educational Programs",
-        facSubtitle: "Infrastructure", facTitle: "School Facilities",
-        teachersSubtitle: "Leadership", teachersTitle: "Messages from Leadership",
-        noticesSubtitle: "Announcements", noticesTitle: "Notice Board",
-        resultsSubtitle: "Academic Performance", resultsTitle: "Examination Results"
-      },
-      np: {
-        location: "शंखरापुर-६, साँखु, काठमाडौँ", schoolName: "श्री भगवती माध्यमिक विद्यालय",
-        schoolTagline: "वि.सं. २०३९ देखि गुणस्तरीय शिक्षामा समर्पित", navHome: "गृहपृष्ठ", navAbout: "हाम्रो बारेमा",
-        navAcademics: "शैक्षिक कार्यक्रम", navFacilities: "सुविधाहरू", navTeachers: "शिक्षकहरू", navNotices: "सूचनाहरू",
-        navResults: "नतिजाहरू", heroTitle: "ज्ञान र सीपको विकास, उज्ज्वल भविष्यको निकास",
-        heroSubtitle: "शंखरापुर नगरपालिका, काठमाडौँमा पूर्व-प्राथमिक देखि कक्षा १२ सम्म उत्कृष्ट शिक्षा प्रदान गर्दै।",
-        btnExplore: "कार्यक्रमहरू हेर्नुहोस्", btnLearn: "थप जान्नुहोस्", statYears: "वर्षको उत्कृष्ट इतिहास",
-        statStudents: "अध्ययनरत विद्यार्थीहरू", statLearning: "व्यावहारिक शिक्षा", statStreams: "+2 शैक्षिक संकायहरू",
-        aboutSubtitle: "हाम्रो विद्यालयमा स्वागत छ", aboutTitle: "श्री भगवती माध्यमिक विद्यालय",
-        aboutDesc: "वि.सं. २०३९ मा स्थापित श्री भगवती माध्यमिक विद्यालय शंखरापुर क्षेत्रको एक उत्कृष्ट शैक्षिक संस्था हो।",
-        academicsSubtitle: "शैक्षिक उत्कृष्टता", academicsTitle: "हाम्रा शैक्षिक कार्यक्रमहरू",
-        facSubtitle: "भौतिक पूर्वाधार", facTitle: "विद्यालयका सुविधाहरू",
-        teachersSubtitle: "नेतृत्व", teachersTitle: "विद्यालय नेतृत्वको सन्देश",
-        noticesSubtitle: "आधिकारिक सूचनाहरू", noticesTitle: "सूचना पाटी (Notice Board)",
-        resultsSubtitle: "शैक्षिक नतिजा", resultsTitle: "परीक्षाको नतिजा"
-      }
-    };
-
     let liveNotices = [];
     let currentNoticeIndex = 0;
+    let slideshowInterval = null;
 
     function unlockAdmin(email) {
       localStorage.setItem('sbss_admin_email', email);
+      document.body.classList.add("admin-logged-in");
       document.getElementById("admin-email-display").textContent = email;
       document.getElementById("auth-section").style.display = "none";
       document.getElementById("upload-section").style.display = "block";
@@ -562,14 +601,119 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      // Check saved admin session
-      const savedAdmin = localStorage.getItem('sbss_admin_email');
-      if (savedAdmin) {
-        unlockAdmin(savedAdmin);
+    // Dynamic Settings Fetch (Principal/VP Photos)
+    async function fetchDynamicSettings() {
+      try {
+        const res = await fetch(`${API}/settings`);
+        const settings = await res.json();
+        if (settings.principal_photo) {
+          document.getElementById('principal-img-display').src = `${BACKEND_URL}${settings.principal_photo}`;
+        }
+        if (settings.vp_photo) {
+          document.getElementById('vp-img-display').src = `${BACKEND_URL}${settings.vp_photo}`;
+        }
+      } catch (e) {
+        console.log('Dynamic settings fallback');
       }
+    }
 
-      // Direct Login Handler
+    // Dynamic Staff Directory Fetch
+    async function fetchStaffDirectory() {
+      const container = document.getElementById('staff-roster-container');
+      try {
+        const res = await fetch(`${API}/staff`);
+        const staffList = await res.json();
+
+        if (staffList && staffList.length > 0) {
+          container.innerHTML = '';
+          staffList.forEach(member => {
+            const card = document.createElement('div');
+            card.className = 'staff-card';
+            card.innerHTML = `
+              <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember(${member.id}, '${member.name}')">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <div class="staff-card-img">
+                <img src="${BACKEND_URL}${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
+              </div>
+              <div class="staff-card-body">
+                <div class="staff-card-name">${member.name}</div>
+                <div class="staff-card-role">${member.designation}</div>
+                ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
+                ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        } else {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
+              <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
+              <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
+              <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here.</p>
+            </div>`;
+        }
+      } catch (err) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--danger);">Unable to connect to database for staff directory.</p>';
+      }
+    }
+
+    // Delete Staff Member
+    window.deleteStaffMember = async function(id, name) {
+      if (confirm(`Are you sure you want to remove ${name} from the staff directory?`)) {
+        try {
+          const res = await fetch(`${API}/staff/${id}`, { method: 'DELETE' });
+          if (res.ok) {
+            alert(`${name} removed successfully!`);
+            fetchStaffDirectory();
+          }
+        } catch (e) {
+          alert('Failed to delete staff member.');
+        }
+      }
+    };
+
+    // Dynamic Hero Slideshow Fetch
+    async function fetchHeroSlides() {
+      try {
+        const res = await fetch(`${API}/hero-slides`);
+        const slides = await res.json();
+        if (slides && slides.length > 0) {
+          const container = document.getElementById('hero-slideshow-container');
+          container.innerHTML = '';
+          slides.forEach((s, idx) => {
+            const img = document.createElement('img');
+            img.src = `${BACKEND_URL}${s.file_url}`;
+            img.alt = s.caption || 'Campus Slide';
+            if (idx === 0) img.classList.add('active');
+            container.appendChild(img);
+          });
+          startSlideshow();
+        } else {
+          startSlideshow();
+        }
+      } catch (e) {
+        startSlideshow();
+      }
+    }
+
+    function startSlideshow() {
+      if (slideshowInterval) clearInterval(slideshowInterval);
+      const slides = document.querySelectorAll('.hero-slideshow img');
+      let currentSlide = 0;
+      if (slides.length > 1) {
+        slideshowInterval = setInterval(() => {
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add('active');
+        }, 5000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const savedAdmin = localStorage.getItem('sbss_admin_email');
+      if (savedAdmin) unlockAdmin(savedAdmin);
+
       document.getElementById("direct-login-btn").addEventListener("click", () => {
         const email = document.getElementById("admin-email-input").value.trim();
         const pin = document.getElementById("admin-passcode-input").value.trim();
@@ -584,9 +728,9 @@
         }
       });
 
-      // Logout
       document.getElementById("logout-btn").addEventListener("click", () => {
         localStorage.removeItem('sbss_admin_email');
+        document.body.classList.remove("admin-logged-in");
         document.getElementById("auth-section").style.display = "block";
         document.getElementById("upload-section").style.display = "none";
         document.getElementById("admin-notice-bar").classList.remove("active");
@@ -597,27 +741,6 @@
       const mobileToggle = document.getElementById("mobile-toggle");
       const navMenu = document.getElementById("nav-menu");
       mobileToggle.addEventListener("click", () => navMenu.classList.toggle("mobile-active"));
-
-      // Language Switcher
-      const langSelect = document.getElementById("lang-select");
-      langSelect.addEventListener("change", function() {
-        const lang = this.value;
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-          const key = el.getAttribute("data-i18n");
-          if (i18nData[lang] && i18nData[lang][key]) el.textContent = i18nData[lang][key];
-        });
-      });
-
-      // Hero slideshow
-      const slides = document.querySelectorAll('.hero-slideshow img');
-      let currentSlide = 0;
-      if (slides.length > 1) {
-        setInterval(() => {
-          slides[currentSlide].classList.remove('active');
-          currentSlide = (currentSlide + 1) % slides.length;
-          slides[currentSlide].classList.add('active');
-        }, 5000);
-      }
 
       // Leadership Slider
       const leaderCards = [document.getElementById("card-principal"), document.getElementById("card-vice-principal")];
@@ -648,7 +771,7 @@
           }
           updateNoticeDisplay();
         } catch (err) {
-          noticeDisplayContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Server connection offline.</p>';
+          noticeDisplayContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Server offline.</p>';
         }
       }
 
@@ -689,10 +812,9 @@
             resultContentContainer.innerHTML = `<div class="no-result-box"><i class="fa-solid fa-file-circle-xmark" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>Result Not Available</h4><p>Result for <strong>${selectedClass}</strong> has not been uploaded yet.</p></div>`;
           }
         } catch (err) {
-          resultContentContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding:20px;">Unable to reach database server.</p>';
+          resultContentContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding:20px;">Unable to reach database.</p>';
         }
       }
-
       classSelect.addEventListener("change", function() { fetchLiveResult(this.value); });
 
       // Admin Deletions
@@ -712,60 +834,94 @@
         }
       });
 
-      // Admin Modal & Uploads
+      // Form Field Switching
       const modal = document.getElementById("admin-modal");
       const uploadTypeSelect = document.getElementById("upload-type");
+      const staffFieldsGroup = document.getElementById("staff-fields-group");
       const targetClassGroup = document.getElementById("target-class-group");
+      const leaderSelectGroup = document.getElementById("leader-select-group");
+      const heroCaptionGroup = document.getElementById("hero-caption-group");
       const dropZone = document.getElementById("drop-zone");
       const fileInput = document.getElementById("file-input");
       const dropText = document.getElementById("drop-text");
 
       document.getElementById("open-admin-btn").addEventListener("click", () => modal.classList.add("active"));
       document.getElementById("close-admin-btn").addEventListener("click", () => modal.classList.remove("active"));
-      uploadTypeSelect.addEventListener("change", function() { targetClassGroup.style.display = this.value === "result" ? "block" : "none"; });
+
+      uploadTypeSelect.addEventListener("change", function() {
+        staffFieldsGroup.style.display = this.value === "staff" ? "block" : "none";
+        targetClassGroup.style.display = this.value === "result" ? "block" : "none";
+        leaderSelectGroup.style.display = this.value === "leader_photo" ? "block" : "none";
+        heroCaptionGroup.style.display = this.value === "hero_slide" ? "block" : "none";
+      });
 
       dropZone.addEventListener("click", () => fileInput.click());
       fileInput.addEventListener("change", () => {
-        if (fileInput.files.length) dropText.textContent = fileInput.files.length === 1 ? `Selected: ${fileInput.files[0].name}` : `Selected ${fileInput.files.length} files`;
+        if (fileInput.files.length) dropText.textContent = `Selected: ${fileInput.files[0].name}`;
       });
 
+      // Submit Upload
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         const uploadType = uploadTypeSelect.value;
         const targetClass = document.getElementById("target-class-select").value;
+        const settingKey = document.getElementById("leader-key-select").value;
+        const caption = document.getElementById("hero-caption-input").value;
+        
+        const staffName = document.getElementById("staff-name-input").value;
+        const staffDesignation = document.getElementById("staff-designation-input").value;
+        const staffQualification = document.getElementById("staff-qual-input").value;
+        const staffMessage = document.getElementById("staff-msg-input").value;
+
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
-        if (!files || files.length === 0) return alert("Please select a file first.");
+        if (!files || files.length === 0) return alert("Please select an image or document first.");
 
         status.textContent = "Uploading to database...";
 
-        for (let i = 0; i < files.length; i++) {
-          const formData = new FormData();
-          formData.append('file', files[i]);
-          formData.append('uploadType', uploadType);
-          formData.append('targetClass', targetClass);
+        const formData = new FormData();
+        formData.append('file', files[0]);
+        formData.append('uploadType', uploadType);
+        formData.append('targetClass', targetClass);
+        formData.append('settingKey', settingKey);
+        formData.append('caption', caption);
+        formData.append('staffName', staffName);
+        formData.append('staffDesignation', staffDesignation);
+        formData.append('staffQualification', staffQualification);
+        formData.append('staffMessage', staffMessage);
 
-          try {
-            const res = await fetch(`${API}/upload`, { method: 'POST', body: formData });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message || 'Upload failed');
-          } catch (err) {
-            status.textContent = "Upload error: " + err.message;
-            return;
-          }
+        try {
+          const res = await fetch(`${API}/upload`, { method: 'POST', body: formData });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || 'Upload failed');
+        } catch (err) {
+          status.textContent = "Upload error: " + err.message;
+          return;
         }
 
-        status.textContent = "Upload complete! Updating live website...";
+        status.textContent = "Upload successful! Updating live website...";
         setTimeout(() => {
           modal.classList.remove("active");
           status.textContent = "";
           fileInput.value = "";
-          dropText.textContent = "Click or drag & drop files (.jpg, .png, .pdf)";
+          document.getElementById("staff-name-input").value = "";
+          document.getElementById("staff-designation-input").value = "";
+          document.getElementById("staff-qual-input").value = "";
+          document.getElementById("staff-msg-input").value = "";
+          dropText.textContent = "Click or drag & drop photo/document (.jpg, .png, .pdf)";
+          
           if (uploadType === "notice") fetchLiveNotices();
-          else fetchLiveResult(targetClass);
+          else if (uploadType === "result") fetchLiveResult(targetClass);
+          else if (uploadType === "leader_photo") fetchDynamicSettings();
+          else if (uploadType === "hero_slide") fetchHeroSlides();
+          else if (uploadType === "staff") fetchStaffDirectory();
         }, 1200);
       });
 
+      // Initial Fetch
+      fetchDynamicSettings();
+      fetchStaffDirectory();
+      fetchHeroSlides();
       fetchLiveNotices();
       fetchLiveResult(classSelect.value);
     });
