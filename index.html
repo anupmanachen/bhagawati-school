@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Shree Bhagawati Secondary School | Shankharapur-6, Sankhu, Kathmandu</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <style>
+    /* ==========================================================================
+       CSS RESET & DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --primary: #7B3F00;         /* Heritage Chocolate Bronze */
+      --primary-hover: #5c2e00;
+      --primary-dark: #421e00;
+      --secondary: #d97706;       /* Warm Amber Gold */
+      --secondary-light: #fef3c7;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-600: #475569;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --shadow-lg: 0 20px 30px -10px rgba(0,0,0,0.15);
+      --transition: all 0.25s ease-in-out;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', 'Mukta', sans-serif; color: var(--slate-800); background-color: var(--slate-50); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 92%; max-width: 1200px; margin: 0 auto; }
+
+    /* ==========================================================================
+       TOP BAR & HEADER
+       ========================================================================== */
+    .top-bar { background-color: var(--primary-dark); color: #cbd5e1; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .top-bar-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .contact-info { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .contact-info span i, .contact-info a i { color: var(--secondary); margin-right: 6px; }
+    .contact-info a:hover { color: #fff; }
+    .top-right-bar { display: flex; align-items: center; gap: 14px; }
+    .social-links a { color: #cbd5e1; font-size: 0.95rem; transition: var(--transition); }
+    .social-links a:hover { color: var(--secondary); transform: translateY(-1px); }
+
+    .lang-switcher select {
+      background-color: rgba(255, 255, 255, 0.12); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-sm); padding: 3px 8px; font-size: 0.8rem; outline: none; cursor: pointer;
+    }
+    .lang-switcher select option { background-color: var(--primary-dark); color: #ffffff; }
+
+    .header { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-container { width: 46px; height: 46px; background-color: var(--primary); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); flex-shrink: 0; border: 2px solid var(--secondary); }
+    .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text { display: flex; flex-direction: column; }
+    .school-name { font-weight: 800; font-size: 1.15rem; color: var(--primary-dark); line-height: 1.2; letter-spacing: -0.2px; }
+    .school-tagline { font-size: 0.75rem; color: var(--slate-600); font-weight: 500; }
+
+    .nav-menu { display: flex; align-items: center; gap: 20px; }
+    .nav-menu a { font-weight: 600; font-size: 0.92rem; color: var(--slate-800); transition: var(--transition); }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--primary); }
+    .mobile-nav-toggle { display: none; background: none; border: none; font-size: 1.4rem; color: var(--primary); cursor: pointer; padding: 5px; }
+
+    /* Buttons */
+    .btn { padding: 9px 20px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: var(--transition); border: none; }
+    .btn-primary { background-color: var(--primary); color: white !important; }
+    .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+    .btn-danger { background-color: var(--danger); color: white !important; }
+    .btn-danger:hover { background-color: #b91c1c; }
+    .btn-outline-dark { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+    .btn-outline-dark:hover { background-color: var(--primary); color: white !important; }
+    .btn-admin { background-color: var(--secondary); color: white !important; box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3); }
+    .btn-admin:hover { background-color: #b45309; }
+    .btn-lg { padding: 12px 28px; font-size: 1rem; border-radius: var(--radius-md); }
+
+    /* ==========================================================================
+       HERO & STATS
+       ========================================================================== */
+    .hero-stacked { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); position: relative; }
+    .hero-slideshow-banner { position: relative; width: 100%; height: 48vh; min-height: 280px; max-height: 520px; overflow: hidden; background: #000; }
+    .hero-slideshow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .hero-slideshow img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out, transform 8s ease; }
+    .hero-slideshow img.active { opacity: 1; transform: scale(1.04); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%); }
+
+    .hero-text-block { padding: 45px 0 55px; text-align: center; background: radial-gradient(circle at center, #ffffff 0%, var(--slate-50) 100%); }
+    .hero-text-block h1 { font-size: 2.35rem; font-weight: 800; color: var(--primary-dark); line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.5px; }
+    .hero-text-block p { font-size: 1.1rem; color: var(--slate-600); max-width: 780px; margin: 0 auto 28px; }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .stats { background: #ffffff; padding: 36px 0; border-bottom: 1px solid var(--slate-200); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center; }
+    .stat-card { padding: 10px; }
+    .stat-card h3 { font-size: 2.1rem; color: var(--primary); font-weight: 800; margin-bottom: 4px; }
+    .stat-card p { color: var(--slate-600); font-size: 0.9rem; font-weight: 500; }
+
+    /* ==========================================================================
+       SECTIONS (About, Academics, Facilities)
+       ========================================================================== */
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-subtitle { color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.82rem; letter-spacing: 1.5px; display: inline-block; margin-bottom: 6px; }
+    .section-header h2 { font-size: 2rem; color: var(--primary-dark); font-weight: 800; letter-spacing: -0.3px; }
+
+    .about { padding: 75px 0; background-color: var(--slate-50); }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: center; }
+    .about-text h2 { font-size: 2rem; color: var(--primary-dark); margin: 6px 0 16px; font-weight: 800; }
+    .about-text p { margin-bottom: 18px; color: var(--slate-600); font-size: 1rem; }
+    .check-list { list-style: none; }
+    .check-list li { margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; color: var(--slate-800); }
+    .check-list i { color: var(--success); font-size: 1.1rem; }
+    .about-card-box { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 36px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+    .highlight-box .icon { font-size: 2.6rem; color: var(--secondary); margin-bottom: 14px; }
+    .highlight-box h4 { font-size: 1.35rem; margin-bottom: 8px; font-weight: 700; }
+
+    .academics { background-color: #ffffff; padding: 75px 0; border-top: 1px solid var(--slate-200); }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .card { background: var(--slate-50); padding: 28px; border-radius: var(--radius-md); border: 1px solid var(--slate-200); transition: var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(123, 63, 0, 0.3); }
+    .card-icon { width: 50px; height: 50px; background-color: rgba(123, 63, 0, 0.1); color: var(--primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 18px; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--primary-dark); font-weight: 700; }
+    .card p { color: var(--slate-600); font-size: 0.92rem; }
+
+    .facilities { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
+    .facilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .facility-item { background: #ffffff; padding: 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--slate-200); transition: var(--transition); }
+    .facility-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .facility-item i { font-size: 1.8rem; color: var(--secondary); margin-bottom: 12px; }
+    .facility-item h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--primary-dark); font-weight: 700; }
+    .facility-item p { font-size: 0.88rem; color: var(--slate-600); }
+
+    /* ==========================================================================
+       LEADERSHIP SLIDER
+       ========================================================================== */
+    .teachers { background-color: #ffffff; padding: 75px 0; border-top: 1px solid var(--slate-200); }
+    .leadership-slider-container { max-width: 980px; margin: 0 auto; position: relative; }
+    .leadership-card { display: none; grid-template-columns: 290px 1fr; gap: 32px; background: var(--slate-50); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); box-shadow: var(--shadow-md); align-items: center; }
+    .leadership-card.active { display: grid; }
+    .leadership-img-box { width: 100%; height: 320px; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 3px solid var(--primary); }
+    .leadership-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .leadership-message-content h3 { font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 6px; font-weight: 800; }
+    .leadership-title { color: var(--secondary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 16px; display: block; }
+    .leadership-text { color: var(--slate-600); font-size: 0.96rem; line-height: 1.7; }
+    .leadership-signature { margin-top: 20px; font-weight: 700; color: var(--primary-dark); font-size: 1.05rem; }
+
+    .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+    .slider-btn { background-color: var(--primary); color: white; border: none; padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+    .slider-btn:hover { background-color: var(--primary-hover); }
+
+    /* ==========================================================================
+       LIVE NOTICE BOARD & EXAM RESULTS (CONNECTED TO API)
+       ========================================================================== */
+    .notices { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
+    .notice-viewer-card, .results-card { max-width: 860px; margin: 0 auto; background: #ffffff; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--slate-200); padding: 26px; }
+    .notice-filter-bar, .results-filter-bar { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .notice-select, .results-select { padding: 9px 16px; font-size: 0.95rem; border-radius: var(--radius-sm); border: 2px solid var(--primary); background: #ffffff; font-weight: 600; color: var(--slate-800); outline: none; cursor: pointer; }
+    
+    .notice-display-wrapper, .result-display-area { position: relative; width: 100%; background-color: var(--slate-100); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--slate-200); display: flex; justify-content: center; align-items: center; min-height: 320px; padding: 15px; }
+    .notice-display-wrapper img, .result-image-box img { max-width: 100%; height: auto; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); display: block; }
+    
+    .notice-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; gap: 12px; }
+    .notice-btn { background-color: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+    .notice-btn:hover { background-color: var(--primary-hover); }
+    .notice-counter { font-weight: 700; color: var(--slate-600); font-size: 0.9rem; }
+
+    .no-notice-box, .no-result-box { text-align: center; padding: 40px 20px; background: #fff5f5; border: 2px dashed #feb2b2; border-radius: var(--radius-md); width: 100%; }
+    .no-notice-box i, .no-result-box i { font-size: 2.8rem; color: var(--danger); margin-bottom: 12px; }
+    .no-notice-box h4, .no-result-box h4 { font-size: 1.25rem; color: #991b1b; margin-bottom: 6px; font-weight: 700; }
+    .no-notice-box p, .no-result-box p { color: var(--slate-600); font-size: 0.92rem; }
+
+    .results-section { padding: 75px 0; background-color: #ffffff; border-top: 1px solid var(--slate-200); }
+    .result-display-area { background: var(--slate-50); flex-direction: column; text-align: center; }
+    .result-display-area h3 { color: var(--primary-dark); margin-bottom: 18px; font-size: 1.35rem; font-weight: 700; }
+    .result-image-box { width: 100%; display: flex; justify-content: center; align-items: center; }
+
+    /* Admin Quick Actions */
+    .admin-action-bar { display: none; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--slate-200); justify-content: center; gap: 12px; }
+    .admin-action-bar.active { display: flex; }
+
+    /* Social Share Buttons */
+    .share-container { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--slate-200); text-align: center; }
+    .share-label { font-size: 0.86rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px; display: block; }
+    .share-buttons { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: var(--radius-sm); color: white; font-size: 0.84rem; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); }
+    .share-btn:hover { transform: translateY(-1px); }
+    .share-btn.facebook { background-color: #1877F2; }
+    .share-btn.whatsapp { background-color: #25D366; }
+    .share-btn.viber { background-color: #7360F2; }
+    .share-btn.twitter { background-color: #0f1419; }
+    .share-btn.copy-link { background-color: var(--primary); }
+
+    /* ==========================================================================
+       ADMIN MODAL & LIVE DRAG-AND-DROP UPLOAD
+       ========================================================================== */
+    .admin-modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.7); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .admin-modal.active { display: flex; }
+    .admin-box {
+      background: #ffffff; padding: 30px; border-radius: var(--radius-lg); max-width: 500px; width: 100%;
+      box-shadow: var(--shadow-lg); position: relative; max-height: 90vh; overflow-y: auto; border: 1px solid var(--slate-200);
+    }
+    .admin-box h2 { color: var(--primary-dark); margin-bottom: 6px; font-size: 1.45rem; font-weight: 800; }
+    .admin-box .close-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.4rem; color: var(--slate-600); cursor: pointer; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.88rem; color: var(--slate-800); }
+    .form-group select, .form-group input { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); font-size: 0.92rem; outline: none; }
+    .form-group select:focus, .form-group input:focus { border-color: var(--primary); }
+
+    .drop-zone {
+      border: 2px dashed var(--primary); border-radius: var(--radius-md); padding: 25px 20px;
+      text-align: center; background-color: var(--slate-50); cursor: pointer; transition: var(--transition); margin-bottom: 18px;
+    }
+    .drop-zone.dragover { background-color: var(--secondary-light); border-color: var(--secondary); }
+    .drop-zone i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+    .drop-zone p { font-size: 0.9rem; color: var(--slate-600); font-weight: 600; }
+    .drop-zone input[type="file"] { display: none; }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer { background-color: var(--primary-dark); color: #ffffff; padding: 60px 0 25px; border-top: 4px solid var(--secondary); }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 40px; }
+    .footer-col h3, .footer-col h4 { margin-bottom: 14px; color: #ffffff; font-size: 1.15rem; font-weight: 700; }
+    .footer-col p { color: #cbd5e1; font-size: 0.9rem; margin-bottom: 10px; line-height: 1.6; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { color: #cbd5e1; font-size: 0.9rem; transition: var(--transition); }
+    .footer-col ul a:hover { color: var(--secondary); padding-left: 4px; }
+    .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); color: #94a3b8; font-size: 0.85rem; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+    .visitor-counter-box { display: inline-flex; align-items: center; gap: 10px; background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); padding: 6px 16px; border-radius: 20px; font-size: 0.86rem; color: #e2e8f0; }
+    .visitor-count-number { font-weight: 800; color: var(--secondary); background: rgba(0, 0, 0, 0.35); padding: 3px 8px; border-radius: 4px; font-family: monospace; font-size: 0.95rem; }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .top-bar-content { flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+      .contact-info { flex-direction: column; align-items: center; gap: 4px; font-size: 0.8rem; }
+      .top-right-bar { width: 100%; justify-content: center; margin-top: 4px; }
+      
+      .mobile-nav-toggle { display: block; }
+      .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #ffffff; flex-direction: column; padding: 20px; border-bottom: 3px solid var(--primary); box-shadow: var(--shadow-lg); gap: 14px; }
+      .nav-menu.mobile-active { display: flex; }
+      .nav-menu a { width: 100%; text-align: center; padding: 8px 0; border-bottom: 1px solid var(--slate-100); }
+      .btn-admin { width: 100%; margin-top: 8px; }
+
+      .hero-text-block h1 { font-size: 1.65rem; }
+      .hero-text-block p { font-size: 0.95rem; }
+      .hero-slideshow-banner { height: 230px; min-height: 230px; }
+
+      .about-grid, .leadership-card { grid-template-columns: 1fr; text-align: center; }
+      .leadership-img-box { max-width: 250px; height: 280px; margin: 0 auto; }
+      
+      .notice-controls, .slider-controls { flex-direction: column; gap: 12px; width: 100%; }
+      .notice-btn, .slider-btn, .btn-danger { width: 100%; justify-content: center; }
+      .share-buttons span { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="contact-info">
+        <span><i class="fa-solid fa-location-dot"></i> <span data-i18n="location">Shankharapur-6, Sankhu, Kathmandu</span></span>
+        <span><i class="fa-solid fa-phone"></i> +977-1-4450778</span>
+        <a href="mailto:bhagawati_school@yahoo.com"><i class="fa-solid fa-envelope"></i> bhagawati_school@yahoo.com</a>
+      </div>
+      
+      <div class="top-right-bar">
+        <div class="social-links">
+          <a href="https://www.facebook.com/shreebhagawati/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <div class="lang-switcher">
+          <i class="fa-solid fa-globe" style="color: var(--secondary); margin-right: 4px;"></i>
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="np">नेपाली</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="#" class="brand">
+        <div class="logo-container">
+          <img src="logo1.jpg" alt="Shree Bhagawati Secondary School Logo" onerror="this.src='https://placehold.co/100x100?text=SBSS'">
+        </div>
+        <div class="brand-text">
+          <span class="school-name" data-i18n="schoolName">Bhagawati Secondary School</span>
+          <span class="school-tagline" data-i18n="schoolTagline">Excellence in Education Since 2039 B.S.</span>
+        </div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="active" data-i18n="navHome">Home</a>
+        <a href="#about" data-i18n="navAbout">About Us</a>
+        <a href="#academics" data-i18n="navAcademics">Academics</a>
+        <a href="#facilities" data-i18n="navFacilities">Facilities</a>
+        <a href="#teachers" data-i18n="navTeachers">Teachers</a>
+        <a href="#notices" data-i18n="navNotices">Notices</a>
+        <a href="#results" data-i18n="navResults">Results</a>
+        <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> Admin Portal</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-stacked">
+    <div class="hero-slideshow-banner">
+      <div class="hero-slideshow">
+        <img src="20260430_101202.jpg" alt="Bhagawati School Campus 1" class="active" onerror="this.src='https://placehold.co/1200x500?text=Shree+Bhagawati+Secondary+School'">
+        <img src="20260612_085037.jpg" alt="Bhagawati School Campus 2" onerror="this.src='https://placehold.co/1200x500?text=Academic+Excellence'">
+        <img src="20260612_085059.jpg" alt="Bhagawati School Campus 3" onerror="this.src='https://placehold.co/1200x500?text=Modern+Labs+%26+Sports'">
+        <img src="20260612_120651.jpg" alt="Bhagawati School Campus 4" onerror="this.src='https://placehold.co/1200x500?text=Empowering+Students'">
+      </div>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text-block">
+      <div class="container">
+        <h1 data-i18n="heroTitle">Empowering Minds, Shaping Brighter Futures</h1>
+        <p data-i18n="heroSubtitle">Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.</p>
+        <div class="hero-buttons">
+          <a href="#academics" class="btn btn-primary btn-lg" data-i18n="btnExplore">Explore Programs</a>
+          <a href="#about" class="btn btn-outline-dark btn-lg" data-i18n="btnLearn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Metrics -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <h3>40+</h3>
+        <p data-i18n="statYears">Years of Academic Excellence</p>
+      </div>
+      <div class="stat-card">
+        <h3>900+</h3>
+        <p data-i18n="statStudents">Enrolled Students</p>
+      </div>
+      <div class="stat-card">
+        <h3>100%</h3>
+        <p data-i18n="statLearning">Practical & Experiential Learning</p>
+      </div>
+      <div class="stat-card">
+        <h3>5+</h3>
+        <p data-i18n="statStreams">+2 Streams Offered</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <span class="section-subtitle" data-i18n="aboutSubtitle">Welcome to Our School</span>
+        <h2 data-i18n="aboutTitle">Shree Bhagawati Secondary School</h2>
+        <p data-i18n="aboutDesc">Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu. Designated as an Excellent School among local institutions, we focus on character building, disciplined academic growth, and modern educational methodologies.</p>
+        <ul class="check-list">
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList1">Affiliated with National Examinations Board (NEB)</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList2">Well-equipped Science, Computer, and Hotel Management Labs</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList3">Focus on Extracurriculars, Sports, and Real-World Field Trips</span></li>
+        </ul>
+      </div>
+      <div class="about-card-box">
+        <div class="highlight-box">
+          <i class="fa-solid fa-award icon"></i>
+          <h4 data-i18n="aboutLeaderTitle">Community Leader</h4>
+          <p data-i18n="aboutLeaderDesc">On track to recognition as a Mega School in Shankharapur Municipality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academics Section -->
+  <section id="academics" class="academics">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="academicsSubtitle">Academic Excellence</span>
+        <h2 data-i18n="academicsTitle">Our Educational Programs</h2>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-child"></i></div>
+          <h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3>
+          <p data-i18n="prog1Desc">Montessori-inspired early learning environment designed to nurture creativity, curiosity, and foundational skills.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3>
+          <p data-i18n="prog2Desc">Comprehensive standard SEE curriculum enriched with practical science experiments and technology skills.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3>
+          <p data-i18n="prog3Desc">Equipping students with modern computing, IT fundamentals, and business administrative principles.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-hotel"></i></div>
+          <h3 data-i18n="prog4Title">+2 Hotel Management</h3>
+          <p data-i18n="prog4Desc">Hands-on hospitality training with dedicated kitchen lab practice and luxury hotel field visits.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3 data-i18n="prog5Title">+2 Law & Humanities</h3>
+          <p data-i18n="prog5Desc">Preparing the next generation of legal professionals, social thinkers, and administrative leaders.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+          <h3 data-i18n="prog6Title">+2 Education Stream</h3>
+          <p data-i18n="prog6Desc">Fostering skilled future educators with modern pedagogy, practical teaching drills, and leadership training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities Section -->
+  <section id="facilities" class="facilities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="facSubtitle">Infrastructure & Campus</span>
+        <h2 data-i18n="facTitle">School Features & Facilities</h2>
+      </div>
+
+      <div class="facilities-grid">
+        <div class="facility-item">
+          <i class="fa-solid fa-flask"></i>
+          <h4 data-i18n="fac1Title">Science Laboratories</h4>
+          <p data-i18n="fac1Desc">Dedicated physics, chemistry, and biology practical labs.</p>
+        </div>
+        <div class="facility-item">
+          <i class="fa-solid fa-desktop"></i>
+          <h4 data-i18n="fac2Title">Computer Lab</h4>
+          <p data-i18n="fac2Desc">High-speed internet access with modern PC setups.</p>
+        </div>
+        <div class="facility-item">
+          <i class="fa-solid fa-trophy"></i>
+          <h4 data-i18n="fac3Title">Sports & Athletics</h4>
+          <p data-i18n="fac3Desc">Regular involvement in President's Running Shield, Volleyball, and Kabaddi.</p>
+        </div>
+        <div class="facility-item">
+          <i class="fa-solid fa-utensils"></i>
+          <h4 data-i18n="fac4Title">Kitchen & Hotel Lab</h4>
+          <p data-i18n="fac4Desc">Specialized practical spaces for Hotel Management students.</p>
+        </div>
+        <div class="facility-item">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <h4 data-i18n="fac5Title">Library & Audio-Visual</h4>
+          <p data-i18n="fac5Desc">Rich collection of reference books, literature, and multimedia setups.</p>
+        </div>
+        <div class="facility-item">
+          <i class="fa-solid fa-user-doctor"></i>
+          <h4 data-i18n="fac6Title">Health & Nursing</h4>
+          <p data-i18n="fac6Desc">Regular health checkups and student wellness care on campus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Slider Section -->
+  <section id="teachers" class="teachers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="teachersSubtitle">Leadership & Staff</span>
+        <h2 data-i18n="teachersTitle">Messages from School Leadership</h2>
+      </div>
+
+      <div class="leadership-slider-container">
+        <div class="leadership-card active" id="card-principal">
+          <div class="leadership-img-box">
+            <img src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal - Shree Bhagawati Secondary School" onerror="this.src='https://placehold.co/300x350?text=Principal'">
+          </div>
+          <div class="leadership-message-content">
+            <h3 data-i18n="principalWelcome">Welcome to Shree Bhagawati Secondary School</h3>
+            <span class="leadership-title" data-i18n="principalMsgHeader">Message from the Principal</span>
+            
+            <div class="leadership-text">
+              <p data-i18n="principalP1">Dear Students and Parents,</p>
+              <p data-i18n="principalP2">Welcome to the official website of Shree Bhagawati Secondary School. This website is your trusted source for school news, notices, academic updates, examination information, admissions, events, and important announcements. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</p>
+              <p data-i18n="principalP3">Thank you for your continued trust, support, and cooperation in providing quality education to our students.</p>
+            </div>
+
+            <div class="leadership-signature" data-i18n="principalSig">
+              — Shree Bhagawati Secondary School
+            </div>
+          </div>
+        </div>
+
+        <div class="leadership-card" id="card-vice-principal">
+          <div class="leadership-img-box">
+            <img src="VicePrincipal.jpeg" alt="Vice Principal - Shree Bhagawati Secondary School" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'">
+          </div>
+          <div class="leadership-message-content">
+            <h3 data-i18n="vpWelcome">Message from the Vice Principal</h3>
+            <span class="leadership-title" data-i18n="vpMsgHeader">Vice Principal</span>
+            
+            <div class="leadership-text">
+              <p data-i18n="vpP1">Dear Students, Parents, and Visitors,</p>
+              <p data-i18n="vpP2">Welcome to Shree Bhagawati Secondary School. We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence and develop strong character. With the continued cooperation of our dedicated teachers, supportive parents, and enthusiastic students, we strive to prepare our learners for a bright and successful future.</p>
+            </div>
+
+            <div class="leadership-signature" data-i18n="vpSig">
+              Vice Principal <br>Shree Bhagawati Secondary School
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-controls">
+          <button class="slider-btn" id="prev-leader-btn"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrevLeader">Principal</span></button>
+          <span class="notice-counter" id="leader-counter-text">1 of 2</span>
+          <button class="slider-btn" id="next-leader-btn"><span data-i18n="btnNextLeader">Vice Principal</span> <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Notice Board -->
+  <section id="notices" class="notices">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="noticesSubtitle">Official Announcements</span>
+        <h2 data-i18n="noticesTitle">Notice Board</h2>
+      </div>
+
+      <div class="notice-viewer-card">
+        <div class="notice-filter-bar">
+          <label for="notice-date-select"><i class="fa-regular fa-calendar-days"></i> Select Notice Date:</label>
+          <select id="notice-date-select" class="notice-select"></select>
+        </div>
+
+        <div class="notice-display-wrapper" id="notice-display-container">
+          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Syncing live notices from database...</p>
+        </div>
+        
+        <div class="notice-controls">
+          <button class="notice-btn" id="prev-notice-btn"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrevNotice">Previous Notice</span></button>
+          <span class="notice-counter" id="notice-counter-text">Notice 0 of 0</span>
+          <button class="notice-btn" id="next-notice-btn"><span data-i18n="btnNextNotice">Next Notice</span> <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="admin-action-bar" id="admin-notice-bar">
+          <button class="btn btn-danger" id="delete-notice-btn"><i class="fa-solid fa-trash-can"></i> Delete Current Notice</button>
+        </div>
+
+        <div class="share-container">
+          <span class="share-label" data-i18n="lblShareNotice">Share Notice:</span>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" id="share-notice-fb" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i> <span>Facebook</span></a>
+            <a href="#" class="share-btn whatsapp" id="share-notice-wa" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span></a>
+            <a href="#" class="share-btn viber" id="share-notice-vb" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-viber"></i> <span>Viber</span></a>
+            <a href="#" class="share-btn twitter" id="share-notice-tw" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> <span>X</span></a>
+            <button class="share-btn copy-link" id="copy-notice-link"><i class="fa-solid fa-link"></i> <span data-i18n="btnCopyLink">Copy Link</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Examination Results -->
+  <section id="results" class="results-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="resultsSubtitle">Academic Performance</span>
+        <h2 data-i18n="resultsTitle">Examination Results</h2>
+      </div>
+
+      <div class="results-card">
+        <div class="results-filter-bar">
+          <label for="class-select"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="lblSelectClass">Select Class:</span></label>
+          <select id="class-select" class="results-select">
+            <option value="Class 8">Class 8</option>
+            <option value="Class 9">Class 9</option>
+            <option value="Class 10 (SEE)">Class 10 (SEE)</option>
+            <option value="Class 11">Class 11</option>
+            <option value="Class 12">Class 12</option>
+          </select>
+        </div>
+
+        <div class="result-display-area">
+          <h3 id="result-title"><span data-i18n="resultHeading">Examination Result</span> - Class 8</h3>
+          <div class="result-image-box" id="result-content-container">
+            <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Retrieving marksheet ledger...</p>
+          </div>
+        </div>
+
+        <div class="admin-action-bar" id="admin-result-bar">
+          <button class="btn btn-danger" id="delete-result-btn"><i class="fa-solid fa-trash-can"></i> Delete Result for Selected Class</button>
+        </div>
+
+        <div class="share-container">
+          <span class="share-label" data-i18n="lblShareResult">Share Result:</span>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" id="share-result-fb" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i> <span>Facebook</span></a>
+            <a href="#" class="share-btn whatsapp" id="share-result-wa" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span></a>
+            <a href="#" class="share-btn viber" id="share-result-vb" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-viber"></i> <span>Viber</span></a>
+            <a href="#" class="share-btn twitter" id="share-result-tw" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> <span>X</span></a>
+            <button class="share-btn copy-link" id="copy-result-link"><i class="fa-solid fa-link"></i> <span data-i18n="btnCopyLink">Copy Link</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Modal & Drag-and-Drop Live Uploader -->
+  <div class="admin-modal" id="admin-modal">
+    <div class="admin-box">
+      <button class="close-btn" id="close-admin-btn">&times;</button>
+      <h2>Admin Upload Portal</h2>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized Google Workspace credentials to sync updates directly with the school database.</p>
+
+      <div id="auth-section">
+        <button class="btn btn-primary" style="width: 100%; padding: 12px;" id="google-login-btn">
+          <i class="fa-brands fa-google"></i> Login with Authorized Google Account
+        </button>
+      </div>
+
+      <div id="upload-section" style="display: none;">
+        <div class="form-group">
+          <label for="upload-type">Upload Category:</label>
+          <select id="upload-type">
+            <option value="notice">Notice Board Document(s)</option>
+            <option value="result">Examination Result</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="target-class-group" style="display: none;">
+          <label for="target-class-select">Target Class for Result:</label>
+          <select id="target-class-select">
+            <option value="Class 8">Class 8</option>
+            <option value="Class 9">Class 9</option>
+            <option value="Class 10 (SEE)">Class 10 (SEE)</option>
+            <option value="Class 11">Class 11</option>
+            <option value="Class 12">Class 12</option>
+          </select>
+        </div>
+
+        <div class="drop-zone" id="drop-zone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <p id="drop-text">Click or drag & drop files (.jpg, .png, .pdf)</p>
+          <input type="file" id="file-input" accept="image/*,.pdf" multiple />
+        </div>
+
+        <button class="btn btn-primary" id="upload-file-btn" style="width: 100%; padding: 12px;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Sync to Live Website
+        </button>
+        <p id="upload-status" style="margin-top: 12px; font-weight: 700; text-align: center; color: var(--primary);"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3 data-i18n="schoolName">Shree Bhagawati Secondary School</h3>
+        <p data-i18n="footerDesc">Dedicated to delivering quality education, strong values, and practical skills for real-world success.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerQuickLinks">Quick Links</h4>
+        <ul>
+          <li><a href="#home" data-i18n="navHome">Home</a></li>
+          <li><a href="#about" data-i18n="navAbout">About Us</a></li>
+          <li><a href="#academics" data-i18n="navAcademics">Academics</a></li>
+          <li><a href="#facilities" data-i18n="navFacilities">Facilities</a></li>
+          <li><a href="#teachers" data-i18n="navTeachers">Teachers</a></li>
+          <li><a href="#notices" data-i18n="navNotices">Notices</a></li>
+          <li><a href="#results" data-i18n="navResults">Results</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="navContact">Contact Us</h4>
+        <p><i class="fa-solid fa-location-dot"></i> <span data-i18n="location">Shankharapur-6, Sankhu, Kathmandu, Nepal</span></p>
+        <p><i class="fa-solid fa-phone"></i> +977-1-4450778</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:bhagawati_school@yahoo.com" style="color: #cbd5e1; text-decoration: underline;">bhagawati_school@yahoo.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Shree Bhagawati Secondary School. All Rights Reserved.</p>
+      <div class="visitor-counter-box">
+        <i class="fa-solid fa-eye"></i>
+        <span data-i18n="lblVisitors">Total Visits:</span>
+        <span id="visitor-count" class="visitor-count-number">1,482</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Application Logic -->
+  <script>
+    // ==========================================================================
+    // BACKEND SERVER & DATABASE TUNNEL ROUTING
+    // ==========================================================================
+    const BACKEND_URL = 'https://api.bhagwati.edu.np';
+    const API = `${BACKEND_URL}/api`;
+
+    // Google Workspace OAuth Client ID
+    const CLIENT_ID = '767592125177-l680jaqgngraffpirfhc6kqmaie2loua.apps.googleusercontent.com';
+
+    // Whitelisted Authorized Admin Accounts
+    const AUTHORIZED_ADMIN_EMAILS = [
+      'studyoutsidenepal@gmail.com',
+      'bhagawati_school@yahoo.com'
+    ];
+
+    // ==========================================================================
+    // LOCALIZATION DICTIONARY (ENGLISH / NEPALESE)
+    // ==========================================================================
+    const i18nData = {
+      en: {
+        location: "Shankharapur-6, Sankhu, Kathmandu",
+        schoolName: "Bhagawati Secondary School",
+        schoolTagline: "Excellence in Education Since 2039 B.S.",
+        navHome: "Home", navAbout: "About Us", navAcademics: "Academics", navFacilities: "Facilities",
+        navTeachers: "Teachers", navNotices: "Notices", navResults: "Results", navContact: "Contact Us",
+        heroTitle: "Empowering Minds, Shaping Brighter Futures",
+        heroSubtitle: "Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.",
+        btnExplore: "Explore Programs", btnLearn: "Learn More", statYears: "Years of Academic Excellence",
+        statStudents: "Enrolled Students", statLearning: "Practical & Experiential Learning", statStreams: "+2 Streams Offered",
+        aboutSubtitle: "Welcome to Our School", aboutTitle: "Shree Bhagawati Secondary School",
+        aboutDesc: "Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.",
+        aboutList1: "Affiliated with National Examinations Board (NEB)",
+        aboutList2: "Well-equipped Science, Computer, and Hotel Management Labs",
+        aboutList3: "Focus on Extracurriculars, Sports, and Real-World Field Trips",
+        aboutLeaderTitle: "Community Leader", aboutLeaderDesc: "On track to recognition as a Mega School in Shankharapur Municipality.",
+        academicsSubtitle: "Academic Excellence", academicsTitle: "Our Educational Programs",
+        prog1Title: "Pre-Primary & Basic Level", prog1Desc: "Montessori-inspired early learning environment designed to nurture creativity, curiosity, and foundational skills.",
+        prog2Title: "Secondary Level (Grades 9 & 10)", prog2Desc: "Comprehensive standard SEE curriculum enriched with practical science experiments and technology skills.",
+        prog3Title: "+2 Computer Science & Mgmt", prog3Desc: "Equipping students with modern computing, IT fundamentals, and business administrative principles.",
+        prog4Title: "+2 Hotel Management", prog4Desc: "Hands-on hospitality training with dedicated kitchen lab practice and luxury hotel field visits.",
+        prog5Title: "+2 Law & Humanities", prog5Desc: "Preparing the next generation of legal professionals, social thinkers, and administrative leaders.",
+        prog6Title: "+2 Education Stream", prog6Desc: "Fostering skilled future educators with modern pedagogy, practical teaching drills, and leadership training.",
+        facSubtitle: "Infrastructure & Campus", facTitle: "School Features & Facilities",
+        fac1Title: "Science Laboratories", fac1Desc: "Dedicated physics, chemistry, and biology practical labs.",
+        fac2Title: "Computer Lab", fac2Desc: "High-speed internet access with modern PC setups.",
+        fac3Title: "Sports & Athletics", fac3Desc: "Regular involvement in President's Running Shield, Volleyball, and Kabaddi.",
+        fac4Title: "Kitchen & Hotel Lab", fac4Desc: "Specialized practical spaces for Hotel Management students.",
+        fac5Title: "Library & Audio-Visual", fac5Desc: "Rich collection of reference books, literature, and multimedia setups.",
+        fac6Title: "Health & Nursing", fac6Desc: "Regular health checkups and student wellness care on campus.",
+        teachersSubtitle: "Leadership & Staff", teachersTitle: "Messages from School Leadership",
+        principalWelcome: "Welcome to Shree Bhagawati Secondary School", principalMsgHeader: "Message from the Principal",
+        principalP1: "Dear Students and Parents,", principalP2: "Welcome to the official website of Shree Bhagawati Secondary School. This website is your trusted source for school news, notices, academic updates, examination information, admissions, events, and important announcements. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.",
+        principalP3: "Thank you for your continued trust, support, and cooperation in providing quality education to our students.",
+        principalSig: "— Shree Bhagawati Secondary School", vpWelcome: "Message from the Vice Principal",
+        vpMsgHeader: "Vice Principal", vpP1: "Dear Students, Parents, and Visitors,",
+        vpP2: "Welcome to Shree Bhagawati Secondary School. We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence and develop strong character. With the continued cooperation of our dedicated teachers, supportive parents, and enthusiastic students, we strive to prepare our learners for a bright and practical future.",
+        vpSig: "Vice Principal\nShree Bhagawati Secondary School", btnPrevLeader: "Principal", btnNextLeader: "Vice Principal",
+        noticesSubtitle: "Official Announcements", noticesTitle: "Notice Board", btnPrevNotice: "Previous Notice",
+        btnNextNotice: "Next Notice", lblShareNotice: "Share Notice:", lblShareResult: "Share Result:", btnCopyLink: "Copy Link",
+        resultsSubtitle: "Academic Performance", resultsTitle: "Examination Results", lblSelectClass: "Select Class:",
+        resultHeading: "Examination Result", footerDesc: "Dedicated to delivering quality education, strong values, and practical skills for real-world success.",
+        footerQuickLinks: "Quick Links", lblVisitors: "Total Visits:"
+      },
+      np: {
+        location: "शंखरापुर-६, साँखु, काठमाडौँ", schoolName: "श्री भगवती माध्यमिक विद्यालय",
+        schoolTagline: "वि.सं. २०३९ देखि गुणस्तरीय शिक्षामा समर्पित", navHome: "गृहपृष्ठ", navAbout: "हाम्रो बारेमा",
+        navAcademics: "शैक्षिक कार्यक्रम", navFacilities: "सुविधाहरू", navTeachers: "शिक्षकहरू", navNotices: "सूचनाहरू",
+        navResults: "नतिजाहरू", navContact: "सम्पर्क गर्नुहोस्", heroTitle: "ज्ञान र सीपको विकास, उज्ज्वल भविष्यको निकास",
+        heroSubtitle: "शंखरापुर नगरपालिका, काठमाडौँमा पूर्व-प्राथमिक देखि कक्षा १२ सम्म उत्कृष्ट शिक्षा प्रदान गर्दै।",
+        btnExplore: "कार्यक्रमहरू हेर्नुहोस्", btnLearn: "थप जान्नुहोस्", statYears: "वर्षको उत्कृष्ट इतिहास",
+        statStudents: "अध्ययनरत विद्यार्थीहरू", statLearning: "व्यावहारिक र प्रयोगसिद्ध शिक्षा", statStreams: "+2 शैक्षिक संकायहरू",
+        aboutSubtitle: "हाम्रो विद्यालयमा स्वागत छ", aboutTitle: "श्री भगवती माध्यमिक विद्यालय",
+        aboutDesc: "वि.सं. २०३९ मा स्थापित श्री भगवती माध्यमिक विद्यालय शंखरापुर क्षेत्रको एक उत्कृष्ट शैक्षिक संस्था हो।",
+        aboutList1: "राष्ट्रिय परीक्षा बोर्ड (NEB) बाट सम्बन्धन प्राप्त", aboutList2: "सुविधासम्पन्न विज्ञान, कम्प्युटर र होटल व्यवस्थापन ल्याब",
+        aboutList3: "अतिरिक्त क्रियाकलाप, खेलकुद र शैक्षिक भ्रमणमा जोड", aboutLeaderTitle: "समुदायको अग्रणी विद्यालय",
+        aboutLeaderDesc: "शंखरापुर नगरपालिकाको नमुना विद्यालयको रूपमा विकसित।", academicsSubtitle: "शैक्षिक उत्कृष्टता",
+        academicsTitle: "हाम्रा शैक्षिक कार्यक्रमहरू", prog1Title: "पूर्व-प्राथमिक तथा आधारभूत तह", prog1Desc: "मन्टेसरीमा आधारित बालमैत्री वातावरण।",
+        prog2Title: "माध्यमिक तह (कक्षा ९ र १०)", prog2Desc: "SEE परीक्षाको उत्कृष्ट तयारी।", prog3Title: "+२ कम्प्युटर साइन्स र व्यवस्थापन",
+        prog3Desc: "सूचना प्रविधि र व्यापारिक व्यवस्थापन।", prog4Title: "+२ होटल व्यवस्थापन (Hotel Mgmt)", prog4Desc: "भान्सा अभ्यास र प्रयोगात्मक तालिम।",
+        prog5Title: "+२ कानुन तथा मानविकी (Law)", prog5Desc: "काठमाडौँमा कानुनी साक्षरता र मानविकी।", prog6Title: "+२ शिक्षा संकाय (Education)",
+        prog6Desc: "दक्ष शिक्षक निर्माण।", facSubtitle: "भौतिक पूर्वाधार", facTitle: "विद्यालयका सुविधाहरू", fac1Title: "विज्ञान प्रयोगशाला",
+        fac1Desc: "भौतिक, रसायन र जीवविज्ञान ल्याब।", fac2Title: "कम्प्युटर प्रयोगशाला", fac2Desc: "द्रुत इन्टरनेट सुविधा।",
+        fac3Title: "खेलकुद तथा शारीरिक विकास", fac3Desc: "राष्ट्रपति रनिङ शिल्ड, भलिबल।", fac4Title: "होटल म्यानेजमेन्ट ल्याब",
+        fac4Desc: "व्यावहारिक पूर्वाधार।", fac5Title: "पुस्तकालय तथा श्रव्य-दृश्य", fac5Desc: "प्रचुर सन्दर्भ सामग्री।",
+        fac6Title: "स्वास्थ्य तथा प्राथमिक उपचार", fac6Desc: "स्वास्थ्य परीक्षण।", teachersSubtitle: "नेतृत्व तथा टोली",
+        teachersTitle: "विद्यालय नेतृत्वको सन्देश", principalWelcome: "श्री भगवती माध्यमिक विद्यालयमा स्वागत छ",
+        principalMsgHeader: "प्रधानाध्यापकको सन्देश", principalP1: "आदरणीय अभिभावक तथा प्यारा विद्यार्थीहरू,",
+        principalP2: "श्री भगवती माध्यमिक विद्यालयको आधिकारिक वेबसाइटमा स्वागत छ।", principalP3: "धन्यवाद।",
+        principalSig: "— श्री भगवती माध्यमिक विद्यालय परिवार", vpWelcome: "सहायक प्रधानाध्यापकको सन्देश", vpMsgHeader: "सहायक प्रधानाध्यापक",
+        vpP1: "आदरणीय विद्यार्थी, अभिभावकहरू,", vpP2: "हामी सुरक्षित वातावरण प्रदान गर्न प्रतिबद्ध छौँ।", vpSig: "सहायक प्रधानाध्यापक",
+        btnPrevLeader: "प्रधानाध्यापक", btnNextLeader: "सहायक प्रधानाध्यापक", noticesSubtitle: "आधिकारिक सूचनाहरू",
+        noticesTitle: "सूचना पाटी (Notice Board)", btnPrevNotice: "अघिल्लो सूचना", btnNextNotice: "पछिल्लो सूचना",
+        lblShareNotice: "सूचना सेयर गर्नुहोस्:", lblShareResult: "नतिजा सेयर गर्नुहोस्:", btnCopyLink: "लिङ्क कपी गर्नुहोस्",
+        resultsSubtitle: "शैक्षिक नतिजा", resultsTitle: "परीक्षाको नतिजा", lblSelectClass: "कक्षा छनोट गर्नुहोस्:",
+        resultHeading: "परीक्षा नतिजा", footerDesc: "गुणस्तरीय शिक्षाका लागि प्रतिबद्ध।", footerQuickLinks: "द्रुत लिङ्कहरू", lblVisitors: "कुल आगन्तुक संख्या:"
+      }
+    };
+
+    let tokenClient;
+    let accessToken = null;
+    let liveNotices = [];
+    let currentNoticeIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Mobile Menu Toggle
+      const mobileToggle = document.getElementById("mobile-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      mobileToggle.addEventListener("click", () => navMenu.classList.toggle("mobile-active"));
+      document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('mobile-active')));
+
+      // 2. Language Switcher (NP / EN)
+      const langSelect = document.getElementById("lang-select");
+      function updateLanguage(lang) {
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          if (i18nData[lang] && i18nData[lang][key]) el.textContent = i18nData[lang][key];
+        });
+      }
+      langSelect.addEventListener("change", function() { updateLanguage(this.value); });
+
+      // 3. Hero Slideshow Auto-Rotation
+      const slides = document.querySelectorAll('.hero-slideshow img');
+      let currentSlide = 0;
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add('active');
+        }, 5000);
+      }
+
+      // 4. Leadership Slider Logic
+      const leaderCards = [document.getElementById("card-principal"), document.getElementById("card-vice-principal")];
+      let currentLeaderIndex = 0;
+      const leaderCounterText = document.getElementById("leader-counter-text");
+      function updateLeaderDisplay() {
+        leaderCards.forEach((c, idx) => c.classList.toggle("active", idx === currentLeaderIndex));
+        leaderCounterText.textContent = `${currentLeaderIndex + 1} of ${leaderCards.length}`;
+      }
+      document.getElementById("prev-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex - 1 + leaderCards.length) % leaderCards.length; updateLeaderDisplay(); });
+      document.getElementById("next-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex + 1) % leaderCards.length; updateLeaderDisplay(); });
+
+      // 5. LIVE NOTICES ENGINE (FETCHED FROM BACKEND API)
+      const noticeDisplayContainer = document.getElementById("notice-display-container");
+      const noticeCounterText = document.getElementById("notice-counter-text");
+      const noticeDateSelect = document.getElementById("notice-date-select");
+
+      async function fetchLiveNotices() {
+        try {
+          const res = await fetch(`${API}/notices`);
+          liveNotices = await res.json();
+          rebuildNoticeDateDropdown();
+          updateNoticeDisplay();
+        } catch (err) {
+          noticeDisplayContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Server connection offline. Retrying...</p>';
+        }
+      }
+
+      function rebuildNoticeDateDropdown() {
+        noticeDateSelect.innerHTML = "";
+        if (!liveNotices || liveNotices.length === 0) {
+          const opt = document.createElement("option");
+          opt.textContent = "No notices uploaded";
+          noticeDateSelect.appendChild(opt);
+        } else {
+          liveNotices.forEach((n, idx) => {
+            const opt = document.createElement("option");
+            opt.value = idx;
+            opt.textContent = `${n.published_date} (Notice ${idx + 1})`;
+            noticeDateSelect.appendChild(opt);
+          });
+        }
+      }
+
+      function updateNoticeDisplay() {
+        if (liveNotices && liveNotices.length > 0) {
+          const fullImgUrl = `${BACKEND_URL}${liveNotices[currentNoticeIndex].file_url}`;
+          noticeDisplayContainer.innerHTML = `<img id="active-notice-img" src="${fullImgUrl}" alt="Official Notice">`;
+          noticeCounterText.textContent = `Notice ${currentNoticeIndex + 1} of ${liveNotices.length}`;
+          noticeDateSelect.value = currentNoticeIndex;
+        } else {
+          noticeDisplayContainer.innerHTML = `
+            <div class="no-notice-box">
+              <i class="fa-solid fa-bullhorn"></i>
+              <h4>No Notices Available</h4>
+              <p>There are currently no official announcements posted on the notice board.</p>
+            </div>`;
+          noticeCounterText.textContent = "Notice 0 of 0";
+        }
+      }
+
+      noticeDateSelect.addEventListener("change", function() {
+        if (liveNotices.length > 0) {
+          currentNoticeIndex = parseInt(this.value, 10);
+          updateNoticeDisplay();
+        }
+      });
+
+      document.getElementById("prev-notice-btn").addEventListener("click", () => {
+        if (liveNotices.length > 0) {
+          currentNoticeIndex = (currentNoticeIndex - 1 + liveNotices.length) % liveNotices.length;
+          updateNoticeDisplay();
+        }
+      });
+      document.getElementById("next-notice-btn").addEventListener("click", () => {
+        if (liveNotices.length > 0) {
+          currentNoticeIndex = (currentNoticeIndex + 1) % liveNotices.length;
+          updateNoticeDisplay();
+        }
+      });
+
+      // 6. LIVE EXAM RESULTS LOOKUP ENGINE
+      const classSelect = document.getElementById("class-select");
+      const resultTitle = document.getElementById("result-title");
+      const resultContentContainer = document.getElementById("result-content-container");
+
+      async function fetchLiveResult(selectedClass) {
+        const currentLang = langSelect.value;
+        const prefix = i18nData[currentLang].resultHeading;
+        resultTitle.textContent = `${prefix} - ${selectedClass}`;
+
+        try {
+          const res = await fetch(`${API}/results/${encodeURIComponent(selectedClass)}`);
+          const data = await res.json();
+
+          if (data && data.file_url) {
+            resultContentContainer.innerHTML = `<img src="${BACKEND_URL}${data.file_url}" alt="${selectedClass} Result Sheet">`;
+          } else {
+            resultContentContainer.innerHTML = `
+              <div class="no-result-box">
+                <i class="fa-solid fa-file-circle-xmark"></i>
+                <h4>Result Not Available</h4>
+                <p>The examination result for <strong>${selectedClass}</strong> has not been uploaded yet.</p>
+              </div>`;
+          }
+        } catch (err) {
+          resultContentContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding:20px;"><i class="fa-solid fa-triangle-exclamation"></i> Unable to reach database server.</p>';
+        }
+      }
+
+      classSelect.addEventListener("change", function() {
+        fetchLiveResult(this.value);
+      });
+
+      // 7. ADMIN DELETE CONTROLS
+      document.getElementById("delete-notice-btn").addEventListener("click", async () => {
+        if (!liveNotices.length) return alert("No notice to delete.");
+        if (confirm("Are you sure you want to delete this notice permanently from the database?")) {
+          const noticeId = liveNotices[currentNoticeIndex].id;
+          const res = await fetch(`${API}/notices/${noticeId}`, { method: 'DELETE' });
+          if (res.ok) {
+            alert("Notice deleted successfully!");
+            currentNoticeIndex = 0;
+            fetchLiveNotices();
+          }
+        }
+      });
+
+      document.getElementById("delete-result-btn").addEventListener("click", async () => {
+        const selectedClass = classSelect.value;
+        if (confirm(`Delete database result sheet for ${selectedClass}?`)) {
+          const res = await fetch(`${API}/results/${encodeURIComponent(selectedClass)}`, { method: 'DELETE' });
+          if (res.ok) {
+            alert(`Result for ${selectedClass} deleted successfully!`);
+            fetchLiveResult(selectedClass);
+          }
+        }
+      });
+
+      // 8. SOCIAL SHARING & VISITOR COUNTER
+      const pageUrl = encodeURIComponent(window.location.href);
+      const noticeText = encodeURIComponent("Official Notice from Shree Bhagawati Secondary School:");
+      const resultText = encodeURIComponent("Official Examination Results from Shree Bhagawati Secondary School:");
+
+      document.getElementById("share-notice-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      document.getElementById("share-notice-wa").href = `https://api.whatsapp.com/send?text=${noticeText}%20${pageUrl}`;
+      document.getElementById("share-notice-vb").href = `viber://forward?text=${noticeText}%20${pageUrl}`;
+      document.getElementById("share-notice-tw").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${noticeText}`;
+
+      document.getElementById("share-result-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      document.getElementById("share-result-wa").href = `https://api.whatsapp.com/send?text=${resultText}%20${pageUrl}`;
+      document.getElementById("share-result-vb").href = `viber://forward?text=${resultText}%20${pageUrl}`;
+      document.getElementById("share-result-tw").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${resultText}`;
+
+      function handleCopyLink(btn) {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `<i class="fa-solid fa-check"></i> Copied!`;
+          setTimeout(() => btn.innerHTML = originalHTML, 2000);
+        });
+      }
+      document.getElementById("copy-notice-link").addEventListener("click", function() { handleCopyLink(this); });
+      document.getElementById("copy-result-link").addEventListener("click", function() { handleCopyLink(this); });
+
+      // Visitor Count Engine
+      let visits = localStorage.getItem('sbss_visits');
+      visits = visits ? parseInt(visits, 10) + 1 : 1482;
+      localStorage.setItem('sbss_visits', visits);
+      document.getElementById('visitor-count').textContent = visits.toLocaleString();
+
+      // 9. ADMIN MODAL & DRAG-AND-DROP FILE UPLOADER
+      const modal = document.getElementById("admin-modal");
+      const openBtn = document.getElementById("open-admin-btn");
+      const closeBtn = document.getElementById("close-admin-btn");
+      const loginBtn = document.getElementById("google-login-btn");
+      const uploadBtn = document.getElementById("upload-file-btn");
+      const uploadStatus = document.getElementById("upload-status");
+      const dropZone = document.getElementById("drop-zone");
+      const fileInput = document.getElementById("file-input");
+      const dropText = document.getElementById("drop-text");
+      const uploadTypeSelect = document.getElementById("upload-type");
+      const targetClassGroup = document.getElementById("target-class-group");
+
+      openBtn.addEventListener("click", () => modal.classList.add("active"));
+      closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+      uploadTypeSelect.addEventListener("change", function() {
+        targetClassGroup.style.display = this.value === "result" ? "block" : "none";
+      });
+
+      dropZone.addEventListener("click", () => fileInput.click());
+      dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("dragover"); });
+      dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("dragover");
+        if (e.dataTransfer.files.length) { fileInput.files = e.dataTransfer.files; updateDropText(e.dataTransfer.files); }
+      });
+      fileInput.addEventListener("change", () => { if (fileInput.files.length) updateDropText(fileInput.files); });
+
+      function updateDropText(files) {
+        dropText.textContent = files.length === 1 ? `Selected: ${files[0].name}` : `Selected ${files.length} files`;
+      }
+
+      function initAuth() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENT_ID,
+          scope: 'email profile',
+          callback: (response) => {
+            if (response.access_token) {
+              accessToken = response.access_token;
+              document.getElementById("auth-section").style.display = "none";
+              document.getElementById("upload-section").style.display = "block";
+              document.getElementById("admin-notice-bar").classList.add("active");
+              document.getElementById("admin-result-bar").classList.add("active");
+            }
+          },
+        });
+      }
+
+      loginBtn.addEventListener("click", () => {
+        if (!tokenClient) initAuth();
+        tokenClient.requestAccessToken();
+      });
+
+      // UPLOAD FILE TO LAPTOP DATABASE
+      uploadBtn.addEventListener("click", async () => {
+        const uploadType = uploadTypeSelect.value;
+        const targetClass = document.getElementById("target-class-select").value;
+        const files = fileInput.files;
+
+        if (!files || files.length === 0) return alert("Please select or drop a file first.");
+
+        uploadStatus.textContent = "Uploading to school database...";
+
+        for (let i = 0; i < files.length; i++) {
+          const formData = new FormData();
+          formData.append('file', files[i]);
+          formData.append('uploadType', uploadType);
+          formData.append('targetClass', targetClass);
+
+          try {
+            const res = await fetch(`${API}/upload`, {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || 'Upload failed');
+          } catch (err) {
+            uploadStatus.textContent = "Upload error: " + err.message;
+            return;
+          }
+        }
+
+        uploadStatus.textContent = "Upload complete! Updating live website...";
+        setTimeout(() => {
+          modal.classList.remove("active");
+          uploadStatus.textContent = "";
+          fileInput.value = "";
+          dropText.textContent = "Click or drag & drop files (.jpg, .png, .pdf)";
+          if (uploadType === "notice") fetchLiveNotices();
+          else fetchLiveResult(targetClass);
+        }, 1200);
+      });
+
+      // Initialize live fetches on page startup
+      fetchLiveNotices();
+      fetchLiveResult(classSelect.value);
+    });
+  </script>
+</body>
+</html>
