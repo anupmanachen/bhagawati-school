@@ -8,7 +8,7 @@
   <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Firebase App & Realtime Database SDK -->
@@ -60,11 +60,16 @@
     }
     .lang-switcher select option { background-color: var(--primary-dark); color: #ffffff; }
 
-    /* Header & Navigation */
+    /* Header & Secret Admin Logo Trigger */
     .header { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
     .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 12px; }
-    .logo-container { width: 48px; height: 48px; background-color: var(--primary); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 2px solid var(--secondary); flex-shrink: 0; }
+    .logo-container {
+      width: 48px; height: 48px; background-color: var(--primary); border-radius: 50%; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; border: 2px solid var(--secondary);
+      flex-shrink: 0; cursor: pointer; transition: var(--transition);
+    }
+    .logo-container:hover { transform: scale(1.08); }
     .logo-container img { width: 100%; height: 100%; object-fit: cover; }
     .school-name { font-weight: 800; font-size: 1.15rem; color: var(--primary-dark); }
     .school-tagline { font-size: 0.75rem; color: var(--slate-600); }
@@ -79,8 +84,6 @@
     .btn-primary:hover { background-color: var(--primary-hover); }
     .btn-danger { background-color: var(--danger); color: white !important; }
     .btn-outline-dark { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
-    .btn-admin { background-color: var(--secondary); color: white !important; }
-    .btn-admin:hover { background-color: #b45309; }
     .btn-lg { padding: 12px 28px; font-size: 1rem; border-radius: var(--radius-md); }
 
     /* Hero Slideshow */
@@ -207,6 +210,23 @@
     .typewriter-cursor { display: inline-block; width: 2px; height: 1.1em; background-color: var(--primary); vertical-align: text-bottom; animation: blink 0.75s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+    /* Social Media Share Bar */
+    .share-container {
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px;
+      padding-top: 14px; border-top: 1px dashed var(--slate-200); flex-wrap: wrap;
+    }
+    .share-label { font-size: 0.82rem; font-weight: 700; color: var(--slate-600); }
+    .share-btn {
+      width: 32px; height: 32px; border-radius: 50%; color: white; display: inline-flex;
+      align-items: center; justify-content: center; font-size: 0.9rem; transition: var(--transition); border: none; cursor: pointer;
+    }
+    .share-btn:hover { transform: translateY(-3px); }
+    .share-fb { background: #1877f2; }
+    .share-wa { background: #25d366; }
+    .share-vb { background: #7360f2; }
+    .share-tg { background: #229ed9; }
+    .share-copy { background: var(--primary); }
+
     /* Notices & Results */
     .notices { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
     .notice-viewer-card, .results-card { max-width: 860px; margin: 0 auto; background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); padding: 26px; }
@@ -223,6 +243,23 @@
     .result-display-area h3 { color: var(--primary-dark); margin-bottom: 18px; font-size: 1.35rem; font-weight: 700; }
     .admin-action-bar { display: none; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--slate-200); justify-content: center; gap: 12px; }
     .admin-action-bar.active { display: flex; }
+
+    /* Events Section */
+    .events-section { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
+    .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .event-card {
+      background: #ffffff; border: 1px solid var(--slate-200); border-radius: var(--radius-md);
+      padding: 24px; position: relative; transition: var(--transition); border-left: 5px solid var(--secondary);
+    }
+    .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .event-date-badge {
+      display: inline-flex; align-items: center; gap: 6px; background: var(--secondary-light);
+      color: #92400e; font-size: 0.82rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .event-title { font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; }
+    .event-desc { font-size: 0.92rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 14px; }
+    .event-delete-btn { display: none; position: absolute; top: 14px; right: 14px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .admin-logged-in .event-delete-btn { display: flex; }
 
     /* Admin Modal */
     .admin-modal {
@@ -302,15 +339,16 @@
   <!-- Navbar -->
   <header class="header">
     <div class="container navbar">
-      <a href="#" class="brand">
-        <div class="logo-container">
+      <div class="brand">
+        <!-- Secret Admin Trigger on Logo Click -->
+        <div class="logo-container" id="secret-admin-logo" title="Shree Bhagawati Secondary School">
           <img id="school-logo-img" src="logo1.jpg" alt="Logo" onerror="this.src='https://placehold.co/100x100?text=SBSS'">
         </div>
         <div class="brand-text">
           <span class="school-name" data-i18n="schoolName">Bhagawati Secondary School</span>
           <span class="school-tagline" data-i18n="schoolTagline">Excellence in Education Since 2039 B.S.</span>
         </div>
-      </a>
+      </div>
       <button class="mobile-nav-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
       <nav class="nav-menu" id="nav-menu">
         <a href="#home" class="active" data-i18n="navHome">Home</a>
@@ -318,9 +356,9 @@
         <a href="#academics" data-i18n="navAcademics">Academics</a>
         <a href="#facilities" data-i18n="navFacilities">Facilities</a>
         <a href="#teachers" data-i18n="navTeachers">Teachers & Staff</a>
+        <a href="#events" data-i18n="navEvents">Events</a>
         <a href="#notices" data-i18n="navNotices">Notices</a>
         <a href="#results" data-i18n="navResults">Results</a>
-        <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> <span data-i18n="adminPortal">Admin Portal</span></button>
       </nav>
     </div>
   </header>
@@ -388,8 +426,8 @@
         <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
       </div>
     </div>
@@ -404,9 +442,9 @@
       </div>
       <div class="facilities-grid">
         <div class="facility-item"><i class="fa-solid fa-flask"></i><h4 data-i18n="fac1Title">Science Labs</h4><p data-i18n="fac1Desc">Physics, Chemistry, and Biology practical labs.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-desktop"></i><h4 data-i18n="fac2Title">Computer Lab</h4><p data-i18n="fac2Desc">High-speed internet with modern PC setups.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-trophy"></i><h4 data-i18n="fac3Title">Sports & Athletics</h4><p data-i18n="fac3Desc">Regular games and physical education.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-utensils"></i><h4 data-i18n="fac4Title">Kitchen Lab</h4><p data-i18n="fac4Desc">Specialized spaces for Hotel Management.</p></div>
+        <div class="facility-item"><i class="fa-desktop fa-solid"></i><h4 data-i18n="fac2Title">Computer Lab</h4><p data-i18n="fac2Desc">High-speed internet with modern PC setups.</p></div>
+        <div class="facility-item"><i class="fa-trophy fa-solid"></i><h4 data-i18n="fac3Title">Sports & Athletics</h4><p data-i18n="fac3Desc">Regular games and physical education.</p></div>
+        <div class="facility-item"><i class="fa-utensils fa-solid"></i><h4 data-i18n="fac4Title">Kitchen Lab</h4><p data-i18n="fac4Desc">Specialized spaces for Hotel Management.</p></div>
       </div>
     </div>
   </section>
@@ -427,10 +465,10 @@
             <img id="principal-img-display" src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal" onerror="this.src='https://placehold.co/300x350?text=Principal'">
           </div>
           <div class="leadership-message-content">
-            <h3 data-i18n="principalWelcome">Welcome to Shree Bhagawati Secondary School</h3>
+            <h3 id="principal-welcome-title" data-i18n="principalWelcome">Welcome to Shree Bhagawati Secondary School</h3>
             <span class="leadership-title" data-i18n="principalTitle">Message from the Principal</span>
-            <div class="leadership-text" id="principal-msg-display">Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</div>
-            <div class="leadership-signature" id="principal-name-display">— Shree Bhagawati Secondary School</div>
+            <div class="leadership-text" id="principal-msg-display" data-i18n="principalMsg">Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</div>
+            <div class="leadership-signature" id="principal-name-display" data-i18n="principalSignature">— Shree Bhagawati Secondary School</div>
           </div>
         </div>
 
@@ -440,10 +478,10 @@
             <img id="vp-img-display" src="VicePrincipal.jpeg" alt="Vice Principal" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'">
           </div>
           <div class="leadership-message-content">
-            <h3 data-i18n="vpWelcome">Message from the Vice Principal</h3>
+            <h3 id="vp-welcome-title" data-i18n="vpWelcome">Message from the Vice Principal</h3>
             <span class="leadership-title" data-i18n="vpTitle">Vice Principal</span>
-            <div class="leadership-text" id="vp-msg-display">We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.</div>
-            <div class="leadership-signature" id="vp-name-display">Vice Principal, SBSS</div>
+            <div class="leadership-text" id="vp-msg-display" data-i18n="vpMsg">We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.</div>
+            <div class="leadership-signature" id="vp-name-display" data-i18n="vpSignature">Vice Principal, SBSS</div>
           </div>
         </div>
 
@@ -503,6 +541,19 @@
     </div>
   </div>
 
+  <!-- Dynamic Events Section -->
+  <section id="events" class="events-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="eventsSubtitle">School Calendar & Highlights</span>
+        <h2 data-i18n="eventsTitle">Upcoming Events & Activities</h2>
+      </div>
+      <div class="events-grid" id="events-container">
+        <p style="text-align:center; grid-column: 1/-1; color: var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading upcoming events...</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Live Notices -->
   <section id="notices" class="notices">
     <div class="container">
@@ -518,6 +569,17 @@
         <div class="notice-display-wrapper" id="notice-display-container">
           <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices from cloud...</p>
         </div>
+
+        <!-- Social Media Direct Share Suite for Notices -->
+        <div class="share-container" id="notice-share-bar">
+          <span class="share-label" data-i18n="shareNotice">Share Notice:</span>
+          <button class="share-btn share-fb" title="Share on Facebook" onclick="shareCurrentItem('notice', 'facebook')"><i class="fa-brands fa-facebook-f"></i></button>
+          <button class="share-btn share-wa" title="Share on WhatsApp" onclick="shareCurrentItem('notice', 'whatsapp')"><i class="fa-brands fa-whatsapp"></i></button>
+          <button class="share-btn share-vb" title="Share on Viber" onclick="shareCurrentItem('notice', 'viber')"><i class="fa-brands fa-viber"></i></button>
+          <button class="share-btn share-tg" title="Share on Telegram" onclick="shareCurrentItem('notice', 'telegram')"><i class="fa-brands fa-telegram"></i></button>
+          <button class="share-btn share-copy" title="Copy Notice Link" onclick="shareCurrentItem('notice', 'copy')"><i class="fa-solid fa-link"></i></button>
+        </div>
+
         <div class="notice-controls">
           <button class="notice-btn" id="prev-notice-btn"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Previous</span></button>
           <span class="notice-counter" id="notice-counter-text">Notice 0 of 0</span>
@@ -553,6 +615,16 @@
           <div class="result-image-box" id="result-content-container">
             <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Retrieving ledger...</p>
           </div>
+
+          <!-- Social Media Direct Share Suite for Results -->
+          <div class="share-container" id="result-share-bar" style="width: 100%;">
+            <span class="share-label" data-i18n="shareResult">Share Result:</span>
+            <button class="share-btn share-fb" title="Share on Facebook" onclick="shareCurrentItem('result', 'facebook')"><i class="fa-brands fa-facebook-f"></i></button>
+            <button class="share-btn share-wa" title="Share on WhatsApp" onclick="shareCurrentItem('result', 'whatsapp')"><i class="fa-brands fa-whatsapp"></i></button>
+            <button class="share-btn share-vb" title="Share on Viber" onclick="shareCurrentItem('result', 'viber')"><i class="fa-brands fa-viber"></i></button>
+            <button class="share-btn share-tg" title="Share on Telegram" onclick="shareCurrentItem('result', 'telegram')"><i class="fa-brands fa-telegram"></i></button>
+            <button class="share-btn share-copy" title="Copy Result Link" onclick="shareCurrentItem('result', 'copy')"><i class="fa-solid fa-link"></i></button>
+          </div>
         </div>
         <div class="admin-action-bar" id="admin-result-bar">
           <button class="btn btn-danger" id="delete-result-btn"><i class="fa-solid fa-trash-can"></i> Delete Result for Selected Class</button>
@@ -561,7 +633,7 @@
     </div>
   </section>
 
-  <!-- Admin Modal -->
+  <!-- Secret Admin Modal -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
@@ -601,11 +673,28 @@
           <select id="upload-type">
             <option value="notice">1. Notice Board Document(s) [Batch / Multiple]</option>
             <option value="result">2. Examination Result Marksheet(s) [Batch / Multiple]</option>
-            <option value="staff">3. Add / Edit Teacher / Faculty Member</option>
-            <option value="leader_photo">4. Principal / Vice Principal Photo & Message</option>
-            <option value="logo">5. Update School Logo</option>
-            <option value="hero_slide">6. Hero Slideshow Photo</option>
+            <option value="event">3. Add Upcoming School Event</option>
+            <option value="staff">4. Add / Edit Teacher / Faculty Member</option>
+            <option value="leader_photo">5. Principal / Vice Principal Photo & Message</option>
+            <option value="logo">6. Update School Logo</option>
+            <option value="hero_slide">7. Hero Slideshow Photo</option>
           </select>
+        </div>
+
+        <!-- Event Fields -->
+        <div id="event-fields-group" style="display: none;">
+          <div class="form-group">
+            <label for="event-title-input">Event Title:</label>
+            <input type="text" id="event-title-input" placeholder="e.g. Annual Sports Meet 2083 / Parents Day" />
+          </div>
+          <div class="form-group">
+            <label for="event-date-input">Event Date:</label>
+            <input type="date" id="event-date-input" />
+          </div>
+          <div class="form-group">
+            <label for="event-desc-input">Event Description / Notice Details:</label>
+            <textarea id="event-desc-input" rows="3" placeholder="Enter full details about schedule, venue, and participation..."></textarea>
+          </div>
         </div>
 
         <!-- Notice Publishing Date Picker -->
@@ -686,7 +775,7 @@
           <input type="text" id="hero-caption-input" placeholder="e.g. Campus Grounds / Sports Day" />
         </div>
 
-        <!-- Dynamic Drop Zone (Supports Multiple Files) -->
+        <!-- Dynamic Drop Zone -->
         <div class="drop-zone" id="drop-zone">
           <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 10px;"></i>
           <p id="drop-text">Click or drag & drop photo(s) (.jpg, .png, .pdf)</p>
@@ -735,11 +824,14 @@
 
     let liveNotices = [];
     let currentNoticeIndex = 0;
+    let currentResultUrl = "";
     let slideshowInterval = null;
     let allStaffData = [];
     let typewriterTimer = null;
 
-    // Complete Dictionary
+    // ==========================================================================
+    // COMPLETE ENGLISH <-> NEPALI DICTIONARY
+    // ==========================================================================
     const translations = {
       en: {
         location: "Shankharapur-6, Sankhu, Kathmandu",
@@ -750,9 +842,9 @@
         navAcademics: "Academics",
         navFacilities: "Facilities",
         navTeachers: "Teachers & Staff",
+        navEvents: "Events",
         navNotices: "Notices",
         navResults: "Results",
-        adminPortal: "Admin Portal",
         heroTitle: "Empowering Minds, Shaping Brighter Futures",
         heroSubtitle: "Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.",
         btnExplore: "Explore Programs",
@@ -797,16 +889,24 @@
         teachersTitle: "Messages from School Leadership",
         principalWelcome: "Welcome to Shree Bhagawati Secondary School",
         principalTitle: "Message from the Principal",
+        principalMsg: "Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.",
+        principalSignature: "— Shree Bhagawati Secondary School",
         vpWelcome: "Message from the Vice Principal",
         vpTitle: "Vice Principal",
+        vpMsg: "We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.",
+        vpSignature: "Vice Principal, SBSS",
         btnPrincipal: "Principal",
         btnVP: "Vice Principal",
         staffSubtitle: "Our Dedicated Educators & Staff",
         staffTitle: "Faculty Members & Staff",
         filterByClass: "Filter by Level / Class:",
+        eventsSubtitle: "School Calendar & Highlights",
+        eventsTitle: "Upcoming Events & Activities",
         noticesSubtitle: "Announcements",
         noticesTitle: "Notice Board",
         selectNoticeDate: "Select Notice Date:",
+        shareNotice: "Share Notice:",
+        shareResult: "Share Result:",
         btnPrev: "Previous",
         btnNext: "Next",
         resultsSubtitle: "Academic Performance",
@@ -824,9 +924,9 @@
         navAcademics: "शैक्षिक कार्यक्रम",
         navFacilities: "भौतिक सुविधाहरू",
         navTeachers: "शिक्षक तथा कर्मचारी",
+        navEvents: "कार्यक्रमहरू",
         navNotices: "सूचना पाटी",
         navResults: "परीक्षाफल",
-        adminPortal: "व्यवस्थापक पोर्टल",
         heroTitle: "सबल मस्तिष्क र उज्ज्वल भविष्यको निर्माण",
         heroSubtitle: "शंखरापुर नगरपालिका, काठमाडौंमा पूर्व-प्राथमिकदेखि कक्षा १२ सम्म गुणस्तरीय, व्यावहारिक तथा जीवनोपयोगी शिक्षा प्रदान गर्दै।",
         btnExplore: "कार्यक्रमहरू हेर्नुहोस्",
@@ -871,16 +971,24 @@
         teachersTitle: "विद्यालय नेतृत्वका सन्देशहरू",
         principalWelcome: "श्री भगवती माध्यमिक विद्यालयमा हार्दिक स्वागत छ",
         principalTitle: "प्रधानाध्यापकको सन्देश",
+        principalMsg: "आदरणीय अभिभावक तथा प्यारा विद्यार्थीहरू, हाम्रो आधिकारिक वेबसाइटमा हार्दिक स्वागत छ। विद्यालयका सूचना तथा गतिविधिहरूसँग निरन्तर जोडिन bhagwati.edu.np नियमित अवलोकन गर्नुहुन अनुरोध गर्दछौं।",
+        principalSignature: "— प्रधानाध्यापक, श्री भगवती माध्यमिक विद्यालय",
         vpWelcome: "सहायक प्रधानाध्यापकको सन्देश",
         vpTitle: "सहायक प्रधानाध्यापक",
+        vpMsg: "हामी हाम्रा विद्यार्थीहरूलाई सुरक्षित, अनुशासित र प्रेरणादायी शैक्षिक वातावरणमा उत्कृष्ट सिकाइ अनुभव प्रदान गर्न सदैव प्रतिबद्ध छौं।",
+        vpSignature: "— सहायक प्रधानाध्यापक, श्री भगवती माध्यमिक विद्यालय",
         btnPrincipal: "प्रधानाध्यापक",
         btnVP: "सहायक प्र.अ.",
         staffSubtitle: "हाम्रा समर्पित शिक्षक तथा कर्मचारी",
         staffTitle: "शिक्षक तथा कर्मचारी विवरण",
         filterByClass: "कक्षा / तह अनुसार छान्नुहोस्:",
+        eventsSubtitle: "शैक्षिक क्यालेन्डर तथा कार्यक्रमहरू",
+        eventsTitle: "आगामी कार्यक्रम तथा गतिविधिहरू",
         noticesSubtitle: "सूचना तथा जानकारी",
         noticesTitle: "सूचना पाटी",
         selectNoticeDate: "सूचनाको मिति छान्नुहोस्:",
+        shareNotice: "सूचना सेयर गर्नुहोस्:",
+        shareResult: "परीक्षाफल सेयर गर्नुहोस्:",
         btnPrev: "अघिल्लो",
         btnNext: "पछिल्लो",
         resultsSubtitle: "शैक्षिक नतिजा",
@@ -906,6 +1014,7 @@
     });
 
     document.getElementById("custom-notice-date").value = new Date().toISOString().split('T')[0];
+    document.getElementById("event-date-input").value = new Date().toISOString().split('T')[0];
 
     function unlockAdmin(email) {
       document.body.classList.add("admin-logged-in");
@@ -916,6 +1025,7 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
+    // Direct Cloud Upload (ImgBB CDN)
     async function uploadToPermanentCloud(file) {
       const formData = new FormData();
       formData.append('image', file);
@@ -929,7 +1039,7 @@
       return data.data.url;
     }
 
-    // 1. Dynamic Settings
+    // 1. Dynamic Settings (Logo & Leadership)
     function fetchDynamicSettings() {
       if (!db) return;
       db.ref('settings').on('value', snapshot => {
@@ -1040,7 +1150,6 @@
       if (typewriterTimer) clearInterval(typewriterTimer);
     });
 
-    // Edit Staff Functionality
     window.editStaffMember = function(key) {
       const staff = allStaffData.find(s => s.id === key);
       if (!staff) return;
@@ -1073,7 +1182,49 @@
       }
     };
 
-    // 3. Dynamic Hero Slideshow
+    // 3. Dynamic Events
+    function fetchEvents() {
+      const container = document.getElementById('events-container');
+      if (!db) return;
+
+      db.ref('events').on('value', snapshot => {
+        const eventsObj = snapshot.val() || {};
+        const eventsList = Object.keys(eventsObj).map(key => ({ id: key, ...eventsObj[key] })).reverse();
+
+        if (eventsList.length > 0) {
+          container.innerHTML = '';
+          eventsList.forEach(ev => {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+              <button class="event-delete-btn" title="Delete Event" onclick="deleteEventItem('${ev.id}')">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <div class="event-date-badge"><i class="fa-regular fa-calendar-check"></i> ${ev.date}</div>
+              <h3 class="event-title">${ev.title}</h3>
+              <p class="event-desc">${ev.desc}</p>
+            `;
+            container.appendChild(card);
+          });
+        } else {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
+              <i class="fa-regular fa-calendar-xmark" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
+              <p style="font-weight: 700; color: var(--primary-dark);">No Upcoming Events Scheduled</p>
+              <p style="font-size: 0.9rem; color: var(--slate-600);">New events and extracurricular notices will appear here.</p>
+            </div>`;
+        }
+      });
+    }
+
+    window.deleteEventItem = function(key) {
+      if (!db) return;
+      if (confirm("Delete this event from the school calendar?")) {
+        db.ref('events/' + key).remove();
+      }
+    };
+
+    // 4. Dynamic Hero Slideshow
     function fetchHeroSlides() {
       if (!db) { startSlideshow(); return; }
       db.ref('hero_slides').on('value', snapshot => {
@@ -1108,7 +1259,7 @@
       }
     }
 
-    // 4. Live Notices
+    // 5. Live Notices
     function fetchLiveNotices() {
       const noticeDisplayContainer = document.getElementById("notice-display-container");
       const noticeCounterText = document.getElementById("notice-counter-text");
@@ -1146,7 +1297,7 @@
       }
     }
 
-    // 5. Live Results
+    // 6. Live Results
     function fetchLiveResult(selectedClass) {
       const resultContentContainer = document.getElementById("result-content-container");
       document.getElementById("result-title").textContent = `Examination Result - ${selectedClass}`;
@@ -1155,6 +1306,7 @@
       const safeKey = selectedClass.replace(/[^a-zA-Z0-9]/g, '_');
       db.ref('results/' + safeKey).on('value', snapshot => {
         const fileUrl = snapshot.val();
+        currentResultUrl = fileUrl || "";
         if (fileUrl) {
           resultContentContainer.innerHTML = `<img src="${fileUrl}" alt="${selectedClass} Result">`;
         } else {
@@ -1163,6 +1315,32 @@
       });
     }
 
+    // Direct Social Media Share Function
+    window.shareCurrentItem = function(type, platform) {
+      let targetUrl = window.location.href;
+      let text = "Check out this official update from Shree Bhagawati Secondary School:";
+
+      if (type === 'notice' && liveNotices.length > 0) {
+        targetUrl = liveNotices[currentNoticeIndex].file_url;
+        text = `Shree Bhagawati Secondary School Notice (${liveNotices[currentNoticeIndex].published_date}):`;
+      } else if (type === 'result' && currentResultUrl) {
+        targetUrl = currentResultUrl;
+        text = `Shree Bhagawati Secondary School Examination Result (${document.getElementById("class-select").value}):`;
+      }
+
+      if (platform === 'facebook') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(targetUrl)}`, '_blank');
+      } else if (platform === 'whatsapp') {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + targetUrl)}`, '_blank');
+      } else if (platform === 'viber') {
+        window.open(`viber://forward?text=${encodeURIComponent(text + ' ' + targetUrl)}`, '_blank');
+      } else if (platform === 'telegram') {
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}`, '_blank');
+      } else if (platform === 'copy') {
+        navigator.clipboard.writeText(targetUrl).then(() => alert("Link copied to clipboard!")).catch(() => alert("Could not copy link."));
+      }
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
       const savedLang = localStorage.getItem('sbss_lang') || 'en';
       document.getElementById('lang-select').value = savedLang;
@@ -1170,6 +1348,12 @@
 
       const savedAdmin = localStorage.getItem('sbss_admin_email');
       if (savedAdmin) unlockAdmin(savedAdmin);
+
+      // Secret Admin Trigger: Clicking the school logo in navbar
+      document.getElementById("secret-admin-logo").addEventListener("click", () => {
+        resetAdminForm();
+        document.getElementById("admin-modal").classList.add("active");
+      });
 
       document.getElementById("direct-login-btn").addEventListener("click", () => {
         const email = document.getElementById("admin-email-input").value.trim();
@@ -1245,6 +1429,7 @@
       // Form Field Switching
       const modal = document.getElementById("admin-modal");
       const uploadTypeSelect = document.getElementById("upload-type");
+      const eventFieldsGroup = document.getElementById("event-fields-group");
       const noticeDateGroup = document.getElementById("notice-date-group");
       const leaderFieldsGroup = document.getElementById("leader-fields-group");
       const staffFieldsGroup = document.getElementById("staff-fields-group");
@@ -1263,16 +1448,14 @@
         document.getElementById("staff-designation-input").value = "";
         document.getElementById("staff-qual-input").value = "";
         document.getElementById("staff-msg-input").value = "";
+        document.getElementById("event-title-input").value = "";
+        document.getElementById("event-desc-input").value = "";
         document.getElementById("leader-name-input").value = "";
         document.getElementById("leader-msg-input").value = "";
         fileInput.value = "";
         dropText.textContent = "Click or drag & drop photo(s) (.jpg, .png, .pdf)";
       }
 
-      document.getElementById("open-admin-btn").addEventListener("click", () => {
-        resetAdminForm();
-        modal.classList.add("active");
-      });
       document.getElementById("close-admin-btn").addEventListener("click", () => {
         modal.classList.remove("active");
         resetAdminForm();
@@ -1280,10 +1463,12 @@
 
       uploadTypeSelect.addEventListener("change", function() {
         noticeDateGroup.style.display = this.value === "notice" ? "block" : "none";
+        eventFieldsGroup.style.display = this.value === "event" ? "block" : "none";
         leaderFieldsGroup.style.display = this.value === "leader_photo" ? "block" : "none";
         staffFieldsGroup.style.display = this.value === "staff" ? "block" : "none";
         targetClassGroup.style.display = this.value === "result" ? "block" : "none";
         heroCaptionGroup.style.display = this.value === "hero_slide" ? "block" : "none";
+        dropZone.style.display = this.value === "event" ? "none" : "block";
       });
 
       dropZone.addEventListener("click", () => fileInput.click());
@@ -1295,7 +1480,7 @@
         }
       });
 
-      // Upload / Update Submission
+      // Unified Cloud Submission (Notices, Events, Results, Staff, Logo, Leaders)
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         if (!db) return alert("Firebase database could not be reached.");
 
@@ -1306,6 +1491,10 @@
         const leaderMessage = document.getElementById("leader-msg-input").value;
         const caption = document.getElementById("hero-caption-input").value;
         
+        const eventTitle = document.getElementById("event-title-input").value;
+        const eventDate = document.getElementById("event-date-input").value;
+        const eventDesc = document.getElementById("event-desc-input").value;
+
         const staffClass = document.getElementById("staff-class-target").value;
         const staffName = document.getElementById("staff-name-input").value;
         const staffDesignation = document.getElementById("staff-designation-input").value;
@@ -1319,6 +1508,15 @@
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
+        if (uploadType === 'event') {
+          if (!eventTitle || !eventDate) return alert("Please enter both the event title and event date.");
+          status.textContent = "Publishing event to school calendar...";
+          await db.ref('events').push({ title: eventTitle, date: eventDate, desc: eventDesc || '' });
+          status.textContent = "Event published successfully!";
+          setTimeout(() => { modal.classList.remove("active"); resetAdminForm(); }, 1000);
+          return;
+        }
+
         if (uploadType !== 'leader_photo' && uploadType !== 'staff' && (!files || files.length === 0)) {
           return alert("Please select photo(s) or document(s) first.");
         }
@@ -1331,7 +1529,6 @@
 
         try {
           if (uploadType === 'staff' && editingStaffId) {
-            // Update Existing Staff
             let photoUrl = existingStaffPhoto;
             if (files && files.length > 0) {
               photoUrl = await uploadToPermanentCloud(files[0]);
@@ -1347,7 +1544,6 @@
               photo_url: photoUrl
             });
           } else {
-            // Standard Batch & New Uploads
             for (let i = 0; i < (files.length || 1); i++) {
               let publicUrl = null;
               if (files && files.length > 0) {
@@ -1399,6 +1595,7 @@
       // Initial Fetch
       fetchDynamicSettings();
       fetchStaffDirectory();
+      fetchEvents();
       fetchHeroSlides();
       fetchLiveNotices();
       fetchLiveResult(classSelect.value);
