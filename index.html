@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+  <!-- Firebase App & Realtime Database SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
   <style>
     :root {
       --primary: #7B3F00;
@@ -128,7 +132,7 @@
     .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
     .slider-btn { background-color: var(--primary); color: white; border: none; padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; }
 
-    /* Dynamic Staff Grid */
+    /* Staff Roster Grid */
     .staff-section { margin-top: 60px; padding-top: 40px; border-top: 1px dashed var(--slate-200); }
     .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
     .staff-card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); overflow: hidden; text-align: center; position: relative; transition: var(--transition); }
@@ -316,9 +320,9 @@
         <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3>Pre-Primary & Basic Level</h3><p>Montessori-inspired early learning environment.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3>Secondary Level (Grades 9 & 10)</h3><p>Comprehensive SEE curriculum.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-laptop-code"></i></div><h3>+2 Computer Science & Mgmt</h3><p>Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3>+2 Hotel Management</h3><p>Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>+2 Law & Humanities</h3><p>Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>+2 Education Stream</h3><p>Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-hotel"></i></div><h3>+2 Hotel Management</h3><p>Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-scale-balanced"></i></div><h3>+2 Law & Humanities</h3><p>Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-pen-nib"></i></div><h3>+2 Education Stream</h3><p>Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -586,23 +590,19 @@
     </div>
   </footer>
 
-  <!-- Permanent 24/7 Cloud Architecture Logic -->
+  <!-- Firebase Global 24/7 Cloud Engine Logic -->
   <script>
     // ==========================================================================
-    // 24/7 PERMANENT CLOUD ENGINE
+    // 24/7 FIREBASE & IMGBB CONFIGURATION
     // ==========================================================================
-    const IMGBB_API_KEY = '404e9e965d464029b54a6f4b37308e32';
+    const FIREBASE_DB_URL = "https://bhagwati-school-b90e3-default-rtdb.firebaseio.com";
+    const IMGBB_API_KEY = "404e9e965d464029b54a6f4b37308e32";
 
-    const DB = {
-      get: (k, def) => {
-        try { const val = localStorage.getItem('sbss_' + k); return val ? JSON.parse(val) : def; }
-        catch(e) { return def; }
-      },
-      set: (k, val) => {
-        try { localStorage.setItem('sbss_' + k, JSON.stringify(val)); }
-        catch(e) {}
-      }
-    };
+    // Initialize Firebase
+    if (window.firebase) {
+      firebase.initializeApp({ databaseURL: FIREBASE_DB_URL });
+    }
+    const db = (window.firebase && firebase.apps.length) ? firebase.database() : null;
 
     let liveNotices = [];
     let currentNoticeIndex = 0;
@@ -634,77 +634,86 @@
 
     // 1. Dynamic Leadership Settings
     function fetchDynamicSettings() {
-      const settings = DB.get('settings', {});
+      if (!db) return;
+      db.ref('settings').on('value', snapshot => {
+        const settings = snapshot.val() || {};
+        if (settings.principal_photo) document.getElementById('principal-img-display').src = settings.principal_photo;
+        if (settings.principal_message) document.getElementById('principal-msg-display').textContent = settings.principal_message;
+        if (settings.principal_name) document.getElementById('principal-name-display').textContent = settings.principal_name;
 
-      if (settings.principal_photo) document.getElementById('principal-img-display').src = settings.principal_photo;
-      if (settings.principal_message) document.getElementById('principal-msg-display').textContent = settings.principal_message;
-      if (settings.principal_name) document.getElementById('principal-name-display').textContent = settings.principal_name;
-
-      if (settings.vp_photo) document.getElementById('vp-img-display').src = settings.vp_photo;
-      if (settings.vp_message) document.getElementById('vp-msg-display').textContent = settings.vp_message;
-      if (settings.vp_name) document.getElementById('vp-name-display').textContent = settings.vp_name;
+        if (settings.vp_photo) document.getElementById('vp-img-display').src = settings.vp_photo;
+        if (settings.vp_message) document.getElementById('vp-msg-display').textContent = settings.vp_message;
+        if (settings.vp_name) document.getElementById('vp-name-display').textContent = settings.vp_name;
+      });
     }
 
     // 2. Dynamic Staff Directory
     function fetchStaffDirectory() {
       const container = document.getElementById('staff-roster-container');
-      const staffList = DB.get('staff', []);
+      if (!db) return;
+      db.ref('staff').on('value', snapshot => {
+        const staffObj = snapshot.val() || {};
+        const staffList = Object.keys(staffObj).map(key => ({ id: key, ...staffObj[key] }));
 
-      if (staffList && staffList.length > 0) {
-        container.innerHTML = '';
-        staffList.forEach((member, idx) => {
-          const card = document.createElement('div');
-          card.className = 'staff-card';
-          card.innerHTML = `
-            <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember(${idx}, '${member.name}')">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-            <div class="staff-card-img">
-              <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
-            </div>
-            <div class="staff-card-body">
-              <div class="staff-card-name">${member.name}</div>
-              <div class="staff-card-role">${member.designation}</div>
-              ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
-              ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      } else {
-        container.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
-            <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
-            <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
-            <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here permanently.</p>
-          </div>`;
-      }
+        if (staffList.length > 0) {
+          container.innerHTML = '';
+          staffList.forEach(member => {
+            const card = document.createElement('div');
+            card.className = 'staff-card';
+            card.innerHTML = `
+              <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember('${member.id}', '${member.name}')">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <div class="staff-card-img">
+                <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
+              </div>
+              <div class="staff-card-body">
+                <div class="staff-card-name">${member.name}</div>
+                <div class="staff-card-role">${member.designation}</div>
+                ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
+                ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        } else {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
+              <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
+              <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
+              <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here permanently 24/7.</p>
+            </div>`;
+        }
+      });
     }
 
-    window.deleteStaffMember = function(index, name) {
+    window.deleteStaffMember = function(key, name) {
+      if (!db) return;
       if (confirm(`Remove ${name} from the staff directory?`)) {
-        const staffList = DB.get('staff', []);
-        staffList.splice(index, 1);
-        DB.set('staff', staffList);
-        fetchStaffDirectory();
+        db.ref('staff/' + key).remove();
       }
     };
 
     // 3. Dynamic Hero Slideshow
     function fetchHeroSlides() {
-      const slides = DB.get('hero_slides', []);
-      if (slides && slides.length > 0) {
-        const container = document.getElementById('hero-slideshow-container');
-        container.innerHTML = '';
-        slides.forEach((s, idx) => {
-          const img = document.createElement('img');
-          img.src = s.file_url;
-          img.alt = s.caption || 'Campus Slide';
-          if (idx === 0) img.classList.add('active');
-          container.appendChild(img);
-        });
-      }
-      startSlideshow();
+      if (!db) { startSlideshow(); return; }
+      db.ref('hero_slides').on('value', snapshot => {
+        const slidesObj = snapshot.val() || {};
+        const slides = Object.values(slidesObj);
+
+        if (slides.length > 0) {
+          const container = document.getElementById('hero-slideshow-container');
+          container.innerHTML = '';
+          slides.forEach((s, idx) => {
+            const img = document.createElement('img');
+            img.src = s.file_url;
+            img.alt = s.caption || 'Campus Slide';
+            if (idx === 0) img.classList.add('active');
+            container.appendChild(img);
+          });
+        }
+        startSlideshow();
+      });
     }
 
     function startSlideshow() {
@@ -725,17 +734,22 @@
       const noticeDisplayContainer = document.getElementById("notice-display-container");
       const noticeCounterText = document.getElementById("notice-counter-text");
       const noticeDateSelect = document.getElementById("notice-date-select");
+      if (!db) return;
 
-      liveNotices = DB.get('notices', []);
-      noticeDateSelect.innerHTML = "";
-      if (liveNotices.length === 0) {
-        const opt = document.createElement("option"); opt.textContent = "No notices uploaded"; noticeDateSelect.appendChild(opt);
-      } else {
-        liveNotices.forEach((n, idx) => {
-          const opt = document.createElement("option"); opt.value = idx; opt.textContent = `${n.published_date} (Notice ${idx + 1})`; noticeDateSelect.appendChild(opt);
-        });
-      }
-      updateNoticeDisplay();
+      db.ref('notices').on('value', snapshot => {
+        const noticesObj = snapshot.val() || {};
+        liveNotices = Object.keys(noticesObj).map(key => ({ id: key, ...noticesObj[key] })).reverse();
+
+        noticeDateSelect.innerHTML = "";
+        if (liveNotices.length === 0) {
+          const opt = document.createElement("option"); opt.textContent = "No notices uploaded"; noticeDateSelect.appendChild(opt);
+        } else {
+          liveNotices.forEach((n, idx) => {
+            const opt = document.createElement("option"); opt.value = idx; opt.textContent = `${n.published_date} (Notice ${idx + 1})`; noticeDateSelect.appendChild(opt);
+          });
+        }
+        updateNoticeDisplay();
+      });
     }
 
     function updateNoticeDisplay() {
@@ -757,13 +771,17 @@
     function fetchLiveResult(selectedClass) {
       const resultContentContainer = document.getElementById("result-content-container");
       document.getElementById("result-title").textContent = `Examination Result - ${selectedClass}`;
-      const results = DB.get('results', {});
+      if (!db) return;
 
-      if (results[selectedClass]) {
-        resultContentContainer.innerHTML = `<img src="${results[selectedClass]}" alt="${selectedClass} Result">`;
-      } else {
-        resultContentContainer.innerHTML = `<div class="no-result-box"><i class="fa-solid fa-file-circle-xmark" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>Result Not Available</h4><p>Result for <strong>${selectedClass}</strong> has not been uploaded yet.</p></div>`;
-      }
+      const safeKey = selectedClass.replace(/[^a-zA-Z0-9]/g, '_');
+      db.ref('results/' + safeKey).on('value', snapshot => {
+        const fileUrl = snapshot.val();
+        if (fileUrl) {
+          resultContentContainer.innerHTML = `<img src="${fileUrl}" alt="${selectedClass} Result">`;
+        } else {
+          resultContentContainer.innerHTML = `<div class="no-result-box"><i class="fa-solid fa-file-circle-xmark" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>Result Not Available</h4><p>Result for <strong>${selectedClass}</strong> has not been uploaded yet.</p></div>`;
+        }
+      });
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -824,23 +842,19 @@
 
       // Delete Notice
       document.getElementById("delete-notice-btn").addEventListener("click", () => {
-        if (!liveNotices.length) return alert("No notice to delete.");
-        if (confirm("Delete this notice permanently?")) {
-          liveNotices.splice(currentNoticeIndex, 1);
-          DB.set('notices', liveNotices);
-          currentNoticeIndex = 0;
-          fetchLiveNotices();
+        if (!liveNotices.length || !db) return alert("No notice to delete.");
+        if (confirm("Delete this notice permanently from the cloud?")) {
+          db.ref('notices/' + liveNotices[currentNoticeIndex].id).remove();
         }
       });
 
       // Delete Result
       document.getElementById("delete-result-btn").addEventListener("click", () => {
         const cls = classSelect.value;
+        if (!db) return;
         if (confirm(`Delete result sheet for ${cls}?`)) {
-          const results = DB.get('results', {});
-          delete results[cls];
-          DB.set('results', results);
-          fetchLiveResult(cls);
+          const safeKey = cls.replace(/[^a-zA-Z0-9]/g, '_');
+          db.ref('results/' + safeKey).remove();
         }
       });
 
@@ -872,6 +886,8 @@
 
       // Upload Submission
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
+        if (!db) return alert("Firebase database could not be reached.");
+
         const uploadType = uploadTypeSelect.value;
         const targetClass = document.getElementById("target-class-select").value;
         const leaderKey = document.getElementById("leader-key-select").value;
@@ -902,34 +918,27 @@
           const today = new Date().toISOString().split('T')[0];
 
           if (uploadType === 'notice') {
-            const list = DB.get('notices', []);
-            list.unshift({ file_url: publicUrl, published_date: today });
-            DB.set('notices', list);
+            await db.ref('notices').push({ file_url: publicUrl, published_date: today });
           } else if (uploadType === 'result') {
-            const results = DB.get('results', {});
-            results[targetClass] = publicUrl;
-            DB.set('results', results);
+            const safeKey = targetClass.replace(/[^a-zA-Z0-9]/g, '_');
+            await db.ref('results/' + safeKey).set(publicUrl);
           } else if (uploadType === 'leader_photo') {
-            const settings = DB.get('settings', {});
-            if (publicUrl) settings[`${leaderKey}_photo`] = publicUrl;
-            if (leaderMessage) settings[`${leaderKey}_message`] = leaderMessage;
-            if (leaderName) settings[`${leaderKey}_name`] = leaderName;
-            DB.set('settings', settings);
+            const updates = {};
+            if (publicUrl) updates[`${leaderKey}_photo`] = publicUrl;
+            if (leaderMessage) updates[`${leaderKey}_message`] = leaderMessage;
+            if (leaderName) updates[`${leaderKey}_name`] = leaderName;
+            await db.ref('settings').update(updates);
           } else if (uploadType === 'hero_slide') {
-            const slides = DB.get('hero_slides', []);
-            slides.unshift({ file_url: publicUrl, caption: caption || 'Campus View' });
-            DB.set('hero_slides', slides);
+            await db.ref('hero_slides').push({ file_url: publicUrl, caption: caption || 'Campus View' });
           } else if (uploadType === 'staff') {
             if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
-            const staffList = DB.get('staff', []);
-            staffList.push({
+            await db.ref('staff').push({
               name: staffName,
               designation: staffDesignation,
               qualification: staffQualification || '',
               message: staffMessage || '',
               photo_url: publicUrl
             });
-            DB.set('staff', staffList);
           }
 
           status.textContent = "Upload complete! Image is permanently online 24/7.";
@@ -944,12 +953,6 @@
             document.getElementById("leader-name-input").value = "";
             document.getElementById("leader-msg-input").value = "";
             dropText.textContent = "Click or drag & drop photo (.jpg, .png, .pdf)";
-
-            if (uploadType === "notice") fetchLiveNotices();
-            else if (uploadType === "result") fetchLiveResult(targetClass);
-            else if (uploadType === "leader_photo") fetchDynamicSettings();
-            else if (uploadType === "hero_slide") fetchHeroSlides();
-            else if (uploadType === "staff") fetchStaffDirectory();
           }, 1200);
 
         } catch (err) {
