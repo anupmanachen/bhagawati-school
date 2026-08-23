@@ -269,6 +269,16 @@
     .event-delete-btn { display: none; position: absolute; top: 14px; right: 14px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; align-items: center; justify-content: center; font-size: 0.8rem; }
     .admin-logged-in .event-delete-btn { display: flex; }
 
+    /* Country Stats Badge in Admin Modal */
+    .country-stats-box {
+      background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);
+      padding: 14px; margin-bottom: 18px; max-height: 140px; overflow-y: auto;
+    }
+    .country-stat-item {
+      display: flex; justify-content: space-between; font-size: 0.84rem; padding: 4px 0;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
     /* Admin Modal */
     .admin-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -299,6 +309,7 @@
     .admin-profile-info { font-size: 0.85rem; font-weight: 700; color: #92400e; }
     .logout-link { font-size: 0.8rem; color: var(--danger); font-weight: 700; cursor: pointer; text-decoration: underline; }
 
+    /* Footer & Live Counter Display */
     .footer { background-color: var(--primary-dark); color: #ffffff; padding: 60px 0 25px; border-top: 4px solid var(--secondary); }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 40px; }
     .footer-col h3, .footer-col h4 { margin-bottom: 14px; color: #ffffff; font-size: 1.15rem; font-weight: 700; }
@@ -306,7 +317,18 @@
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul a { color: #cbd5e1; font-size: 0.9rem; }
-    .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); color: #94a3b8; font-size: 0.85rem; }
+    
+    .visitor-badge {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15); padding: 6px 14px; border-radius: 20px;
+      font-size: 0.82rem; color: #cbd5e1; font-weight: 600; margin-top: 10px;
+    }
+    .visitor-badge i { color: var(--secondary); }
+    
+    .footer-bottom {
+      text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12);
+      color: #94a3b8; font-size: 0.85rem; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
 
     @media (max-width: 768px) {
       .top-bar-content { flex-direction: column; align-items: center; gap: 6px; }
@@ -339,7 +361,7 @@
         </div>
         <div class="top-actions">
           <a href="https://www.facebook.com/shreebhagawati/" target="_blank" title="Facebook Page"><i class="fa-brands fa-facebook-f"></i></a>
-          <!-- Discrete Admin Trigger: User icon in top right -->
+          <!-- Discrete Admin Trigger -->
           <button class="admin-man-btn" id="open-admin-btn" title="Sign In"><i class="fa-solid fa-circle-user"></i></button>
         </div>
       </div>
@@ -434,7 +456,7 @@
       <div class="cards-grid">
         <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
@@ -647,15 +669,12 @@
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
       <h2 id="admin-modal-title">Admin Control Center</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized credentials to manage school portal content.</p>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live content.</p>
 
       <div id="auth-section">
         <div class="form-group">
           <label for="admin-email-input">Admin Email:</label>
-          <select id="admin-email-input" style="font-weight: 600;">
-            <option value="studyoutsidenepal@gmail.com">studyoutsidenepal@gmail.com</option>
-            <option value="bhagawati_school@yahoo.com">bhagawati_school@yahoo.com</option>
-          </select>
+          <input type="email" id="admin-email-input" placeholder="Enter your email" autocomplete="username" />
         </div>
         <div class="form-group">
           <label for="admin-passcode-input">Password:</label>
@@ -670,8 +689,18 @@
       <!-- Upload / Edit Center -->
       <div id="upload-section" style="display: none;">
         <div class="admin-profile-badge">
-          <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
+          <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">admin</span></span>
           <span class="logout-link" id="logout-btn">Log out</span>
+        </div>
+
+        <!-- Visitor Analytics Display inside Admin Modal -->
+        <div class="country-stats-box">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px;">
+            <i class="fa-solid fa-globe"></i> Visitor Countries & Pageviews
+          </div>
+          <div id="country-stats-list">
+            <span style="font-size:0.8rem;color:var(--slate-600);">Loading visitor analytics...</span>
+          </div>
         </div>
 
         <input type="hidden" id="editing-staff-id" value="" />
@@ -799,12 +828,15 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer with Live Counter -->
   <footer id="contact" class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <h3 data-i18n="schoolName">Shree Bhagawati Secondary School</h3>
         <p data-i18n="footerDesc">Dedicated to delivering quality education, strong values, and practical skills for real-world success.</p>
+        <div class="visitor-badge">
+          <i class="fa-solid fa-eye"></i> <span data-i18n="liveVisitors">Total Views:</span> <strong id="live-counter-text">...</strong>
+        </div>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footerContact">Contact Us</h4>
@@ -916,6 +948,7 @@
         selectNoticeDate: "Select Notice Date:",
         shareNotice: "Share Notice:",
         shareResult: "Share Result:",
+        liveVisitors: "Total Views:",
         btnPrev: "Previous",
         btnNext: "Next",
         resultsSubtitle: "Academic Performance",
@@ -998,6 +1031,7 @@
         selectNoticeDate: "सूचनाको मिति छान्नुहोस्:",
         shareNotice: "सूचना सेयर गर्नुहोस्:",
         shareResult: "परीक्षाफल सेयर गर्नुहोस्:",
+        liveVisitors: "कुल अवलोकन:",
         btnPrev: "अघिल्लो",
         btnNext: "पछिल्लो",
         resultsSubtitle: "शैक्षिक नतिजा",
@@ -1027,7 +1061,7 @@
 
     function unlockAdmin(email) {
       document.body.classList.add("admin-logged-in");
-      document.getElementById("admin-email-display").textContent = email;
+      document.getElementById("admin-email-display").textContent = email || "Admin";
       document.getElementById("auth-section").style.display = "none";
       document.getElementById("upload-section").style.display = "block";
       document.getElementById("admin-notice-bar").classList.add("active");
@@ -1046,6 +1080,58 @@
       const data = await res.json();
       if (!data.success) throw new Error(data.error ? data.error.message : 'Cloud upload failed');
       return data.data.url;
+    }
+
+    // ==========================================================================
+    // VISITOR COUNTER & COUNTRY ANALYTICS ENGINE
+    // ==========================================================================
+    async function trackVisitorAnalytics() {
+      if (!db) return;
+
+      // 1. Increment Total Live Counter (One-time per session)
+      const sessionTracked = sessionStorage.getItem('sbss_visited');
+      if (!sessionTracked) {
+        db.ref('analytics/total_views').transaction(current => (current || 0) + 1);
+        sessionStorage.setItem('sbss_visited', 'true');
+
+        // 2. Track Country
+        try {
+          const geoRes = await fetch('https://ipapi.co/json/');
+          const geoData = await geoRes.json();
+          if (geoData && geoData.country_name) {
+            const countryKey = geoData.country_name.replace(/[^a-zA-Z0-9]/g, '_');
+            db.ref(`analytics/countries/${countryKey}`).transaction(c => (c || 0) + 1);
+          }
+        } catch (e) {
+          // Fallback if adblocker blocks ipapi
+          db.ref('analytics/countries/Unknown').transaction(c => (c || 0) + 1);
+        }
+      }
+
+      // 3. Live Listen for Total Views
+      db.ref('analytics/total_views').on('value', snapshot => {
+        const count = snapshot.val() || 1;
+        document.getElementById('live-counter-text').textContent = count.toLocaleString();
+      });
+
+      // 4. Live Listen for Country Analytics in Admin Modal
+      db.ref('analytics/countries').on('value', snapshot => {
+        const countriesObj = snapshot.val() || {};
+        const listContainer = document.getElementById('country-stats-list');
+        listContainer.innerHTML = '';
+
+        const sorted = Object.entries(countriesObj).sort((a, b) => b[1] - a[1]);
+        if (sorted.length > 0) {
+          sorted.forEach(([country, visits]) => {
+            const row = document.createElement('div');
+            row.className = 'country-stat-item';
+            row.innerHTML = `<span><i class="fa-solid fa-location-arrow" style="color:var(--secondary);"></i> ${country.replace(/_/g, ' ')}</span><strong>${visits} visits</strong>`;
+            listContainer.appendChild(row);
+          });
+        } else {
+          listContainer.innerHTML = '<span style="font-size:0.8rem;color:var(--slate-600);">No country logs yet.</span>';
+        }
+      });
     }
 
     // 1. Dynamic Settings (Logo & Leadership)
@@ -1358,7 +1444,7 @@
       const savedAdmin = localStorage.getItem('sbss_admin_email');
       if (savedAdmin) unlockAdmin(savedAdmin);
 
-      // Dedicated Admin Button
+      // Discrete Admin Trigger
       document.getElementById("open-admin-btn").addEventListener("click", () => {
         resetAdminForm();
         document.getElementById("admin-modal").classList.add("active");
@@ -1369,6 +1455,12 @@
         const pin = document.getElementById("admin-passcode-input").value.trim();
         const authError = document.getElementById("auth-error");
         authError.style.display = "none";
+
+        if (!email) {
+          authError.textContent = "Please enter your email.";
+          authError.style.display = "block";
+          return;
+        }
 
         if (pin === "2039" || pin === "bhagawati2039") {
           localStorage.setItem('sbss_admin_email', email);
@@ -1453,6 +1545,8 @@
         document.getElementById("editing-staff-photo").value = "";
         document.getElementById("admin-modal-title").textContent = "Admin Control Center";
         document.getElementById("upload-btn-text").textContent = "Upload & Sync Permanently Online";
+        document.getElementById("admin-email-input").value = "";
+        document.getElementById("admin-passcode-input").value = "";
         document.getElementById("staff-name-input").value = "";
         document.getElementById("staff-designation-input").value = "";
         document.getElementById("staff-qual-input").value = "";
@@ -1489,7 +1583,7 @@
         }
       });
 
-      // Unified Cloud Submission (Notices, Events, Results, Staff, Logo, Leaders)
+      // Unified Cloud Submission
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         if (!db) return alert("Firebase database could not be reached.");
 
@@ -1601,7 +1695,8 @@
         }
       });
 
-      // Initial Fetch
+      // Initial Fetch & Analytics
+      trackVisitorAnalytics();
       fetchDynamicSettings();
       fetchStaffDirectory();
       fetchEvents();
