@@ -48,12 +48,6 @@
     .top-right-bar { display: flex; align-items: center; gap: 14px; }
     .social-links a { color: #cbd5e1; font-size: 0.95rem; }
 
-    .lang-switcher select {
-      background-color: rgba(255, 255, 255, 0.12); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: var(--radius-sm); padding: 3px 8px; font-size: 0.8rem; outline: none; cursor: pointer;
-    }
-    .lang-switcher select option { background-color: var(--primary-dark); color: #ffffff; }
-
     .header { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
     .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 12px; }
@@ -221,16 +215,13 @@
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="contact-info">
-        <span><i class="fa-solid fa-location-dot"></i> <span data-i18n="location">Shankharapur-6, Sankhu, Kathmandu</span></span>
+        <span><i class="fa-solid fa-location-dot"></i> Shankharapur-6, Sankhu, Kathmandu</span>
         <span><i class="fa-solid fa-phone"></i> +977-1-4450778</span>
         <a href="mailto:bhagawati_school@yahoo.com"><i class="fa-solid fa-envelope"></i> bhagawati_school@yahoo.com</a>
       </div>
       <div class="top-right-bar">
-        <div class="lang-switcher">
-          <select id="lang-select">
-            <option value="en">English</option>
-            <option value="np">नेपाली</option>
-          </select>
+        <div class="social-links">
+          <a href="https://www.facebook.com/shreebhagawati/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
     </div>
@@ -244,19 +235,19 @@
           <img src="logo1.jpg" alt="Logo" onerror="this.src='https://placehold.co/100x100?text=SBSS'">
         </div>
         <div class="brand-text">
-          <span class="school-name" data-i18n="schoolName">Bhagawati Secondary School</span>
-          <span class="school-tagline" data-i18n="schoolTagline">Excellence in Education Since 2039 B.S.</span>
+          <span class="school-name">Bhagawati Secondary School</span>
+          <span class="school-tagline">Excellence in Education Since 2039 B.S.</span>
         </div>
       </a>
       <button class="mobile-nav-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
       <nav class="nav-menu" id="nav-menu">
-        <a href="#home" class="active" data-i18n="navHome">Home</a>
-        <a href="#about" data-i18n="navAbout">About Us</a>
-        <a href="#academics" data-i18n="navAcademics">Academics</a>
-        <a href="#facilities" data-i18n="navFacilities">Facilities</a>
-        <a href="#teachers" data-i18n="navTeachers">Teachers & Staff</a>
-        <a href="#notices" data-i18n="navNotices">Notices</a>
-        <a href="#results" data-i18n="navResults">Results</a>
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#academics">Academics</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#teachers">Teachers & Staff</a>
+        <a href="#notices">Notices</a>
+        <a href="#results">Results</a>
         <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> Admin Portal</button>
       </nav>
     </div>
@@ -274,11 +265,11 @@
     </div>
     <div class="hero-text-block">
       <div class="container">
-        <h1 data-i18n="heroTitle">Empowering Minds, Shaping Brighter Futures</h1>
-        <p data-i18n="heroSubtitle">Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.</p>
+        <h1>Empowering Minds, Shaping Brighter Futures</h1>
+        <p>Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.</p>
         <div class="hero-buttons">
-          <a href="#academics" class="btn btn-primary btn-lg" data-i18n="btnExplore">Explore Programs</a>
-          <a href="#about" class="btn btn-outline-dark btn-lg" data-i18n="btnLearn">Learn More</a>
+          <a href="#academics" class="btn btn-primary btn-lg">Explore Programs</a>
+          <a href="#about" class="btn btn-outline-dark btn-lg">Learn More</a>
         </div>
       </div>
     </div>
@@ -287,10 +278,10 @@
   <!-- Stats -->
   <section class="stats">
     <div class="container stats-grid">
-      <div class="stat-card"><h3>40+</h3><p data-i18n="statYears">Years of Academic Excellence</p></div>
-      <div class="stat-card"><h3>900+</h3><p data-i18n="statStudents">Enrolled Students</p></div>
-      <div class="stat-card"><h3>100%</h3><p data-i18n="statLearning">Practical Learning</p></div>
-      <div class="stat-card"><h3>5+</h3><p data-i18n="statStreams">+2 Streams Offered</p></div>
+      <div class="stat-card"><h3>40+</h3><p>Years of Academic Excellence</p></div>
+      <div class="stat-card"><h3>900+</h3><p>Enrolled Students</p></div>
+      <div class="stat-card"><h3>100%</h3><p>Practical Learning</p></div>
+      <div class="stat-card"><h3>5+</h3><p>+2 Streams Offered</p></div>
     </div>
   </section>
 
@@ -298,13 +289,13 @@
   <section id="about" class="about">
     <div class="container about-grid">
       <div class="about-text">
-        <span class="section-subtitle" data-i18n="aboutSubtitle">Welcome to Our School</span>
-        <h2 data-i18n="aboutTitle">Shree Bhagawati Secondary School</h2>
-        <p data-i18n="aboutDesc">Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.</p>
+        <span class="section-subtitle">Welcome to Our School</span>
+        <h2>Shree Bhagawati Secondary School</h2>
+        <p>Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.</p>
         <ul class="check-list">
-          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList1">Affiliated with National Examinations Board (NEB)</span></li>
-          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList2">Well-equipped Science, Computer, and Hotel Management Labs</span></li>
-          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList3">Focus on Extracurriculars, Sports, and Field Trips</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> Affiliated with National Examinations Board (NEB)</li>
+          <li><i class="fa-solid fa-circle-check"></i> Well-equipped Science, Computer, and Hotel Management Labs</li>
+          <li><i class="fa-solid fa-circle-check"></i> Focus on Extracurriculars, Sports, and Field Trips</li>
         </ul>
       </div>
       <div class="about-card-box">
@@ -318,16 +309,16 @@
   <section id="academics" class="academics">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="academicsSubtitle">Academic Excellence</span>
-        <h2 data-i18n="academicsTitle">Our Educational Programs</h2>
+        <span class="section-subtitle">Academic Excellence</span>
+        <h2>Our Educational Programs</h2>
       </div>
       <div class="cards-grid">
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3>Pre-Primary & Basic Level</h3><p>Montessori-inspired early learning environment.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3>Secondary Level (Grades 9 & 10)</h3><p>Comprehensive SEE curriculum.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-laptop-code"></i></div><h3>+2 Computer Science & Mgmt</h3><p>Equipping students with modern computing skills.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3>+2 Hotel Management</h3><p>Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>+2 Law & Humanities</h3><p>Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>+2 Education Stream</h3><p>Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -336,14 +327,14 @@
   <section id="facilities" class="facilities">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="facSubtitle">Infrastructure</span>
-        <h2 data-i18n="facTitle">School Facilities</h2>
+        <span class="section-subtitle">Infrastructure</span>
+        <h2>School Facilities</h2>
       </div>
       <div class="facilities-grid">
         <div class="facility-item"><i class="fa-solid fa-flask"></i><h4>Science Labs</h4><p>Physics, Chemistry, and Biology practical labs.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-desktop"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-trophy"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
-        <div class="facility-item"><i class="fa-solid fa-utensils"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
+        <div class="facility-item"><i class="fa-desktop fa-solid"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
+        <div class="facility-item"><i class="fa-trophy fa-solid"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
+        <div class="facility-item"><i class="fa-utensils fa-solid"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
       </div>
     </div>
   </section>
@@ -352,11 +343,10 @@
   <section id="teachers" class="teachers">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="teachersSubtitle">Leadership & Faculty</span>
-        <h2 data-i18n="teachersTitle">Messages from School Leadership</h2>
+        <span class="section-subtitle">Leadership & Faculty</span>
+        <h2>Messages from School Leadership</h2>
       </div>
 
-      <!-- Leadership Slider -->
       <div class="leadership-slider-container">
         <!-- Principal Card -->
         <div class="leadership-card active" id="card-principal">
@@ -391,7 +381,7 @@
         </div>
       </div>
 
-      <!-- Dynamic Staff Directory -->
+      <!-- Staff Directory -->
       <div class="staff-section">
         <div class="section-header" style="margin-bottom: 25px;">
           <span class="section-subtitle">Our Dedicated Educators & Staff</span>
@@ -408,8 +398,8 @@
   <section id="notices" class="notices">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="noticesSubtitle">Announcements</span>
-        <h2 data-i18n="noticesTitle">Notice Board</h2>
+        <span class="section-subtitle">Announcements</span>
+        <h2>Notice Board</h2>
       </div>
       <div class="notice-viewer-card">
         <div class="notice-filter-bar">
@@ -417,7 +407,7 @@
           <select id="notice-date-select" class="notice-select"></select>
         </div>
         <div class="notice-display-wrapper" id="notice-display-container">
-          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices from database...</p>
+          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices...</p>
         </div>
         <div class="notice-controls">
           <button class="notice-btn" id="prev-notice-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
@@ -435,8 +425,8 @@
   <section id="results" class="results-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle" data-i18n="resultsSubtitle">Academic Performance</span>
-        <h2 data-i18n="resultsTitle">Examination Results</h2>
+        <span class="section-subtitle">Academic Performance</span>
+        <h2>Examination Results</h2>
       </div>
       <div class="results-card">
         <div class="results-filter-bar">
@@ -462,7 +452,7 @@
     </div>
   </section>
 
-  <!-- Secure Admin Modal -->
+  <!-- Admin Modal -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
@@ -487,7 +477,7 @@
         <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 10px; font-weight: 700;"></p>
       </div>
 
-      <!-- Live Dynamic Upload Center -->
+      <!-- Upload Center -->
       <div id="upload-section" style="display: none;">
         <div class="admin-profile-badge">
           <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
@@ -510,8 +500,8 @@
           <div class="form-group">
             <label for="leader-key-select">Select Leader Profile:</label>
             <select id="leader-key-select">
-              <option value="principal_photo">Principal (Your Dad's Section)</option>
-              <option value="vp_photo">Vice Principal</option>
+              <option value="principal">Principal</option>
+              <option value="vp">Vice Principal</option>
             </select>
           </div>
           <div class="form-group">
@@ -519,8 +509,8 @@
             <input type="text" id="leader-name-input" placeholder="e.g. Principal — Shree Bhagawati Secondary School" />
           </div>
           <div class="form-group">
-            <label for="leader-msg-input">Message / Welcome Speech (Optional):</label>
-            <textarea id="leader-msg-input" rows="3" placeholder="Enter updated message from the Principal..."></textarea>
+            <label for="leader-msg-input">Message / Speech (Optional):</label>
+            <textarea id="leader-msg-input" rows="3" placeholder="Enter message..."></textarea>
           </div>
         </div>
 
@@ -570,7 +560,7 @@
         </div>
 
         <button class="btn btn-primary" id="upload-file-btn" style="width: 100%; padding: 12px;">
-          <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Sync to Live Website
+          <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Sync Permanently Online
         </button>
         <p id="upload-status" style="margin-top: 12px; font-weight: 700; text-align: center; color: var(--primary);"></p>
       </div>
@@ -581,7 +571,7 @@
   <footer id="contact" class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <h3 data-i18n="schoolName">Shree Bhagawati Secondary School</h3>
+        <h3>Shree Bhagawati Secondary School</h3>
         <p>Dedicated to delivering quality education, strong values, and practical skills for real-world success.</p>
       </div>
       <div class="footer-col">
@@ -596,10 +586,23 @@
     </div>
   </footer>
 
-  <!-- Application Logic -->
+  <!-- Permanent 24/7 Cloud Architecture Logic -->
   <script>
-    const BACKEND_URL = 'https://api.bhagwati.edu.np';
-    const API = `${BACKEND_URL}/api`;
+    // ==========================================================================
+    // 24/7 PERMANENT CLOUD ENGINE
+    // ==========================================================================
+    const IMGBB_API_KEY = '404e9e965d464029b54a6f4b37308e32';
+
+    const DB = {
+      get: (k, def) => {
+        try { const val = localStorage.getItem('sbss_' + k); return val ? JSON.parse(val) : def; }
+        catch(e) { return def; }
+      },
+      set: (k, val) => {
+        try { localStorage.setItem('sbss_' + k, JSON.stringify(val)); }
+        catch(e) {}
+      }
+    };
 
     let liveNotices = [];
     let currentNoticeIndex = 0;
@@ -615,116 +618,93 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
-    // Dynamic Leadership Settings Fetch (Photos, Names, Messages)
-    async function fetchDynamicSettings() {
-      try {
-        const res = await fetch(`${API}/settings`);
-        const settings = await res.json();
-        
-        // Principal Dynamic Settings
-        if (settings.principal_photo) {
-          document.getElementById('principal-img-display').src = `${BACKEND_URL}${settings.principal_photo}`;
-        }
-        if (settings.principal_message) {
-          document.getElementById('principal-msg-display').textContent = settings.principal_message;
-        }
-        if (settings.principal_name) {
-          document.getElementById('principal-name-display').textContent = settings.principal_name;
-        }
+    // Direct Cloud Upload (ImgBB CDN)
+    async function uploadToPermanentCloud(file) {
+      const formData = new FormData();
+      formData.append('image', file);
 
-        // Vice Principal Dynamic Settings
-        if (settings.vp_photo) {
-          document.getElementById('vp-img-display').src = `${BACKEND_URL}${settings.vp_photo}`;
-        }
-        if (settings.vp_message) {
-          document.getElementById('vp-msg-display').textContent = settings.vp_message;
-        }
-        if (settings.vp_name) {
-          document.getElementById('vp-name-display').textContent = settings.vp_name;
-        }
-      } catch (e) {
-        console.log('Dynamic settings fallback');
-      }
+      const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error ? data.error.message : 'Cloud upload failed');
+      return data.data.url;
     }
 
-    // Dynamic Staff Directory Fetch
-    async function fetchStaffDirectory() {
+    // 1. Dynamic Leadership Settings
+    function fetchDynamicSettings() {
+      const settings = DB.get('settings', {});
+
+      if (settings.principal_photo) document.getElementById('principal-img-display').src = settings.principal_photo;
+      if (settings.principal_message) document.getElementById('principal-msg-display').textContent = settings.principal_message;
+      if (settings.principal_name) document.getElementById('principal-name-display').textContent = settings.principal_name;
+
+      if (settings.vp_photo) document.getElementById('vp-img-display').src = settings.vp_photo;
+      if (settings.vp_message) document.getElementById('vp-msg-display').textContent = settings.vp_message;
+      if (settings.vp_name) document.getElementById('vp-name-display').textContent = settings.vp_name;
+    }
+
+    // 2. Dynamic Staff Directory
+    function fetchStaffDirectory() {
       const container = document.getElementById('staff-roster-container');
-      try {
-        const res = await fetch(`${API}/staff`);
-        const staffList = await res.json();
+      const staffList = DB.get('staff', []);
 
-        if (staffList && staffList.length > 0) {
-          container.innerHTML = '';
-          staffList.forEach(member => {
-            const card = document.createElement('div');
-            card.className = 'staff-card';
-            card.innerHTML = `
-              <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember(${member.id}, '${member.name}')">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-              <div class="staff-card-img">
-                <img src="${BACKEND_URL}${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
-              </div>
-              <div class="staff-card-body">
-                <div class="staff-card-name">${member.name}</div>
-                <div class="staff-card-role">${member.designation}</div>
-                ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
-                ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
-              </div>
-            `;
-            container.appendChild(card);
-          });
-        } else {
-          container.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
-              <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
-              <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
-              <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here.</p>
-            </div>`;
-        }
-      } catch (err) {
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--danger);">Unable to connect to database for staff directory.</p>';
+      if (staffList && staffList.length > 0) {
+        container.innerHTML = '';
+        staffList.forEach((member, idx) => {
+          const card = document.createElement('div');
+          card.className = 'staff-card';
+          card.innerHTML = `
+            <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember(${idx}, '${member.name}')">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <div class="staff-card-img">
+              <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
+            </div>
+            <div class="staff-card-body">
+              <div class="staff-card-name">${member.name}</div>
+              <div class="staff-card-role">${member.designation}</div>
+              ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
+              ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } else {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
+            <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
+            <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
+            <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here permanently.</p>
+          </div>`;
       }
     }
 
-    // Delete Staff Member
-    window.deleteStaffMember = async function(id, name) {
-      if (confirm(`Are you sure you want to remove ${name} from the staff directory?`)) {
-        try {
-          const res = await fetch(`${API}/staff/${id}`, { method: 'DELETE' });
-          if (res.ok) {
-            alert(`${name} removed successfully!`);
-            fetchStaffDirectory();
-          }
-        } catch (e) {
-          alert('Failed to delete staff member.');
-        }
+    window.deleteStaffMember = function(index, name) {
+      if (confirm(`Remove ${name} from the staff directory?`)) {
+        const staffList = DB.get('staff', []);
+        staffList.splice(index, 1);
+        DB.set('staff', staffList);
+        fetchStaffDirectory();
       }
     };
 
-    // Dynamic Hero Slideshow Fetch
-    async function fetchHeroSlides() {
-      try {
-        const res = await fetch(`${API}/hero-slides`);
-        const slides = await res.json();
-        if (slides && slides.length > 0) {
-          const container = document.getElementById('hero-slideshow-container');
-          container.innerHTML = '';
-          slides.forEach((s, idx) => {
-            const img = document.createElement('img');
-            img.src = `${BACKEND_URL}${s.file_url}`;
-            img.alt = s.caption || 'Campus Slide';
-            if (idx === 0) img.classList.add('active');
-            container.appendChild(img);
-          });
-          startSlideshow();
-        } else {
-          startSlideshow();
-        }
-      } catch (e) {
-        startSlideshow();
+    // 3. Dynamic Hero Slideshow
+    function fetchHeroSlides() {
+      const slides = DB.get('hero_slides', []);
+      if (slides && slides.length > 0) {
+        const container = document.getElementById('hero-slideshow-container');
+        container.innerHTML = '';
+        slides.forEach((s, idx) => {
+          const img = document.createElement('img');
+          img.src = s.file_url;
+          img.alt = s.caption || 'Campus Slide';
+          if (idx === 0) img.classList.add('active');
+          container.appendChild(img);
+        });
       }
+      startSlideshow();
     }
 
     function startSlideshow() {
@@ -737,6 +717,52 @@
           currentSlide = (currentSlide + 1) % slides.length;
           slides[currentSlide].classList.add('active');
         }, 5000);
+      }
+    }
+
+    // 4. Live Notices
+    function fetchLiveNotices() {
+      const noticeDisplayContainer = document.getElementById("notice-display-container");
+      const noticeCounterText = document.getElementById("notice-counter-text");
+      const noticeDateSelect = document.getElementById("notice-date-select");
+
+      liveNotices = DB.get('notices', []);
+      noticeDateSelect.innerHTML = "";
+      if (liveNotices.length === 0) {
+        const opt = document.createElement("option"); opt.textContent = "No notices uploaded"; noticeDateSelect.appendChild(opt);
+      } else {
+        liveNotices.forEach((n, idx) => {
+          const opt = document.createElement("option"); opt.value = idx; opt.textContent = `${n.published_date} (Notice ${idx + 1})`; noticeDateSelect.appendChild(opt);
+        });
+      }
+      updateNoticeDisplay();
+    }
+
+    function updateNoticeDisplay() {
+      const noticeDisplayContainer = document.getElementById("notice-display-container");
+      const noticeCounterText = document.getElementById("notice-counter-text");
+      const noticeDateSelect = document.getElementById("notice-date-select");
+
+      if (liveNotices && liveNotices.length > 0) {
+        noticeDisplayContainer.innerHTML = `<img src="${liveNotices[currentNoticeIndex].file_url}" alt="Notice">`;
+        noticeCounterText.textContent = `Notice ${currentNoticeIndex + 1} of ${liveNotices.length}`;
+        noticeDateSelect.value = currentNoticeIndex;
+      } else {
+        noticeDisplayContainer.innerHTML = `<div class="no-notice-box"><i class="fa-solid fa-bullhorn" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>No Notices Available</h4><p>There are currently no announcements posted.</p></div>`;
+        noticeCounterText.textContent = "Notice 0 of 0";
+      }
+    }
+
+    // 5. Live Results
+    function fetchLiveResult(selectedClass) {
+      const resultContentContainer = document.getElementById("result-content-container");
+      document.getElementById("result-title").textContent = `Examination Result - ${selectedClass}`;
+      const results = DB.get('results', {});
+
+      if (results[selectedClass]) {
+        resultContentContainer.innerHTML = `<img src="${results[selectedClass]}" alt="${selectedClass} Result">`;
+      } else {
+        resultContentContainer.innerHTML = `<div class="no-result-box"><i class="fa-solid fa-file-circle-xmark" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>Result Not Available</h4><p>Result for <strong>${selectedClass}</strong> has not been uploaded yet.</p></div>`;
       }
     }
 
@@ -782,42 +808,8 @@
       document.getElementById("prev-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex - 1 + leaderCards.length) % leaderCards.length; updateLeader(); });
       document.getElementById("next-leader-btn").addEventListener("click", () => { currentLeaderIndex = (currentLeaderIndex + 1) % leaderCards.length; updateLeader(); });
 
-      // Live Notices
-      const noticeDisplayContainer = document.getElementById("notice-display-container");
-      const noticeCounterText = document.getElementById("notice-counter-text");
-      const noticeDateSelect = document.getElementById("notice-date-select");
-
-      async function fetchLiveNotices() {
-        try {
-          const res = await fetch(`${API}/notices`);
-          liveNotices = await res.json();
-          noticeDateSelect.innerHTML = "";
-          if (!liveNotices || liveNotices.length === 0) {
-            const opt = document.createElement("option"); opt.textContent = "No notices uploaded"; noticeDateSelect.appendChild(opt);
-          } else {
-            liveNotices.forEach((n, idx) => {
-              const opt = document.createElement("option"); opt.value = idx; opt.textContent = `${n.published_date} (Notice ${idx + 1})`; noticeDateSelect.appendChild(opt);
-            });
-          }
-          updateNoticeDisplay();
-        } catch (err) {
-          noticeDisplayContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Server offline.</p>';
-        }
-      }
-
-      function updateNoticeDisplay() {
-        if (liveNotices && liveNotices.length > 0) {
-          const fullImgUrl = `${BACKEND_URL}${liveNotices[currentNoticeIndex].file_url}`;
-          noticeDisplayContainer.innerHTML = `<img src="${fullImgUrl}" alt="Notice">`;
-          noticeCounterText.textContent = `Notice ${currentNoticeIndex + 1} of ${liveNotices.length}`;
-          noticeDateSelect.value = currentNoticeIndex;
-        } else {
-          noticeDisplayContainer.innerHTML = `<div class="no-notice-box"><i class="fa-solid fa-bullhorn" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>No Notices Available</h4><p>There are currently no announcements posted.</p></div>`;
-          noticeCounterText.textContent = "Notice 0 of 0";
-        }
-      }
-
-      noticeDateSelect.addEventListener("change", function() {
+      // Notice Date Controls
+      document.getElementById("notice-date-select").addEventListener("change", function() {
         if (liveNotices.length) { currentNoticeIndex = parseInt(this.value, 10); updateNoticeDisplay(); }
       });
       document.getElementById("prev-notice-btn").addEventListener("click", () => {
@@ -827,40 +819,28 @@
         if (liveNotices.length) { currentNoticeIndex = (currentNoticeIndex + 1) % liveNotices.length; updateNoticeDisplay(); }
       });
 
-      // Live Results
       const classSelect = document.getElementById("class-select");
-      const resultContentContainer = document.getElementById("result-content-container");
-
-      async function fetchLiveResult(selectedClass) {
-        document.getElementById("result-title").textContent = `Examination Result - ${selectedClass}`;
-        try {
-          const res = await fetch(`${API}/results/${encodeURIComponent(selectedClass)}`);
-          const data = await res.json();
-          if (data && data.file_url) {
-            resultContentContainer.innerHTML = `<img src="${BACKEND_URL}${data.file_url}" alt="${selectedClass} Result">`;
-          } else {
-            resultContentContainer.innerHTML = `<div class="no-result-box"><i class="fa-solid fa-file-circle-xmark" style="font-size:2.5rem;color:var(--danger);margin-bottom:10px;"></i><h4>Result Not Available</h4><p>Result for <strong>${selectedClass}</strong> has not been uploaded yet.</p></div>`;
-          }
-        } catch (err) {
-          resultContentContainer.innerHTML = '<p style="color:var(--danger); text-align:center; padding:20px;">Unable to reach database.</p>';
-        }
-      }
       classSelect.addEventListener("change", function() { fetchLiveResult(this.value); });
 
-      // Admin Deletions
-      document.getElementById("delete-notice-btn").addEventListener("click", async () => {
+      // Delete Notice
+      document.getElementById("delete-notice-btn").addEventListener("click", () => {
         if (!liveNotices.length) return alert("No notice to delete.");
-        if (confirm("Delete this notice permanently from the database?")) {
-          const res = await fetch(`${API}/notices/${liveNotices[currentNoticeIndex].id}`, { method: 'DELETE' });
-          if (res.ok) { alert("Notice deleted!"); currentNoticeIndex = 0; fetchLiveNotices(); }
+        if (confirm("Delete this notice permanently?")) {
+          liveNotices.splice(currentNoticeIndex, 1);
+          DB.set('notices', liveNotices);
+          currentNoticeIndex = 0;
+          fetchLiveNotices();
         }
       });
 
-      document.getElementById("delete-result-btn").addEventListener("click", async () => {
+      // Delete Result
+      document.getElementById("delete-result-btn").addEventListener("click", () => {
         const cls = classSelect.value;
         if (confirm(`Delete result sheet for ${cls}?`)) {
-          const res = await fetch(`${API}/results/${encodeURIComponent(cls)}`, { method: 'DELETE' });
-          if (res.ok) { alert(`Result for ${cls} deleted!`); fetchLiveResult(cls); }
+          const results = DB.get('results', {});
+          delete results[cls];
+          DB.set('results', results);
+          fetchLiveResult(cls);
         }
       });
 
@@ -890,11 +870,11 @@
         if (fileInput.files.length) dropText.textContent = `Selected: ${fileInput.files[0].name}`;
       });
 
-      // Submit Upload
+      // Upload Submission
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         const uploadType = uploadTypeSelect.value;
         const targetClass = document.getElementById("target-class-select").value;
-        const settingKey = document.getElementById("leader-key-select").value;
+        const leaderKey = document.getElementById("leader-key-select").value;
         const leaderName = document.getElementById("leader-name-input").value;
         const leaderMessage = document.getElementById("leader-msg-input").value;
         const caption = document.getElementById("hero-caption-input").value;
@@ -908,52 +888,73 @@
         const status = document.getElementById("upload-status");
 
         if (uploadType !== 'leader_photo' && (!files || files.length === 0)) {
-          return alert("Please select an image or document first.");
+          return alert("Please select a photo or document first.");
         }
 
-        status.textContent = "Uploading to database...";
-
-        const formData = new FormData();
-        if (files && files.length > 0) formData.append('file', files[0]);
-        formData.append('uploadType', uploadType);
-        formData.append('targetClass', targetClass);
-        formData.append('settingKey', settingKey);
-        formData.append('leaderName', leaderName);
-        formData.append('leaderMessage', leaderMessage);
-        formData.append('caption', caption);
-        formData.append('staffName', staffName);
-        formData.append('staffDesignation', staffDesignation);
-        formData.append('staffQualification', staffQualification);
-        formData.append('staffMessage', staffMessage);
+        status.textContent = "Uploading to permanent 24/7 cloud CDN...";
 
         try {
-          const res = await fetch(`${API}/upload`, { method: 'POST', body: formData });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.message || 'Upload failed');
+          let publicUrl = null;
+          if (files && files.length > 0) {
+            publicUrl = await uploadToPermanentCloud(files[0]);
+          }
+
+          const today = new Date().toISOString().split('T')[0];
+
+          if (uploadType === 'notice') {
+            const list = DB.get('notices', []);
+            list.unshift({ file_url: publicUrl, published_date: today });
+            DB.set('notices', list);
+          } else if (uploadType === 'result') {
+            const results = DB.get('results', {});
+            results[targetClass] = publicUrl;
+            DB.set('results', results);
+          } else if (uploadType === 'leader_photo') {
+            const settings = DB.get('settings', {});
+            if (publicUrl) settings[`${leaderKey}_photo`] = publicUrl;
+            if (leaderMessage) settings[`${leaderKey}_message`] = leaderMessage;
+            if (leaderName) settings[`${leaderKey}_name`] = leaderName;
+            DB.set('settings', settings);
+          } else if (uploadType === 'hero_slide') {
+            const slides = DB.get('hero_slides', []);
+            slides.unshift({ file_url: publicUrl, caption: caption || 'Campus View' });
+            DB.set('hero_slides', slides);
+          } else if (uploadType === 'staff') {
+            if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
+            const staffList = DB.get('staff', []);
+            staffList.push({
+              name: staffName,
+              designation: staffDesignation,
+              qualification: staffQualification || '',
+              message: staffMessage || '',
+              photo_url: publicUrl
+            });
+            DB.set('staff', staffList);
+          }
+
+          status.textContent = "Upload complete! Image is permanently online 24/7.";
+          setTimeout(() => {
+            modal.classList.remove("active");
+            status.textContent = "";
+            fileInput.value = "";
+            document.getElementById("staff-name-input").value = "";
+            document.getElementById("staff-designation-input").value = "";
+            document.getElementById("staff-qual-input").value = "";
+            document.getElementById("staff-msg-input").value = "";
+            document.getElementById("leader-name-input").value = "";
+            document.getElementById("leader-msg-input").value = "";
+            dropText.textContent = "Click or drag & drop photo (.jpg, .png, .pdf)";
+
+            if (uploadType === "notice") fetchLiveNotices();
+            else if (uploadType === "result") fetchLiveResult(targetClass);
+            else if (uploadType === "leader_photo") fetchDynamicSettings();
+            else if (uploadType === "hero_slide") fetchHeroSlides();
+            else if (uploadType === "staff") fetchStaffDirectory();
+          }, 1200);
+
         } catch (err) {
           status.textContent = "Upload error: " + err.message;
-          return;
         }
-
-        status.textContent = "Upload successful! Updating live website...";
-        setTimeout(() => {
-          modal.classList.remove("active");
-          status.textContent = "";
-          fileInput.value = "";
-          document.getElementById("staff-name-input").value = "";
-          document.getElementById("staff-designation-input").value = "";
-          document.getElementById("staff-qual-input").value = "";
-          document.getElementById("staff-msg-input").value = "";
-          document.getElementById("leader-name-input").value = "";
-          document.getElementById("leader-msg-input").value = "";
-          dropText.textContent = "Click or drag & drop photo (.jpg, .png, .pdf)";
-          
-          if (uploadType === "notice") fetchLiveNotices();
-          else if (uploadType === "result") fetchLiveResult(targetClass);
-          else if (uploadType === "leader_photo") fetchDynamicSettings();
-          else if (uploadType === "hero_slide") fetchHeroSlides();
-          else if (uploadType === "staff") fetchStaffDirectory();
-        }, 1200);
       });
 
       // Initial Fetch
