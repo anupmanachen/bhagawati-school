@@ -187,7 +187,7 @@
     .staff-btn-edit { background: var(--info); }
     .staff-btn-delete { background: var(--danger); }
 
-    /* Staff Modal with Typewriter Animation */
+    /* Staff Modal */
     .staff-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(15, 23, 42, 0.75); z-index: 2500; justify-content: center; align-items: center; padding: 20px;
@@ -207,13 +207,13 @@
     .staff-modal-img img { width: 100%; height: 100%; object-fit: cover; }
     .staff-modal-content { padding: 30px 24px; position: relative; display: flex; flex-direction: column; justify-content: center; }
     
-    .staff-modal-close {
+    .staff-modal-close, .lightbox-close {
       position: absolute; top: 12px; right: 14px; background: var(--slate-100); border: 1px solid var(--slate-200);
       width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; color: var(--slate-800);
       display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100;
       transition: var(--transition); line-height: 1;
     }
-    .staff-modal-close:hover { background: var(--danger); color: #ffffff; transform: scale(1.1); }
+    .staff-modal-close:hover, .lightbox-close:hover { background: var(--danger); color: #ffffff; transform: scale(1.1); }
     
     .staff-modal-name { font-size: 1.45rem; font-weight: 800; color: var(--primary-dark); }
     .staff-modal-role { color: var(--secondary); font-weight: 700; font-size: 0.86rem; text-transform: uppercase; margin-bottom: 6px; }
@@ -225,6 +225,42 @@
     }
     .typewriter-cursor { display: inline-block; width: 2px; height: 1.1em; background-color: var(--primary); vertical-align: text-bottom; animation: blink 0.75s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Events Section & Multi-Photo Gallery Grid */
+    .events-section { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
+    .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .event-card {
+      background: #ffffff; border: 1px solid var(--slate-200); border-radius: var(--radius-md);
+      padding: 24px; position: relative; transition: var(--transition); border-left: 5px solid var(--secondary);
+    }
+    .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .event-date-badge {
+      display: inline-flex; align-items: center; gap: 6px; background: var(--secondary-light);
+      color: #92400e; font-size: 0.82rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .event-title { font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; }
+    .event-desc { font-size: 0.92rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 14px; white-space: pre-line; }
+    .event-delete-btn { display: none; position: absolute; top: 14px; right: 14px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; align-items: center; justify-content: center; font-size: 0.8rem; z-index: 5; }
+    .admin-logged-in .event-delete-btn { display: flex; }
+
+    .event-gallery {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 8px; margin-top: 14px;
+    }
+    .event-gallery-img {
+      width: 100%; height: 85px; border-radius: var(--radius-sm); overflow: hidden; cursor: pointer;
+      border: 1px solid var(--slate-200); background: #e2e8f0;
+    }
+    .event-gallery-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .event-gallery-img:hover img { transform: scale(1.08); }
+
+    /* Lightbox Modal for Event Image Zoom */
+    .lightbox-modal {
+      display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 3000;
+      justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px);
+    }
+    .lightbox-modal.active { display: flex; }
+    .lightbox-modal-card { max-width: 90vw; max-height: 85vh; position: relative; }
+    .lightbox-modal-card img { max-width: 100%; max-height: 85vh; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); object-fit: contain; }
 
     /* Social Media Share Bar */
     .share-container {
@@ -259,23 +295,6 @@
     .result-display-area h3 { color: var(--primary-dark); margin-bottom: 18px; font-size: 1.35rem; font-weight: 700; }
     .admin-action-bar { display: none; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--slate-200); justify-content: center; gap: 12px; }
     .admin-action-bar.active { display: flex; }
-
-    /* Events Section */
-    .events-section { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
-    .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .event-card {
-      background: #ffffff; border: 1px solid var(--slate-200); border-radius: var(--radius-md);
-      padding: 24px; position: relative; transition: var(--transition); border-left: 5px solid var(--secondary);
-    }
-    .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .event-date-badge {
-      display: inline-flex; align-items: center; gap: 6px; background: var(--secondary-light);
-      color: #92400e; font-size: 0.82rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;
-    }
-    .event-title { font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; }
-    .event-desc { font-size: 0.92rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 14px; }
-    .event-delete-btn { display: none; position: absolute; top: 14px; right: 14px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; align-items: center; justify-content: center; font-size: 0.8rem; }
-    .admin-logged-in .event-delete-btn { display: flex; }
 
     /* Country Stats Badge in Admin Modal */
     .country-stats-box {
@@ -317,7 +336,7 @@
     .admin-profile-info { font-size: 0.85rem; font-weight: 700; color: #92400e; }
     .logout-link { font-size: 0.8rem; color: var(--danger); font-weight: 700; cursor: pointer; text-decoration: underline; }
 
-    /* Footer & Live Counter Display */
+    /* Footer & Live Counter */
     .footer { background-color: var(--primary-dark); color: #ffffff; padding: 60px 0 25px; border-top: 4px solid var(--secondary); }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 40px; }
     .footer-col h3, .footer-col h4 { margin-bottom: 14px; color: #ffffff; font-size: 1.15rem; font-weight: 700; }
@@ -556,7 +575,7 @@
         </div>
 
         <div class="staff-grid" id="staff-roster-container">
-          <p style="text-align:center; grid-column: 1/-1; color: var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading faculty directory...</p>
+          <!-- Populated by JS -->
         </div>
       </div>
     </div>
@@ -580,7 +599,7 @@
     </div>
   </div>
 
-  <!-- Dynamic Events Section -->
+  <!-- Dynamic Events Section with Multi-Photo Gallery -->
   <section id="events" class="events-section">
     <div class="container">
       <div class="section-header">
@@ -588,10 +607,18 @@
         <h2 data-i18n="eventsTitle">Upcoming Events & Activities</h2>
       </div>
       <div class="events-grid" id="events-container">
-        <p style="text-align:center; grid-column: 1/-1; color: var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading upcoming events...</p>
+        <!-- Populated by JS -->
       </div>
     </div>
   </section>
+
+  <!-- Lightbox Modal for Event Image Zoom -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" id="close-lightbox-btn">&times;</button>
+    <div class="lightbox-modal-card" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Enlarged Event Image">
+    </div>
+  </div>
 
   <!-- Live Notices -->
   <section id="notices" class="notices">
@@ -606,7 +633,7 @@
           <select id="notice-date-select" class="notice-select"></select>
         </div>
         <div class="notice-display-wrapper" id="notice-display-container">
-          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices from cloud...</p>
+          <!-- Populated by JS -->
         </div>
 
         <!-- Social Media Direct Share Suite for Notices -->
@@ -652,7 +679,7 @@
         <div class="result-display-area">
           <h3 id="result-title">Examination Result - Class 8</h3>
           <div class="result-image-box" id="result-content-container">
-            <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Retrieving ledger...</p>
+            <!-- Populated by JS -->
           </div>
 
           <!-- Social Media Direct Share Suite for Results -->
@@ -677,7 +704,7 @@
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
       <h2 id="admin-modal-title">Admin Control Center</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized credentials to manage school portal content.</p>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live content.</p>
 
       <div id="auth-section">
         <div class="form-group">
@@ -719,7 +746,7 @@
           <select id="upload-type">
             <option value="notice">1. Notice Board Document(s) [Batch / Multiple]</option>
             <option value="result">2. Examination Result Marksheet(s) [Batch / Multiple]</option>
-            <option value="event">3. Add Upcoming School Event</option>
+            <option value="event">3. Add School Event [With Multiple Photos]</option>
             <option value="staff">4. Add / Edit Teacher / Faculty Member</option>
             <option value="leader_photo">5. Principal / Vice Principal Photo & Message</option>
             <option value="logo">6. Update School Logo</option>
@@ -731,15 +758,15 @@
         <div id="event-fields-group" style="display: none;">
           <div class="form-group">
             <label for="event-title-input">Event Title:</label>
-            <input type="text" id="event-title-input" placeholder="e.g. Annual Sports Meet 2083 / Parents Day" />
+            <input type="text" id="event-title-input" placeholder="e.g. Annual Sports Meet 2083 / Science Exhibition" />
           </div>
           <div class="form-group">
             <label for="event-date-input">Event Date:</label>
             <input type="date" id="event-date-input" />
           </div>
           <div class="form-group">
-            <label for="event-desc-input">Event Description / Notice Details:</label>
-            <textarea id="event-desc-input" rows="3" placeholder="Enter full details about schedule, venue, and participation..."></textarea>
+            <label for="event-desc-input">Event Details / Description:</label>
+            <textarea id="event-desc-input" rows="3" placeholder="Enter full details about the program, schedule, and highlights..."></textarea>
           </div>
         </div>
 
@@ -821,7 +848,7 @@
           <input type="text" id="hero-caption-input" placeholder="e.g. Campus Grounds / Sports Day" />
         </div>
 
-        <!-- Dynamic Drop Zone -->
+        <!-- Dynamic Drop Zone (Supports Multiple Files for Events, Notices, Results) -->
         <div class="drop-zone" id="drop-zone">
           <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 10px;"></i>
           <p id="drop-text">Click or drag & drop photo(s) (.jpg, .png, .pdf)</p>
@@ -1210,7 +1237,7 @@
 
     document.getElementById('staff-class-filter').addEventListener('change', renderFilteredStaff);
 
-    // Zoom & Typewriter Modal with Dedicated Close Functions
+    // Zoom & Typewriter Modal
     function closeStaffModal() {
       const modal = document.getElementById('staff-modal');
       modal.classList.remove('active');
@@ -1249,7 +1276,6 @@
       }, 25);
     }
 
-    // Hook modal close events
     document.getElementById('close-staff-modal-btn').addEventListener('click', (e) => {
       e.stopPropagation();
       closeStaffModal();
@@ -1258,13 +1284,6 @@
     document.getElementById('staff-modal').addEventListener('click', (e) => {
       if (e.target.id === 'staff-modal') {
         closeStaffModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeStaffModal();
-        document.getElementById('admin-modal').classList.remove('active');
       }
     });
 
@@ -1300,7 +1319,7 @@
       }
     };
 
-    // 3. Dynamic Events
+    // 3. Dynamic Events with Multi-Photo Rendering
     function fetchEvents() {
       const container = document.getElementById('events-container');
       if (!db) return;
@@ -1314,6 +1333,28 @@
           eventsList.forEach(ev => {
             const card = document.createElement('div');
             card.className = 'event-card';
+
+            // Support both single and multiple photo URLs
+            let photos = [];
+            if (Array.isArray(ev.photos)) {
+              photos = ev.photos;
+            } else if (ev.photo_url) {
+              photos = [ev.photo_url];
+            }
+
+            let galleryHtml = '';
+            if (photos.length > 0) {
+              galleryHtml = '<div class="event-gallery">';
+              photos.forEach(imgUrl => {
+                galleryHtml += `
+                  <div class="event-gallery-img" onclick="openLightbox('${imgUrl}')">
+                    <img src="${imgUrl}" alt="${ev.title}" onerror="this.src='https://placehold.co/200x200?text=Event'">
+                  </div>
+                `;
+              });
+              galleryHtml += '</div>';
+            }
+
             card.innerHTML = `
               <button class="event-delete-btn" title="Delete Event" onclick="deleteEventItem('${ev.id}')">
                 <i class="fa-solid fa-trash-can"></i>
@@ -1321,6 +1362,7 @@
               <div class="event-date-badge"><i class="fa-regular fa-calendar-check"></i> ${ev.date}</div>
               <h3 class="event-title">${ev.title}</h3>
               <p class="event-desc">${ev.desc}</p>
+              ${galleryHtml}
             `;
             container.appendChild(card);
           });
@@ -1329,11 +1371,32 @@
             <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
               <i class="fa-regular fa-calendar-xmark" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
               <p style="font-weight: 700; color: var(--primary-dark);">No Upcoming Events Scheduled</p>
-              <p style="font-size: 0.9rem; color: var(--slate-600);">New events and extracurricular notices will appear here.</p>
+              <p style="font-size: 0.9rem; color: var(--slate-600);">New events and extracurricular highlights will appear here.</p>
             </div>`;
         }
       });
     }
+
+    // Lightbox for Events
+    window.openLightbox = function(url) {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox-modal').classList.add('active');
+    };
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.remove('active');
+    }
+
+    document.getElementById('close-lightbox-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    document.getElementById('lightbox-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox-modal') {
+        closeLightbox();
+      }
+    });
 
     window.deleteEventItem = function(key) {
       if (!db) return;
@@ -1503,6 +1566,15 @@
         document.getElementById("admin-result-bar").classList.remove("active");
       });
 
+      // Keyboard Esc to Close All Modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeStaffModal();
+          closeLightbox();
+          document.getElementById('admin-modal').classList.remove('active');
+        }
+      });
+
       // Mobile Menu
       const mobileToggle = document.getElementById("mobile-toggle");
       const navMenu = document.getElementById("nav-menu");
@@ -1594,7 +1666,7 @@
         staffFieldsGroup.style.display = this.value === "staff" ? "block" : "none";
         targetClassGroup.style.display = this.value === "result" ? "block" : "none";
         heroCaptionGroup.style.display = this.value === "hero_slide" ? "block" : "none";
-        dropZone.style.display = this.value === "event" ? "none" : "block";
+        dropZone.style.display = "block";
       });
 
       dropZone.addEventListener("click", () => fileInput.click());
@@ -1606,7 +1678,7 @@
         }
       });
 
-      // Unified Cloud Submission
+      // Unified Cloud Submission (With Event Multi-Photo Support)
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         if (!db) return alert("Firebase database could not be reached.");
 
@@ -1634,10 +1706,27 @@
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
+        // Event Upload Handling (With Multi-Photo Support)
         if (uploadType === 'event') {
           if (!eventTitle || !eventDate) return alert("Please enter both the event title and event date.");
-          status.textContent = "Publishing event to school calendar...";
-          await db.ref('events').push({ title: eventTitle, date: eventDate, desc: eventDesc || '' });
+          status.textContent = "Uploading event details and photos to 24/7 cloud...";
+
+          const uploadedPhotos = [];
+          if (files && files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+              status.textContent = `Uploading event photo ${i + 1} of ${files.length}...`;
+              const url = await uploadToPermanentCloud(files[i]);
+              uploadedPhotos.push(url);
+            }
+          }
+
+          await db.ref('events').push({
+            title: eventTitle,
+            date: eventDate,
+            desc: eventDesc || '',
+            photos: uploadedPhotos
+          });
+
           status.textContent = "Event published successfully!";
           setTimeout(() => { modal.classList.remove("active"); resetAdminForm(); }, 1000);
           return;
