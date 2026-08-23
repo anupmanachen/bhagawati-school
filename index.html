@@ -191,13 +191,13 @@
     .staff-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(15, 23, 42, 0.75); z-index: 2500; justify-content: center; align-items: center; padding: 20px;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px); cursor: pointer;
     }
     .staff-modal.active { display: flex; }
     .staff-modal-card {
       background: #ffffff; border-radius: var(--radius-lg); max-width: 680px; width: 100%;
       box-shadow: var(--shadow-lg); position: relative; overflow: hidden; display: grid; grid-template-columns: 280px 1fr;
-      animation: modalPop 0.3s ease-out forwards;
+      animation: modalPop 0.3s ease-out forwards; cursor: default;
     }
     @keyframes modalPop {
       from { transform: scale(0.92); opacity: 0; }
@@ -206,7 +206,15 @@
     .staff-modal-img { width: 100%; height: 100%; min-height: 340px; background: #000; }
     .staff-modal-img img { width: 100%; height: 100%; object-fit: cover; }
     .staff-modal-content { padding: 30px 24px; position: relative; display: flex; flex-direction: column; justify-content: center; }
-    .staff-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.5rem; color: var(--slate-600); cursor: pointer; }
+    
+    .staff-modal-close {
+      position: absolute; top: 12px; right: 14px; background: var(--slate-100); border: 1px solid var(--slate-200);
+      width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; color: var(--slate-800);
+      display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100;
+      transition: var(--transition); line-height: 1;
+    }
+    .staff-modal-close:hover { background: var(--danger); color: #ffffff; transform: scale(1.1); }
+    
     .staff-modal-name { font-size: 1.45rem; font-weight: 800; color: var(--primary-dark); }
     .staff-modal-role { color: var(--secondary); font-weight: 700; font-size: 0.86rem; text-transform: uppercase; margin-bottom: 6px; }
     .staff-modal-qual { font-size: 0.85rem; color: var(--slate-600); font-weight: 600; margin-bottom: 16px; }
@@ -556,8 +564,8 @@
 
   <!-- Interactive Staff Zoom & Typewriter Modal -->
   <div class="staff-modal" id="staff-modal">
-    <div class="staff-modal-card">
-      <button class="staff-modal-close" id="close-staff-modal-btn">&times;</button>
+    <div class="staff-modal-card" onclick="event.stopPropagation()">
+      <button class="staff-modal-close" id="close-staff-modal-btn" aria-label="Close modal">&times;</button>
       <div class="staff-modal-img">
         <img id="staff-modal-img-src" src="" alt="Staff Portrait">
       </div>
@@ -870,178 +878,6 @@
     let allStaffData = [];
     let typewriterTimer = null;
 
-    // ==========================================================================
-    // COMPLETE ENGLISH <-> NEPALI DICTIONARY
-    // ==========================================================================
-    const translations = {
-      en: {
-        location: "Shankharapur-6, Sankhu, Kathmandu",
-        schoolName: "Bhagawati Secondary School",
-        schoolTagline: "Excellence in Education Since 2039 B.S.",
-        navHome: "Home",
-        navAbout: "About Us",
-        navAcademics: "Academics",
-        navFacilities: "Facilities",
-        navTeachers: "Teachers & Staff",
-        navEvents: "Events",
-        navNotices: "Notices",
-        navResults: "Results",
-        heroTitle: "Empowering Minds, Shaping Brighter Futures",
-        heroSubtitle: "Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.",
-        btnExplore: "Explore Programs",
-        btnLearn: "Learn More",
-        statYears: "Years of Academic Excellence",
-        statStudents: "Enrolled Students",
-        statLearning: "Practical Learning",
-        statStreams: "+2 Streams Offered",
-        aboutSubtitle: "Welcome to Our School",
-        aboutTitle: "Shree Bhagawati Secondary School",
-        aboutDesc: "Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.",
-        aboutList1: "Affiliated with National Examinations Board (NEB)",
-        aboutList2: "Well-equipped Science, Computer, and Hotel Management Labs",
-        aboutList3: "Focus on Extracurriculars, Sports, and Field Trips",
-        aboutCardTitle: "Community Leader",
-        aboutCardDesc: "Serving the Sankhu community with dedication, discipline, and modern infrastructure.",
-        academicsSubtitle: "Academic Excellence",
-        academicsTitle: "Our Educational Programs",
-        prog1Title: "Pre-Primary & Basic Level",
-        prog1Desc: "Montessori-inspired early learning environment.",
-        prog2Title: "Secondary Level (Grades 9 & 10)",
-        prog2Desc: "Comprehensive SEE curriculum.",
-        prog3Title: "+2 Computer Science & Mgmt",
-        prog3Desc: "Equipping students with modern computing skills.",
-        prog4Title: "+2 Hotel Management",
-        prog4Desc: "Hands-on hospitality training in kitchen labs.",
-        prog5Title: "+2 Law & Humanities",
-        prog5Desc: "Preparing future legal professionals.",
-        prog6Title: "+2 Education Stream",
-        prog6Desc: "Fostering skilled future educators.",
-        facSubtitle: "Infrastructure",
-        facTitle: "School Facilities",
-        fac1Title: "Science Labs",
-        fac1Desc: "Physics, Chemistry, and Biology practical labs.",
-        fac2Title: "Computer Lab",
-        fac2Desc: "High-speed internet with modern PC setups.",
-        fac3Title: "Sports & Athletics",
-        fac3Desc: "Regular games and physical education.",
-        fac4Title: "Kitchen Lab",
-        fac4Desc: "Specialized spaces for Hotel Management.",
-        teachersSubtitle: "Leadership & Faculty",
-        teachersTitle: "Messages from School Leadership",
-        principalWelcome: "Welcome to Shree Bhagawati Secondary School",
-        principalTitle: "Message from the Principal",
-        principalMsg: "Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.",
-        principalSignature: "— Shree Bhagawati Secondary School",
-        vpWelcome: "Message from the Vice Principal",
-        vpTitle: "Vice Principal",
-        vpMsg: "We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.",
-        vpSignature: "Vice Principal, SBSS",
-        btnPrincipal: "Principal",
-        btnVP: "Vice Principal",
-        staffSubtitle: "Our Dedicated Educators & Staff",
-        staffTitle: "Faculty Members & Staff",
-        filterByClass: "Filter by Level / Class:",
-        eventsSubtitle: "School Calendar & Highlights",
-        eventsTitle: "Upcoming Events & Activities",
-        noticesSubtitle: "Announcements",
-        noticesTitle: "Notice Board",
-        selectNoticeDate: "Select Notice Date:",
-        shareNotice: "Share Notice:",
-        shareResult: "Share Result:",
-        liveVisitors: "Total Views:",
-        btnPrev: "Previous",
-        btnNext: "Next",
-        resultsSubtitle: "Academic Performance",
-        resultsTitle: "Examination Results",
-        selectClass: "Select Class:",
-        footerDesc: "Dedicated to delivering quality education, strong values, and practical skills for real-world success.",
-        footerContact: "Contact Us"
-      },
-      np: {
-        location: "शंखरापुर-६, साँखु, काठमाडौं",
-        schoolName: "भगवती माध्यमिक विद्यालय",
-        schoolTagline: "वि.सं. २०३९ देखि गुणस्तरीय शिक्षामा समर्पित",
-        navHome: "गृहपृष्ठ",
-        navAbout: "हाम्रो बारेमा",
-        navAcademics: "शैक्षिक कार्यक्रम",
-        navFacilities: "भौतिक सुविधाहरू",
-        navTeachers: "शिक्षक तथा कर्मचारी",
-        navEvents: "कार्यक्रमहरू",
-        navNotices: "सूचना पाटी",
-        navResults: "परीक्षाफल",
-        heroTitle: "सबल मस्तिष्क र उज्ज्वल भविष्यको निर्माण",
-        heroSubtitle: "शंखरापुर नगरपालिका, काठमाडौंमा पूर्व-प्राथमिकदेखि कक्षा १२ सम्म गुणस्तरीय, व्यावहारिक तथा जीवनोपयोगी शिक्षा प्रदान गर्दै।",
-        btnExplore: "कार्यक्रमहरू हेर्नुहोस्",
-        btnLearn: "थप जान्नुहोस्",
-        statYears: "वर्षको शैक्षिक उत्कृष्टता",
-        statStudents: "अध्ययनरत विद्यार्थीहरू",
-        statLearning: "प्रयोगात्मक सिकाइ",
-        statStreams: "+२ विषयगत संकायहरू",
-        aboutSubtitle: "हाम्रो विद्यालयमा स्वागत छ",
-        aboutTitle: "श्री भगवती माध्यमिक विद्यालय",
-        aboutDesc: "वि.सं. २०३९ (सन् १९८२) मा स्थापित भगवती माध्यमिक विद्यालय शंखरापुर नगरपालिकाको एक अग्रणी तथा प्रतिष्ठित शैक्षिक संस्था हो।",
-        aboutList1: "राष्ट्रिय परीक्षा बोर्ड (NEB) बाट सम्बन्धन प्राप्त",
-        aboutList2: "सुसज्जित विज्ञान, कम्प्युटर र होटल म्यानेजमेन्ट प्रयोगशालाहरू",
-        aboutList3: "अतिरिक्त क्रियाकलाप, खेलकुद तथा शैक्षिक भ्रमणमा विशेष जोड",
-        aboutCardTitle: "समुदायको गौरव",
-        aboutCardDesc: "समर्पण, अनुशासन र आधुनिक पूर्वाधारका साथ साँखु समुदायको सेवामा निरन्तर समर्पित।",
-        academicsSubtitle: "शैक्षिक उत्कृष्टता",
-        academicsTitle: "हाम्रा शैक्षिक कार्यक्रमहरू",
-        prog1Title: "पूर्व-प्राथमिक तथा आधारभूत तह",
-        prog1Desc: "मन्टेसरी विधिमा आधारित बालमैत्री वातावरण।",
-        prog2Title: "माध्यमिक तह (कक्षा ९ र १०)",
-        prog2Desc: "एसईई (SEE) को लागि उत्कृष्ट तथा गहन पाठ्यक्रम।",
-        prog3Title: "+२ कम्प्युटर विज्ञान र व्यवस्थापन",
-        prog3Desc: "आधुनिक प्रविधि र व्यवस्थापकीय सीप विकास।",
-        prog4Title: "+२ होटल म्यानेजमेन्ट",
-        prog4Desc: "सुसज्जित किचन ल्याबमा व्यावहारिक आतिथ्य तालिम।",
-        prog5Title: "+२ कानुन र मानविकी",
-        prog5Desc: "भविष्यका कानुनी तथा सामाजिक नेतृत्वकर्ताको तयारी।",
-        prog6Title: "+२ शिक्षा संकाय",
-        prog6Desc: "दक्ष तथा अनुशासित शिक्षक जनशक्ति निर्माण।",
-        facSubtitle: "पूर्वाधार",
-        facTitle: "विद्यालयका सुविधाहरू",
-        fac1Title: "विज्ञान प्रयोगशाला",
-        fac1Desc: "भौतिक, रसायन र जीवविज्ञानका व्यावहारिक ल्याबहरू।",
-        fac2Title: "कम्प्युटर ल्याब",
-        fac2Desc: "द्रुत गतिको इन्टरनेट सहित आधुनिक कम्प्युटरहरू।",
-        fac3Title: "खेलकुद तथा शारीरिक शिक्षा",
-        fac3Desc: "नियमित खेलकुद तथा शारीरिक विकासका गतिविधिहरू।",
-        fac4Title: "किचन ल्याब",
-        fac4Desc: "होटल म्यानेजमेन्टको लागि व्यावहारिक प्रशिक्षण क्षेत्र।",
-        teachersSubtitle: "नेतृत्व तथा शिक्षक वर्ग",
-        teachersTitle: "विद्यालय नेतृत्वका सन्देशहरू",
-        principalWelcome: "श्री भगवती माध्यमिक विद्यालयमा हार्दिक स्वागत छ",
-        principalTitle: "प्रधानाध्यापकको सन्देश",
-        principalMsg: "आदरणीय अभिभावक तथा प्यारा विद्यार्थीहरू, हाम्रो आधिकारिक वेबसाइटमा हार्दिक स्वागत छ। विद्यालयका सूचना तथा गतिविधिहरूसँग निरन्तर जोडिन bhagwati.edu.np नियमित अवलोकन गर्नुहुन अनुरोध गर्दछौं।",
-        principalSignature: "— प्रधानाध्यापक, श्री भगवती माध्यमिक विद्यालय",
-        vpWelcome: "सहायक प्रधानाध्यापकको सन्देश",
-        vpTitle: "सहायक प्रधानाध्यापक",
-        vpMsg: "हामी हाम्रा विद्यार्थीहरूलाई सुरक्षित, अनुशासित र प्रेरणादायी शैक्षिक वातावरणमा उत्कृष्ट सिकाइ अनुभव प्रदान गर्न सदैव प्रतिबद्ध छौं।",
-        vpSignature: "— सहायक प्रधानाध्यापक, श्री भगवती माध्यमिक विद्यालय",
-        btnPrincipal: "प्रधानाध्यापक",
-        btnVP: "सहायक प्र.अ.",
-        staffSubtitle: "हाम्रा समर्पित शिक्षक तथा कर्मचारी",
-        staffTitle: "शिक्षक तथा कर्मचारी विवरण",
-        filterByClass: "कक्षा / तह अनुसार छान्नुहोस्:",
-        eventsSubtitle: "शैक्षिक क्यालेन्डर तथा कार्यक्रमहरू",
-        eventsTitle: "आगामी कार्यक्रम तथा गतिविधिहरू",
-        noticesSubtitle: "सूचना तथा जानकारी",
-        noticesTitle: "सूचना पाटी",
-        selectNoticeDate: "सूचनाको मिति छान्नुहोस्:",
-        shareNotice: "सूचना सेयर गर्नुहोस्:",
-        shareResult: "परीक्षाफल सेयर गर्नुहोस्:",
-        liveVisitors: "कुल अवलोकन:",
-        btnPrev: "अघिल्लो",
-        btnNext: "पछिल्लो",
-        resultsSubtitle: "शैक्षिक नतिजा",
-        resultsTitle: "परीक्षाफल विवरण",
-        selectClass: "कक्षा छान्नुहोस्:",
-        footerDesc: "गुणस्तरीय शिक्षा, उच्च संस्कार र व्यावहारिक सीप विकासमा समर्पित।",
-        footerContact: "सम्पर्क ठेगाना"
-      }
-    };
-
     function applyLanguage(lang) {
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
@@ -1088,13 +924,11 @@
     async function trackVisitorAnalytics() {
       if (!db) return;
 
-      // 1. Increment Total Live Counter (One-time per session)
       const sessionTracked = sessionStorage.getItem('sbss_visited');
       if (!sessionTracked) {
         db.ref('analytics/total_views').transaction(current => (current || 0) + 1);
         sessionStorage.setItem('sbss_visited', 'true');
 
-        // 2. Track Country
         try {
           const geoRes = await fetch('https://ipapi.co/json/');
           const geoData = await geoRes.json();
@@ -1103,18 +937,15 @@
             db.ref(`analytics/countries/${countryKey}`).transaction(c => (c || 0) + 1);
           }
         } catch (e) {
-          // Fallback if adblocker blocks ipapi
           db.ref('analytics/countries/Unknown').transaction(c => (c || 0) + 1);
         }
       }
 
-      // 3. Live Listen for Total Views
       db.ref('analytics/total_views').on('value', snapshot => {
         const count = snapshot.val() || 1;
         document.getElementById('live-counter-text').textContent = count.toLocaleString();
       });
 
-      // 4. Live Listen for Country Analytics in Admin Modal
       db.ref('analytics/countries').on('value', snapshot => {
         const countriesObj = snapshot.val() || {};
         const listContainer = document.getElementById('country-stats-list');
@@ -1207,7 +1038,13 @@
 
     document.getElementById('staff-class-filter').addEventListener('change', renderFilteredStaff);
 
-    // Zoom & Typewriter Modal
+    // Zoom & Typewriter Modal with Dedicated Close Functions
+    function closeStaffModal() {
+      const modal = document.getElementById('staff-modal');
+      modal.classList.remove('active');
+      if (typewriterTimer) clearInterval(typewriterTimer);
+    }
+
     function openStaffZoomModal(member) {
       const modal = document.getElementById('staff-modal');
       const img = document.getElementById('staff-modal-img-src');
@@ -1240,9 +1077,23 @@
       }, 25);
     }
 
-    document.getElementById('close-staff-modal-btn').addEventListener('click', () => {
-      document.getElementById('staff-modal').classList.remove('active');
-      if (typewriterTimer) clearInterval(typewriterTimer);
+    // Hook modal close events
+    document.getElementById('close-staff-modal-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeStaffModal();
+    });
+
+    document.getElementById('staff-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'staff-modal') {
+        closeStaffModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeStaffModal();
+        document.getElementById('admin-modal').classList.remove('active');
+      }
     });
 
     window.editStaffMember = function(key) {
