@@ -45,6 +45,7 @@
     a { text-decoration: none; color: inherit; }
     .container { width: 92%; max-width: 1200px; margin: 0 auto; }
 
+    /* Top Bar & Language Switcher */
     .top-bar { background-color: var(--primary-dark); color: #cbd5e1; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .top-bar-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
     .contact-info { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
@@ -52,10 +53,17 @@
     .top-right-bar { display: flex; align-items: center; gap: 14px; }
     .social-links a { color: #cbd5e1; font-size: 0.95rem; }
 
+    .lang-switcher select {
+      background-color: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-sm); padding: 4px 10px; font-size: 0.82rem; outline: none; cursor: pointer; font-weight: 700;
+    }
+    .lang-switcher select option { background-color: var(--primary-dark); color: #ffffff; }
+
+    /* Header & Navigation */
     .header { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
     .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 12px; }
-    .logo-container { width: 46px; height: 46px; background-color: var(--primary); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 2px solid var(--secondary); }
+    .logo-container { width: 48px; height: 48px; background-color: var(--primary); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 2px solid var(--secondary); flex-shrink: 0; }
     .logo-container img { width: 100%; height: 100%; object-fit: cover; }
     .school-name { font-weight: 800; font-size: 1.15rem; color: var(--primary-dark); }
     .school-tagline { font-size: 0.75rem; color: var(--slate-600); }
@@ -74,6 +82,7 @@
     .btn-admin:hover { background-color: #b45309; }
     .btn-lg { padding: 12px 28px; font-size: 1rem; border-radius: var(--radius-md); }
 
+    /* Hero Slideshow */
     .hero-stacked { background-color: #ffffff; border-bottom: 1px solid var(--slate-200); }
     .hero-slideshow-banner { position: relative; width: 100%; height: 48vh; min-height: 280px; max-height: 520px; overflow: hidden; background: #000; }
     .hero-slideshow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -86,11 +95,13 @@
     .hero-text-block p { font-size: 1.1rem; color: var(--slate-600); max-width: 780px; margin: 0 auto 28px; }
     .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+    /* Stats */
     .stats { background: #ffffff; padding: 36px 0; border-bottom: 1px solid var(--slate-200); }
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center; }
     .stat-card h3 { font-size: 2.1rem; color: var(--primary); font-weight: 800; }
     .stat-card p { color: var(--slate-600); font-size: 0.9rem; font-weight: 500; }
 
+    /* General Sections */
     .section-header { text-align: center; margin-bottom: 40px; }
     .section-subtitle { color: var(--secondary); font-weight: 700; text-transform: uppercase; font-size: 0.82rem; letter-spacing: 1.5px; display: inline-block; margin-bottom: 6px; }
     .section-header h2 { font-size: 2rem; color: var(--primary-dark); font-weight: 800; }
@@ -132,25 +143,67 @@
     .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
     .slider-btn { background-color: var(--primary); color: white; border: none; padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; }
 
-    /* Staff Roster Grid */
+    /* Class-Wise Staff Section */
     .staff-section { margin-top: 60px; padding-top: 40px; border-top: 1px dashed var(--slate-200); }
-    .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-    .staff-card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); overflow: hidden; text-align: center; position: relative; transition: var(--transition); }
-    .staff-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .staff-card-img { width: 100%; height: 260px; overflow: hidden; background: #e2e8f0; }
-    .staff-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .staff-filter-bar { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
+    .staff-select { padding: 9px 16px; font-size: 0.95rem; border-radius: var(--radius-sm); border: 2px solid var(--primary); background: #ffffff; font-weight: 600; outline: none; }
+    .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+    
+    .staff-card {
+      background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);
+      overflow: hidden; text-align: center; position: relative; transition: var(--transition); cursor: pointer;
+    }
+    .staff-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--secondary); }
+    .staff-card-img { width: 100%; height: 260px; overflow: hidden; background: #e2e8f0; position: relative; }
+    .staff-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .staff-card:hover .staff-card-img img { transform: scale(1.05); }
+    .staff-card-badge {
+      position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.6); color: #fff;
+      font-size: 0.72rem; padding: 3px 8px; border-radius: 20px; backdrop-filter: blur(4px);
+    }
     .staff-card-body { padding: 18px 16px; }
     .staff-card-name { font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
     .staff-card-role { font-size: 0.84rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 6px; }
-    .staff-card-qual { font-size: 0.8rem; color: var(--slate-600); font-weight: 600; margin-bottom: 10px; }
-    .staff-card-msg { font-size: 0.88rem; color: var(--slate-600); font-style: italic; background: #ffffff; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); }
-    .staff-delete-btn { display: none; position: absolute; top: 10px; right: 10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+    .staff-card-qual { font-size: 0.8rem; color: var(--slate-600); font-weight: 600; }
+    .staff-delete-btn { display: none; position: absolute; top: 10px; right: 10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); z-index: 10; }
     .admin-logged-in .staff-delete-btn { display: flex; }
 
+    /* Staff Modal with Typewriter Animation */
+    .staff-modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.75); z-index: 2500; justify-content: center; align-items: center; padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+    .staff-modal.active { display: flex; }
+    .staff-modal-card {
+      background: #ffffff; border-radius: var(--radius-lg); max-width: 680px; width: 100%;
+      box-shadow: var(--shadow-lg); position: relative; overflow: hidden; display: grid; grid-template-columns: 280px 1fr;
+      animation: modalPop 0.3s ease-out forwards;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .staff-modal-img { width: 100%; height: 100%; min-height: 340px; background: #000; }
+    .staff-modal-img img { width: 100%; height: 100%; object-fit: cover; }
+    .staff-modal-content { padding: 30px 24px; position: relative; display: flex; flex-direction: column; justify-content: center; }
+    .staff-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.5rem; color: var(--slate-600); cursor: pointer; }
+    .staff-modal-name { font-size: 1.45rem; font-weight: 800; color: var(--primary-dark); }
+    .staff-modal-role { color: var(--secondary); font-weight: 700; font-size: 0.86rem; text-transform: uppercase; margin-bottom: 6px; }
+    .staff-modal-qual { font-size: 0.85rem; color: var(--slate-600); font-weight: 600; margin-bottom: 16px; }
+    .staff-modal-msg-box {
+      background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);
+      padding: 16px; font-size: 0.95rem; color: var(--slate-800); line-height: 1.6; min-height: 100px;
+      position: relative; font-style: italic;
+    }
+    .typewriter-cursor { display: inline-block; width: 2px; height: 1.1em; background-color: var(--primary); vertical-align: text-bottom; animation: blink 0.75s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Notices & Results */
     .notices { padding: 75px 0; background-color: var(--slate-50); border-top: 1px solid var(--slate-200); }
     .notice-viewer-card, .results-card { max-width: 860px; margin: 0 auto; background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); padding: 26px; }
     .notice-filter-bar, .results-filter-bar { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-    .notice-select, .results-select { padding: 9px 16px; font-size: 0.95rem; border-radius: var(--radius-sm); border: 2px solid var(--primary); background: #ffffff; font-weight: 600; }
+    .notice-select, .results-select { padding: 9px 16px; font-size: 0.95rem; border-radius: var(--radius-sm); border: 2px solid var(--primary); background: #ffffff; font-weight: 600; outline: none; }
     .notice-display-wrapper, .result-display-area { position: relative; width: 100%; background-color: var(--slate-100); border-radius: var(--radius-md); border: 1px solid var(--slate-200); display: flex; justify-content: center; align-items: center; min-height: 320px; padding: 15px; }
     .notice-display-wrapper img, .result-image-box img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
     .notice-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; gap: 12px; }
@@ -207,8 +260,9 @@
       .mobile-nav-toggle { display: block; }
       .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #ffffff; flex-direction: column; padding: 20px; gap: 14px; }
       .nav-menu.mobile-active { display: flex; }
-      .about-grid, .leadership-card { grid-template-columns: 1fr; }
+      .about-grid, .leadership-card, .staff-modal-card { grid-template-columns: 1fr; }
       .leadership-img-box { max-width: 250px; height: 280px; margin: 0 auto; }
+      .staff-modal-img { height: 260px; min-height: 260px; }
       .notice-controls, .slider-controls { flex-direction: column; gap: 12px; }
     }
   </style>
@@ -219,11 +273,17 @@
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="contact-info">
-        <span><i class="fa-solid fa-location-dot"></i> Shankharapur-6, Sankhu, Kathmandu</span>
+        <span><i class="fa-solid fa-location-dot"></i> <span data-i18n="location">Shankharapur-6, Sankhu, Kathmandu</span></span>
         <span><i class="fa-solid fa-phone"></i> +977-1-4450778</span>
         <a href="mailto:bhagawati_school@yahoo.com"><i class="fa-solid fa-envelope"></i> bhagawati_school@yahoo.com</a>
       </div>
       <div class="top-right-bar">
+        <div class="lang-switcher">
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="np">नेपाली (Nepali)</option>
+          </select>
+        </div>
         <div class="social-links">
           <a href="https://www.facebook.com/shreebhagawati/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
@@ -236,23 +296,23 @@
     <div class="container navbar">
       <a href="#" class="brand">
         <div class="logo-container">
-          <img src="logo1.jpg" alt="Logo" onerror="this.src='https://placehold.co/100x100?text=SBSS'">
+          <img id="school-logo-img" src="logo1.jpg" alt="Logo" onerror="this.src='https://placehold.co/100x100?text=SBSS'">
         </div>
         <div class="brand-text">
-          <span class="school-name">Bhagawati Secondary School</span>
-          <span class="school-tagline">Excellence in Education Since 2039 B.S.</span>
+          <span class="school-name" data-i18n="schoolName">Bhagawati Secondary School</span>
+          <span class="school-tagline" data-i18n="schoolTagline">Excellence in Education Since 2039 B.S.</span>
         </div>
       </a>
       <button class="mobile-nav-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
       <nav class="nav-menu" id="nav-menu">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#academics">Academics</a>
-        <a href="#facilities">Facilities</a>
-        <a href="#teachers">Teachers & Staff</a>
-        <a href="#notices">Notices</a>
-        <a href="#results">Results</a>
-        <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> Admin Portal</button>
+        <a href="#home" class="active" data-i18n="navHome">Home</a>
+        <a href="#about" data-i18n="navAbout">About Us</a>
+        <a href="#academics" data-i18n="navAcademics">Academics</a>
+        <a href="#facilities" data-i18n="navFacilities">Facilities</a>
+        <a href="#teachers" data-i18n="navTeachers">Teachers & Staff</a>
+        <a href="#notices" data-i18n="navNotices">Notices</a>
+        <a href="#results" data-i18n="navResults">Results</a>
+        <button class="btn btn-admin" id="open-admin-btn"><i class="fa-solid fa-user-lock"></i> <span data-i18n="adminPortal">Admin Portal</span></button>
       </nav>
     </div>
   </header>
@@ -269,11 +329,11 @@
     </div>
     <div class="hero-text-block">
       <div class="container">
-        <h1>Empowering Minds, Shaping Brighter Futures</h1>
-        <p>Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.</p>
+        <h1 data-i18n="heroTitle">Empowering Minds, Shaping Brighter Futures</h1>
+        <p data-i18n="heroSubtitle">Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.</p>
         <div class="hero-buttons">
-          <a href="#academics" class="btn btn-primary btn-lg">Explore Programs</a>
-          <a href="#about" class="btn btn-outline-dark btn-lg">Learn More</a>
+          <a href="#academics" class="btn btn-primary btn-lg" data-i18n="btnExplore">Explore Programs</a>
+          <a href="#about" class="btn btn-outline-dark btn-lg" data-i18n="btnLearn">Learn More</a>
         </div>
       </div>
     </div>
@@ -282,10 +342,10 @@
   <!-- Stats -->
   <section class="stats">
     <div class="container stats-grid">
-      <div class="stat-card"><h3>40+</h3><p>Years of Academic Excellence</p></div>
-      <div class="stat-card"><h3>900+</h3><p>Enrolled Students</p></div>
-      <div class="stat-card"><h3>100%</h3><p>Practical Learning</p></div>
-      <div class="stat-card"><h3>5+</h3><p>+2 Streams Offered</p></div>
+      <div class="stat-card"><h3>40+</h3><p data-i18n="statYears">Years of Academic Excellence</p></div>
+      <div class="stat-card"><h3>900+</h3><p data-i18n="statStudents">Enrolled Students</p></div>
+      <div class="stat-card"><h3>100%</h3><p data-i18n="statLearning">Practical Learning</p></div>
+      <div class="stat-card"><h3>5+</h3><p data-i18n="statStreams">+2 Streams Offered</p></div>
     </div>
   </section>
 
@@ -293,18 +353,18 @@
   <section id="about" class="about">
     <div class="container about-grid">
       <div class="about-text">
-        <span class="section-subtitle">Welcome to Our School</span>
-        <h2>Shree Bhagawati Secondary School</h2>
-        <p>Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.</p>
+        <span class="section-subtitle" data-i18n="aboutSubtitle">Welcome to Our School</span>
+        <h2 data-i18n="aboutTitle">Shree Bhagawati Secondary School</h2>
+        <p data-i18n="aboutDesc">Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.</p>
         <ul class="check-list">
-          <li><i class="fa-solid fa-circle-check"></i> Affiliated with National Examinations Board (NEB)</li>
-          <li><i class="fa-solid fa-circle-check"></i> Well-equipped Science, Computer, and Hotel Management Labs</li>
-          <li><i class="fa-solid fa-circle-check"></i> Focus on Extracurriculars, Sports, and Field Trips</li>
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList1">Affiliated with National Examinations Board (NEB)</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList2">Well-equipped Science, Computer, and Hotel Management Labs</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="aboutList3">Focus on Extracurriculars, Sports, and Field Trips</span></li>
         </ul>
       </div>
       <div class="about-card-box">
-        <h4>Community Leader</h4>
-        <p>Serving the Sankhu community with dedication, discipline, and modern infrastructure.</p>
+        <h4 data-i18n="aboutCardTitle">Community Leader</h4>
+        <p data-i18n="aboutCardDesc">Serving the Sankhu community with dedication, discipline, and modern infrastructure.</p>
       </div>
     </div>
   </section>
@@ -313,16 +373,16 @@
   <section id="academics" class="academics">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Academic Excellence</span>
-        <h2>Our Educational Programs</h2>
+        <span class="section-subtitle" data-i18n="academicsSubtitle">Academic Excellence</span>
+        <h2 data-i18n="academicsTitle">Our Educational Programs</h2>
       </div>
       <div class="cards-grid">
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3>Pre-Primary & Basic Level</h3><p>Montessori-inspired early learning environment.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3>Secondary Level (Grades 9 & 10)</h3><p>Comprehensive SEE curriculum.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-laptop-code"></i></div><h3>+2 Computer Science & Mgmt</h3><p>Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-hotel"></i></div><h3>+2 Hotel Management</h3><p>Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-scale-balanced"></i></div><h3>+2 Law & Humanities</h3><p>Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-pen-nib"></i></div><h3>+2 Education Stream</h3><p>Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -331,14 +391,14 @@
   <section id="facilities" class="facilities">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Infrastructure</span>
-        <h2>School Facilities</h2>
+        <span class="section-subtitle" data-i18n="facSubtitle">Infrastructure</span>
+        <h2 data-i18n="facTitle">School Facilities</h2>
       </div>
       <div class="facilities-grid">
-        <div class="facility-item"><i class="fa-solid fa-flask"></i><h4>Science Labs</h4><p>Physics, Chemistry, and Biology practical labs.</p></div>
-        <div class="facility-item"><i class="fa-desktop fa-solid"></i><h4>Computer Lab</h4><p>High-speed internet with modern PC setups.</p></div>
-        <div class="facility-item"><i class="fa-trophy fa-solid"></i><h4>Sports & Athletics</h4><p>Regular games and physical education.</p></div>
-        <div class="facility-item"><i class="fa-utensils fa-solid"></i><h4>Kitchen Lab</h4><p>Specialized spaces for Hotel Management.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-flask"></i><h4 data-i18n="fac1Title">Science Labs</h4><p data-i18n="fac1Desc">Physics, Chemistry, and Biology practical labs.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-desktop"></i><h4 data-i18n="fac2Title">Computer Lab</h4><p data-i18n="fac2Desc">High-speed internet with modern PC setups.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-trophy"></i><h4 data-i18n="fac3Title">Sports & Athletics</h4><p data-i18n="fac3Desc">Regular games and physical education.</p></div>
+        <div class="facility-item"><i class="fa-solid fa-utensils"></i><h4 data-i18n="fac4Title">Kitchen Lab</h4><p data-i18n="fac4Desc">Specialized spaces for Hotel Management.</p></div>
       </div>
     </div>
   </section>
@@ -347,10 +407,11 @@
   <section id="teachers" class="teachers">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Leadership & Faculty</span>
-        <h2>Messages from School Leadership</h2>
+        <span class="section-subtitle" data-i18n="teachersSubtitle">Leadership & Faculty</span>
+        <h2 data-i18n="teachersTitle">Messages from School Leadership</h2>
       </div>
 
+      <!-- Leadership Slider -->
       <div class="leadership-slider-container">
         <!-- Principal Card -->
         <div class="leadership-card active" id="card-principal">
@@ -358,8 +419,8 @@
             <img id="principal-img-display" src="Gemini_Generated_Image_7wkit87wkit87wki.png" alt="Principal" onerror="this.src='https://placehold.co/300x350?text=Principal'">
           </div>
           <div class="leadership-message-content">
-            <h3>Welcome to Shree Bhagawati Secondary School</h3>
-            <span class="leadership-title">Message from the Principal</span>
+            <h3 data-i18n="principalWelcome">Welcome to Shree Bhagawati Secondary School</h3>
+            <span class="leadership-title" data-i18n="principalTitle">Message from the Principal</span>
             <div class="leadership-text" id="principal-msg-display">Dear Students and Parents, welcome to our official website. We encourage you to visit bhagwati.edu.np regularly to stay informed and connected with our school community.</div>
             <div class="leadership-signature" id="principal-name-display">— Shree Bhagawati Secondary School</div>
           </div>
@@ -371,26 +432,44 @@
             <img id="vp-img-display" src="VicePrincipal.jpeg" alt="Vice Principal" onerror="this.src='https://placehold.co/300x350?text=Vice+Principal'">
           </div>
           <div class="leadership-message-content">
-            <h3>Message from the Vice Principal</h3>
-            <span class="leadership-title">Vice Principal</span>
+            <h3 data-i18n="vpWelcome">Message from the Vice Principal</h3>
+            <span class="leadership-title" data-i18n="vpTitle">Vice Principal</span>
             <div class="leadership-text" id="vp-msg-display">We are committed to providing a safe, supportive, and inspiring learning environment where every student is encouraged to achieve academic excellence.</div>
             <div class="leadership-signature" id="vp-name-display">Vice Principal, SBSS</div>
           </div>
         </div>
 
         <div class="slider-controls">
-          <button class="slider-btn" id="prev-leader-btn"><i class="fa-solid fa-arrow-left"></i> Principal</button>
+          <button class="slider-btn" id="prev-leader-btn"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrincipal">Principal</span></button>
           <span id="leader-counter-text" style="font-weight:700;">1 of 2</span>
-          <button class="slider-btn" id="next-leader-btn">Vice Principal <i class="fa-solid fa-arrow-right"></i></button>
+          <button class="slider-btn" id="next-leader-btn"><span data-i18n="btnVP">Vice Principal</span> <i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
 
-      <!-- Staff Directory -->
+      <!-- Class-Wise Dynamic Faculty & Staff Directory -->
       <div class="staff-section">
         <div class="section-header" style="margin-bottom: 25px;">
-          <span class="section-subtitle">Our Dedicated Educators & Staff</span>
-          <h3 style="font-size: 1.6rem; color: var(--primary-dark); font-weight: 800;">Faculty Members & Staff</h3>
+          <span class="section-subtitle" data-i18n="staffSubtitle">Our Dedicated Educators & Staff</span>
+          <h3 style="font-size: 1.6rem; color: var(--primary-dark); font-weight: 800;" data-i18n="staffTitle">Faculty Members & Staff</h3>
         </div>
+
+        <div class="staff-filter-bar">
+          <label for="staff-class-filter" style="font-weight: 700;"><i class="fa-solid fa-filter"></i> <span data-i18n="filterByClass">Filter by Level / Class:</span></label>
+          <select id="staff-class-filter" class="staff-select">
+            <option value="All">All Faculty & Staff</option>
+            <option value="Pre-Primary (ECD / Nursery / KG)">Pre-Primary (ECD / Nursery / KG)</option>
+            <option value="Primary (Class 1 - 5)">Primary (Class 1 - 5)</option>
+            <option value="Class 6">Class 6</option>
+            <option value="Class 7">Class 7</option>
+            <option value="Class 8">Class 8</option>
+            <option value="Class 9">Class 9</option>
+            <option value="Class 10 (SEE)">Class 10 (SEE)</option>
+            <option value="Class 11 (+2)">Class 11 (+2)</option>
+            <option value="Class 12 (+2)">Class 12 (+2)</option>
+            <option value="Administration & Support Staff">Administration & Support Staff</option>
+          </select>
+        </div>
+
         <div class="staff-grid" id="staff-roster-container">
           <p style="text-align:center; grid-column: 1/-1; color: var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading faculty directory...</p>
         </div>
@@ -398,25 +477,43 @@
     </div>
   </section>
 
+  <!-- Interactive Staff Zoom & Typewriter Modal -->
+  <div class="staff-modal" id="staff-modal">
+    <div class="staff-modal-card">
+      <button class="staff-modal-close" id="close-staff-modal-btn">&times;</button>
+      <div class="staff-modal-img">
+        <img id="staff-modal-img-src" src="" alt="Staff Portrait">
+      </div>
+      <div class="staff-modal-content">
+        <h3 class="staff-modal-name" id="staff-modal-name">Teacher Name</h3>
+        <span class="staff-modal-role" id="staff-modal-role">Senior Faculty</span>
+        <span class="staff-modal-qual" id="staff-modal-qual">M.Sc. Education</span>
+        <div class="staff-modal-msg-box">
+          <span id="staff-modal-typing-text"></span><span class="typewriter-cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Live Notices -->
   <section id="notices" class="notices">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Announcements</span>
-        <h2>Notice Board</h2>
+        <span class="section-subtitle" data-i18n="noticesSubtitle">Announcements</span>
+        <h2 data-i18n="noticesTitle">Notice Board</h2>
       </div>
       <div class="notice-viewer-card">
         <div class="notice-filter-bar">
-          <label for="notice-date-select"><i class="fa-regular fa-calendar-days"></i> Select Notice Date:</label>
+          <label for="notice-date-select"><i class="fa-regular fa-calendar-days"></i> <span data-i18n="selectNoticeDate">Select Notice Date:</span></label>
           <select id="notice-date-select" class="notice-select"></select>
         </div>
         <div class="notice-display-wrapper" id="notice-display-container">
-          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices...</p>
+          <p style="color:var(--slate-600);"><i class="fa-solid fa-spinner fa-spin"></i> Loading notices from cloud...</p>
         </div>
         <div class="notice-controls">
-          <button class="notice-btn" id="prev-notice-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+          <button class="notice-btn" id="prev-notice-btn"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Previous</span></button>
           <span class="notice-counter" id="notice-counter-text">Notice 0 of 0</span>
-          <button class="notice-btn" id="next-notice-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+          <button class="notice-btn" id="next-notice-btn"><span data-i18n="btnNext">Next</span> <i class="fa-solid fa-arrow-right"></i></button>
         </div>
         <div class="admin-action-bar" id="admin-notice-bar">
           <button class="btn btn-danger" id="delete-notice-btn"><i class="fa-solid fa-trash-can"></i> Delete Current Notice</button>
@@ -429,12 +526,12 @@
   <section id="results" class="results-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Academic Performance</span>
-        <h2>Examination Results</h2>
+        <span class="section-subtitle" data-i18n="resultsSubtitle">Academic Performance</span>
+        <h2 data-i18n="resultsTitle">Examination Results</h2>
       </div>
       <div class="results-card">
         <div class="results-filter-bar">
-          <label for="class-select"><i class="fa-solid fa-graduation-cap"></i> Select Class:</label>
+          <label for="class-select"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="selectClass">Select Class:</span></label>
           <select id="class-select" class="results-select">
             <option value="Class 8">Class 8</option>
             <option value="Class 9">Class 9</option>
@@ -461,7 +558,7 @@
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
       <h2>Admin Control Center</h2>
-      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized credentials to manage school portal content.</p>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live content.</p>
 
       <div id="auth-section">
         <div class="form-group">
@@ -491,16 +588,23 @@
         <div class="form-group">
           <label for="upload-type">What would you like to update?</label>
           <select id="upload-type">
-            <option value="leader_photo">1. Principal / Vice Principal Photo & Message</option>
-            <option value="staff">2. Add Teacher / Faculty Member</option>
-            <option value="notice">3. Notice Board Document(s)</option>
-            <option value="result">4. Examination Result Marksheet</option>
-            <option value="hero_slide">5. Hero Slideshow Photo</option>
+            <option value="notice">1. Notice Board Document(s) [Batch / Multiple]</option>
+            <option value="result">2. Examination Result Marksheet(s) [Batch / Multiple]</option>
+            <option value="staff">3. Add Teacher / Faculty Member</option>
+            <option value="leader_photo">4. Principal / Vice Principal Photo & Message</option>
+            <option value="logo">5. Update School Logo</option>
+            <option value="hero_slide">6. Hero Slideshow Photo</option>
           </select>
         </div>
 
+        <!-- Notice Publishing Date Picker -->
+        <div class="form-group" id="notice-date-group">
+          <label for="custom-notice-date">Publishing Date for Notice(s):</label>
+          <input type="date" id="custom-notice-date" />
+        </div>
+
         <!-- 1. Principal & VP Update Fields -->
-        <div id="leader-fields-group">
+        <div id="leader-fields-group" style="display: none;">
           <div class="form-group">
             <label for="leader-key-select">Select Leader Profile:</label>
             <select id="leader-key-select">
@@ -521,6 +625,21 @@
         <!-- 2. Teacher / Staff Fields -->
         <div id="staff-fields-group" style="display: none;">
           <div class="form-group">
+            <label for="staff-class-target">Assigned Class / Level:</label>
+            <select id="staff-class-target">
+              <option value="Pre-Primary (ECD / Nursery / KG)">Pre-Primary (ECD / Nursery / KG)</option>
+              <option value="Primary (Class 1 - 5)">Primary (Class 1 - 5)</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10 (SEE)">Class 10 (SEE)</option>
+              <option value="Class 11 (+2)">Class 11 (+2)</option>
+              <option value="Class 12 (+2)">Class 12 (+2)</option>
+              <option value="Administration & Support Staff">Administration & Support Staff</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="staff-name-input">Staff Full Name:</label>
             <input type="text" id="staff-name-input" placeholder="e.g. Ramesh Shrestha" />
           </div>
@@ -533,8 +652,8 @@
             <input type="text" id="staff-qual-input" placeholder="e.g. M.Sc. Physics, B.Ed." />
           </div>
           <div class="form-group">
-            <label for="staff-msg-input">Short Quote / Message (Optional):</label>
-            <textarea id="staff-msg-input" rows="2" placeholder="e.g. Inspiring curious minds every day."></textarea>
+            <label for="staff-msg-input">Short Quote / Message (Will animate on click):</label>
+            <textarea id="staff-msg-input" rows="2" placeholder="e.g. Inspiring curious minds to excel every day."></textarea>
           </div>
         </div>
 
@@ -556,11 +675,11 @@
           <input type="text" id="hero-caption-input" placeholder="e.g. Campus Grounds / Sports Day" />
         </div>
 
-        <!-- Dynamic Drop Zone -->
+        <!-- Dynamic Drop Zone (Supports Multiple Files) -->
         <div class="drop-zone" id="drop-zone">
           <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 10px;"></i>
-          <p id="drop-text">Click or drag & drop photo (.jpg, .png, .pdf)</p>
-          <input type="file" id="file-input" accept="image/*,.pdf" />
+          <p id="drop-text">Click or drag & drop photo(s) (.jpg, .png, .pdf)</p>
+          <input type="file" id="file-input" accept="image/*,.pdf" multiple />
         </div>
 
         <button class="btn btn-primary" id="upload-file-btn" style="width: 100%; padding: 12px;">
@@ -575,12 +694,12 @@
   <footer id="contact" class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <h3>Shree Bhagawati Secondary School</h3>
-        <p>Dedicated to delivering quality education, strong values, and practical skills for real-world success.</p>
+        <h3 data-i18n="schoolName">Shree Bhagawati Secondary School</h3>
+        <p data-i18n="footerDesc">Dedicated to delivering quality education, strong values, and practical skills for real-world success.</p>
       </div>
       <div class="footer-col">
-        <h4>Contact Us</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Shankharapur-6, Sankhu, Kathmandu</p>
+        <h4 data-i18n="footerContact">Contact Us</h4>
+        <p><i class="fa-solid fa-location-dot"></i> <span data-i18n="location">Shankharapur-6, Sankhu, Kathmandu</span></p>
         <p><i class="fa-solid fa-phone"></i> +977-1-4450778</p>
         <p><i class="fa-solid fa-envelope"></i> bhagawati_school@yahoo.com</p>
       </div>
@@ -590,7 +709,7 @@
     </div>
   </footer>
 
-  <!-- Firebase Global 24/7 Cloud Engine Logic -->
+  <!-- Firebase Global 24/7 Cloud Engine & App Logic -->
   <script>
     // ==========================================================================
     // 24/7 FIREBASE & IMGBB CONFIGURATION
@@ -598,18 +717,189 @@
     const FIREBASE_DB_URL = "https://bhagwati-school-b90e3-default-rtdb.firebaseio.com";
     const IMGBB_API_KEY = "404e9e965d464029b54a6f4b37308e32";
 
-    // Initialize Firebase
     if (window.firebase) {
       firebase.initializeApp({ databaseURL: FIREBASE_DB_URL });
     }
-    const db = (window.firebase && firebase.apps.length) ? firebase.database() : null;
+    const db = window.firebase ? firebase.database() : null;
 
     let liveNotices = [];
     let currentNoticeIndex = 0;
     let slideshowInterval = null;
+    let allStaffData = [];
+    let typewriterTimer = null;
+
+    // ==========================================================================
+    // COMPLETE ENGLISH <-> NEPALI DICTIONARY
+    // ==========================================================================
+    const translations = {
+      en: {
+        location: "Shankharapur-6, Sankhu, Kathmandu",
+        schoolName: "Bhagawati Secondary School",
+        schoolTagline: "Excellence in Education Since 2039 B.S.",
+        navHome: "Home",
+        navAbout: "About Us",
+        navAcademics: "Academics",
+        navFacilities: "Facilities",
+        navTeachers: "Teachers & Staff",
+        navNotices: "Notices",
+        navResults: "Results",
+        adminPortal: "Admin Portal",
+        heroTitle: "Empowering Minds, Shaping Brighter Futures",
+        heroSubtitle: "Providing quality, holistic, and practical education from Pre-Primary to Class 12 in Shankharapur Municipality, Kathmandu.",
+        btnExplore: "Explore Programs",
+        btnLearn: "Learn More",
+        statYears: "Years of Academic Excellence",
+        statStudents: "Enrolled Students",
+        statLearning: "Practical Learning",
+        statStreams: "+2 Streams Offered",
+        aboutSubtitle: "Welcome to Our School",
+        aboutTitle: "Shree Bhagawati Secondary School",
+        aboutDesc: "Established in 2039 B.S. (1982 A.D.), Bhagawati Secondary School stands as a premier educational institution in Shankharapur Municipality, Kathmandu.",
+        aboutList1: "Affiliated with National Examinations Board (NEB)",
+        aboutList2: "Well-equipped Science, Computer, and Hotel Management Labs",
+        aboutList3: "Focus on Extracurriculars, Sports, and Field Trips",
+        aboutCardTitle: "Community Leader",
+        aboutCardDesc: "Serving the Sankhu community with dedication, discipline, and modern infrastructure.",
+        academicsSubtitle: "Academic Excellence",
+        academicsTitle: "Our Educational Programs",
+        prog1Title: "Pre-Primary & Basic Level",
+        prog1Desc: "Montessori-inspired early learning environment.",
+        prog2Title: "Secondary Level (Grades 9 & 10)",
+        prog2Desc: "Comprehensive SEE curriculum.",
+        prog3Title: "+2 Computer Science & Mgmt",
+        prog3Desc: "Equipping students with modern computing skills.",
+        prog4Title: "+2 Hotel Management",
+        prog4Desc: "Hands-on hospitality training in kitchen labs.",
+        prog5Title: "+2 Law & Humanities",
+        prog5Desc: "Preparing future legal professionals.",
+        prog6Title: "+2 Education Stream",
+        prog6Desc: "Fostering skilled future educators.",
+        facSubtitle: "Infrastructure",
+        facTitle: "School Facilities",
+        fac1Title: "Science Labs",
+        fac1Desc: "Physics, Chemistry, and Biology practical labs.",
+        fac2Title: "Computer Lab",
+        fac2Desc: "High-speed internet with modern PC setups.",
+        fac3Title: "Sports & Athletics",
+        fac3Desc: "Regular games and physical education.",
+        fac4Title: "Kitchen Lab",
+        fac4Desc: "Specialized spaces for Hotel Management.",
+        teachersSubtitle: "Leadership & Faculty",
+        teachersTitle: "Messages from School Leadership",
+        principalWelcome: "Welcome to Shree Bhagawati Secondary School",
+        principalTitle: "Message from the Principal",
+        vpWelcome: "Message from the Vice Principal",
+        vpTitle: "Vice Principal",
+        btnPrincipal: "Principal",
+        btnVP: "Vice Principal",
+        staffSubtitle: "Our Dedicated Educators & Staff",
+        staffTitle: "Faculty Members & Staff",
+        filterByClass: "Filter by Level / Class:",
+        noticesSubtitle: "Announcements",
+        noticesTitle: "Notice Board",
+        selectNoticeDate: "Select Notice Date:",
+        btnPrev: "Previous",
+        btnNext: "Next",
+        resultsSubtitle: "Academic Performance",
+        resultsTitle: "Examination Results",
+        selectClass: "Select Class:",
+        footerDesc: "Dedicated to delivering quality education, strong values, and practical skills for real-world success.",
+        footerContact: "Contact Us"
+      },
+      np: {
+        location: "शंखरापुर-६, साँखु, काठमाडौं",
+        schoolName: "भगवती माध्यमिक विद्यालय",
+        schoolTagline: "वि.सं. २०३९ देखि गुणस्तरीय शिक्षामा समर्पित",
+        navHome: "गृहपृष्ठ",
+        navAbout: "हाम्रो बारेमा",
+        navAcademics: "शैक्षिक कार्यक्रम",
+        navFacilities: "भौतिक सुविधाहरू",
+        navTeachers: "शिक्षक तथा कर्मचारी",
+        navNotices: "सूचना पाटी",
+        navResults: "परीक्षाफल",
+        adminPortal: "व्यवस्थापक पोर्टल",
+        heroTitle: "सबल मस्तिष्क र उज्ज्वल भविष्यको निर्माण",
+        heroSubtitle: "शंखरापुर नगरपालिका, काठमाडौंमा पूर्व-प्राथमिकदेखि कक्षा १२ सम्म गुणस्तरीय, व्यावहारिक तथा जीवनोपयोगी शिक्षा प्रदान गर्दै।",
+        btnExplore: "कार्यक्रमहरू हेर्नुहोस्",
+        btnLearn: "थप जान्नुहोस्",
+        statYears: "वर्षको शैक्षिक उत्कृष्टता",
+        statStudents: "अध्ययनरत विद्यार्थीहरू",
+        statLearning: "प्रयोगात्मक सिकाइ",
+        statStreams: "+२ विषयगत संकायहरू",
+        aboutSubtitle: "हाम्रो विद्यालयमा स्वागत छ",
+        aboutTitle: "श्री भगवती माध्यमिक विद्यालय",
+        aboutDesc: "वि.सं. २०३९ (सन् १९८२) मा स्थापित भगवती माध्यमिक विद्यालय शंखरापुर नगरपालिकाको एक अग्रणी तथा प्रतिष्ठित शैक्षिक संस्था हो।",
+        aboutList1: "राष्ट्रिय परीक्षा बोर्ड (NEB) बाट सम्बन्धन प्राप्त",
+        aboutList2: "सुसज्जित विज्ञान, कम्प्युटर र होटल म्यानेजमेन्ट प्रयोगशालाहरू",
+        aboutList3: "अतिरिक्त क्रियाकलाप, खेलकुद तथा शैक्षिक भ्रमणमा विशेष जोड",
+        aboutCardTitle: "समुदायको गौरव",
+        aboutCardDesc: "समर्पण, अनुशासन र आधुनिक पूर्वाधारका साथ साँखु समुदायको सेवामा निरन्तर समर्पित।",
+        academicsSubtitle: "शैक्षिक उत्कृष्टता",
+        academicsTitle: "हाम्रा शैक्षिक कार्यक्रमहरू",
+        prog1Title: "पूर्व-प्राथमिक तथा आधारभूत तह",
+        prog1Desc: "मन्टेसरी विधिमा आधारित बालमैत्री वातावरण।",
+        prog2Title: "माध्यमिक तह (कक्षा ९ र १०)",
+        prog2Desc: "एसईई (SEE) को लागि उत्कृष्ट तथा गहन पाठ्यक्रम।",
+        prog3Title: "+२ कम्प्युटर विज्ञान र व्यवस्थापन",
+        prog3Desc: "आधुनिक प्रविधि र व्यवस्थापकीय सीप विकास।",
+        prog4Title: "+२ होटल म्यानेजमेन्ट",
+        prog4Desc: "सुसज्जित किचन ल्याबमा व्यावहारिक आतिथ्य तालिम।",
+        prog5Title: "+२ कानुन र मानविकी",
+        prog5Desc: "भविष्यका कानुनी तथा सामाजिक नेतृत्वकर्ताको तयारी।",
+        prog6Title: "+२ शिक्षा संकाय",
+        prog6Desc: "दक्ष तथा अनुशासित शिक्षक जनशक्ति निर्माण।",
+        facSubtitle: "पूर्वाधार",
+        facTitle: "विद्यालयका सुविधाहरू",
+        fac1Title: "विज्ञान प्रयोगशाला",
+        fac1Desc: "भौतिक, रसायन र जीवविज्ञानका व्यावहारिक ल्याबहरू।",
+        fac2Title: "कम्प्युटर ल्याब",
+        fac2Desc: "द्रुत गतिको इन्टरनेट सहित आधुनिक कम्प्युटरहरू।",
+        fac3Title: "खेलकुद तथा शारीरिक शिक्षा",
+        fac3Desc: "नियमित खेलकुद तथा शारीरिक विकासका गतिविधिहरू।",
+        fac4Title: "किचन ल्याब",
+        fac4Desc: "होटल म्यानेजमेन्टको लागि व्यावहारिक प्रशिक्षण क्षेत्र।",
+        teachersSubtitle: "नेतृत्व तथा शिक्षक वर्ग",
+        teachersTitle: "विद्यालय नेतृत्वका सन्देशहरू",
+        principalWelcome: "श्री भगवती माध्यमिक विद्यालयमा हार्दिक स्वागत छ",
+        principalTitle: "प्रधानाध्यापकको सन्देश",
+        vpWelcome: "सहायक प्रधानाध्यापकको सन्देश",
+        vpTitle: "सहायक प्रधानाध्यापक",
+        btnPrincipal: "प्रधानाध्यापक",
+        btnVP: "सहायक प्र.अ.",
+        staffSubtitle: "हाम्रा समर्पित शिक्षक तथा कर्मचारी",
+        staffTitle: "शिक्षक तथा कर्मचारी विवरण",
+        filterByClass: "कक्षा / तह अनुसार छान्नुहोस्:",
+        noticesSubtitle: "सूचना तथा जानकारी",
+        noticesTitle: "सूचना पाटी",
+        selectNoticeDate: "सूचनाको मिति छान्नुहोस्:",
+        btnPrev: "अघिल्लो",
+        btnNext: "पछिल्लो",
+        resultsSubtitle: "शैक्षिक नतिजा",
+        resultsTitle: "परीक्षाफल विवरण",
+        selectClass: "कक्षा छान्नुहोस्:",
+        footerDesc: "गुणस्तरीय शिक्षा, उच्च संस्कार र व्यावहारिक सीप विकासमा समर्पित।",
+        footerContact: "सम्पर्क ठेगाना"
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem('sbss_lang', lang);
+    }
+
+    document.getElementById("lang-select").addEventListener("change", function() {
+      applyLanguage(this.value);
+    });
+
+    // Set today's date as default on notice date input
+    document.getElementById("custom-notice-date").value = new Date().toISOString().split('T')[0];
 
     function unlockAdmin(email) {
-      localStorage.setItem('sbss_admin_email', email);
       document.body.classList.add("admin-logged-in");
       document.getElementById("admin-email-display").textContent = email;
       document.getElementById("auth-section").style.display = "none";
@@ -618,7 +908,6 @@
       document.getElementById("admin-result-bar").classList.add("active");
     }
 
-    // Direct Cloud Upload (ImgBB CDN)
     async function uploadToPermanentCloud(file) {
       const formData = new FormData();
       formData.append('image', file);
@@ -632,11 +921,12 @@
       return data.data.url;
     }
 
-    // 1. Dynamic Leadership Settings
+    // 1. Dynamic Site Settings (Logo & Leadership)
     function fetchDynamicSettings() {
       if (!db) return;
       db.ref('settings').on('value', snapshot => {
         const settings = snapshot.val() || {};
+        if (settings.logo_url) document.getElementById('school-logo-img').src = settings.logo_url;
         if (settings.principal_photo) document.getElementById('principal-img-display').src = settings.principal_photo;
         if (settings.principal_message) document.getElementById('principal-msg-display').textContent = settings.principal_message;
         if (settings.principal_name) document.getElementById('principal-name-display').textContent = settings.principal_name;
@@ -647,45 +937,95 @@
       });
     }
 
-    // 2. Dynamic Staff Directory
+    // 2. Class-Wise Dynamic Staff Directory
     function fetchStaffDirectory() {
-      const container = document.getElementById('staff-roster-container');
       if (!db) return;
       db.ref('staff').on('value', snapshot => {
         const staffObj = snapshot.val() || {};
-        const staffList = Object.keys(staffObj).map(key => ({ id: key, ...staffObj[key] }));
-
-        if (staffList.length > 0) {
-          container.innerHTML = '';
-          staffList.forEach(member => {
-            const card = document.createElement('div');
-            card.className = 'staff-card';
-            card.innerHTML = `
-              <button class="staff-delete-btn" title="Delete Staff" onclick="deleteStaffMember('${member.id}', '${member.name}')">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-              <div class="staff-card-img">
-                <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
-              </div>
-              <div class="staff-card-body">
-                <div class="staff-card-name">${member.name}</div>
-                <div class="staff-card-role">${member.designation}</div>
-                ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
-                ${member.message ? `<div class="staff-card-msg">"${member.message}"</div>` : ''}
-              </div>
-            `;
-            container.appendChild(card);
-          });
-        } else {
-          container.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 30px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
-              <i class="fa-solid fa-users" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
-              <p style="font-weight: 700; color: var(--primary-dark);">Faculty Roster</p>
-              <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added via the Admin Portal will appear here permanently 24/7.</p>
-            </div>`;
-        }
+        allStaffData = Object.keys(staffObj).map(key => ({ id: key, ...staffObj[key] }));
+        renderFilteredStaff();
       });
     }
+
+    function renderFilteredStaff() {
+      const container = document.getElementById('staff-roster-container');
+      const selectedFilter = document.getElementById('staff-class-filter').value;
+      
+      const filtered = selectedFilter === "All" 
+        ? allStaffData 
+        : allStaffData.filter(s => s.assignedClass === selectedFilter);
+
+      if (filtered.length > 0) {
+        container.innerHTML = '';
+        filtered.forEach(member => {
+          const card = document.createElement('div');
+          card.className = 'staff-card';
+          card.innerHTML = `
+            <button class="staff-delete-btn" title="Delete Staff" onclick="event.stopPropagation(); deleteStaffMember('${member.id}', '${member.name}')">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <div class="staff-card-img">
+              <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
+              <span class="staff-card-badge">${member.assignedClass || 'Faculty'}</span>
+            </div>
+            <div class="staff-card-body">
+              <div class="staff-card-name">${member.name}</div>
+              <div class="staff-card-role">${member.designation}</div>
+              ${member.qualification ? `<div class="staff-card-qual">${member.qualification}</div>` : ''}
+            </div>
+          `;
+          card.addEventListener('click', () => openStaffZoomModal(member));
+          container.appendChild(card);
+        });
+      } else {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
+            <i class="fa-solid fa-user-graduate" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></i>
+            <p style="font-weight: 700; color: var(--primary-dark);">No Staff Listed for ${selectedFilter}</p>
+            <p style="font-size: 0.9rem; color: var(--slate-600);">Staff members added for this level will appear here dynamically.</p>
+          </div>`;
+      }
+    }
+
+    document.getElementById('staff-class-filter').addEventListener('change', renderFilteredStaff);
+
+    // Zoom & Typewriter Modal
+    function openStaffZoomModal(member) {
+      const modal = document.getElementById('staff-modal');
+      const img = document.getElementById('staff-modal-img-src');
+      const name = document.getElementById('staff-modal-name');
+      const role = document.getElementById('staff-modal-role');
+      const qual = document.getElementById('staff-modal-qual');
+      const textContainer = document.getElementById('staff-modal-typing-text');
+
+      img.src = member.photo_url;
+      name.textContent = member.name;
+      role.textContent = member.designation + (member.assignedClass ? ` (${member.assignedClass})` : '');
+      qual.textContent = member.qualification || '';
+      
+      textContainer.textContent = '';
+      modal.classList.add('active');
+
+      const messageToType = member.message && member.message.trim() !== ''
+        ? member.message
+        : "Dedicated to inspiring young minds and nurturing academic excellence at Shree Bhagawati Secondary School.";
+
+      if (typewriterTimer) clearInterval(typewriterTimer);
+      let charIdx = 0;
+      typewriterTimer = setInterval(() => {
+        if (charIdx < messageToType.length) {
+          textContainer.textContent += messageToType.charAt(charIdx);
+          charIdx++;
+        } else {
+          clearInterval(typewriterTimer);
+        }
+      }, 25);
+    }
+
+    document.getElementById('close-staff-modal-btn').addEventListener('click', () => {
+      document.getElementById('staff-modal').classList.remove('active');
+      if (typewriterTimer) clearInterval(typewriterTimer);
+    });
 
     window.deleteStaffMember = function(key, name) {
       if (!db) return;
@@ -785,6 +1125,10 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+      const savedLang = localStorage.getItem('sbss_lang') || 'en';
+      document.getElementById('lang-select').value = savedLang;
+      applyLanguage(savedLang);
+
       const savedAdmin = localStorage.getItem('sbss_admin_email');
       if (savedAdmin) unlockAdmin(savedAdmin);
 
@@ -795,6 +1139,7 @@
         authError.style.display = "none";
 
         if (pin === "2039" || pin === "bhagawati2039") {
+          localStorage.setItem('sbss_admin_email', email);
           unlockAdmin(email);
         } else {
           authError.textContent = "Incorrect password. Please try again.";
@@ -858,9 +1203,10 @@
         }
       });
 
-      // Form Field Switching
+      // Admin Form Dynamic Controls
       const modal = document.getElementById("admin-modal");
       const uploadTypeSelect = document.getElementById("upload-type");
+      const noticeDateGroup = document.getElementById("notice-date-group");
       const leaderFieldsGroup = document.getElementById("leader-fields-group");
       const staffFieldsGroup = document.getElementById("staff-fields-group");
       const targetClassGroup = document.getElementById("target-class-group");
@@ -873,6 +1219,7 @@
       document.getElementById("close-admin-btn").addEventListener("click", () => modal.classList.remove("active"));
 
       uploadTypeSelect.addEventListener("change", function() {
+        noticeDateGroup.style.display = this.value === "notice" ? "block" : "none";
         leaderFieldsGroup.style.display = this.value === "leader_photo" ? "block" : "none";
         staffFieldsGroup.style.display = this.value === "staff" ? "block" : "none";
         targetClassGroup.style.display = this.value === "result" ? "block" : "none";
@@ -881,10 +1228,14 @@
 
       dropZone.addEventListener("click", () => fileInput.click());
       fileInput.addEventListener("change", () => {
-        if (fileInput.files.length) dropText.textContent = `Selected: ${fileInput.files[0].name}`;
+        if (fileInput.files.length) {
+          dropText.textContent = fileInput.files.length === 1 
+            ? `Selected: ${fileInput.files[0].name}`
+            : `Selected: ${fileInput.files.length} files ready for batch upload`;
+        }
       });
 
-      // Upload Submission
+      // Unified Cloud Upload Submission (Single & Multiple Batch)
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         if (!db) return alert("Firebase database could not be reached.");
 
@@ -895,53 +1246,60 @@
         const leaderMessage = document.getElementById("leader-msg-input").value;
         const caption = document.getElementById("hero-caption-input").value;
         
+        const staffClass = document.getElementById("staff-class-target").value;
         const staffName = document.getElementById("staff-name-input").value;
         const staffDesignation = document.getElementById("staff-designation-input").value;
         const staffQualification = document.getElementById("staff-qual-input").value;
         const staffMessage = document.getElementById("staff-msg-input").value;
+        const noticeDate = document.getElementById("custom-notice-date").value || new Date().toISOString().split('T')[0];
 
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
         if (uploadType !== 'leader_photo' && (!files || files.length === 0)) {
-          return alert("Please select a photo or document first.");
+          return alert("Please select photo(s) or document(s) first.");
         }
 
-        status.textContent = "Uploading to permanent 24/7 cloud CDN...";
+        status.textContent = `Uploading ${files.length || 1} file(s) to 24/7 cloud CDN...`;
 
         try {
-          let publicUrl = null;
-          if (files && files.length > 0) {
-            publicUrl = await uploadToPermanentCloud(files[0]);
+          // Process multiple files in batch
+          for (let i = 0; i < (files.length || 1); i++) {
+            let publicUrl = null;
+            if (files && files.length > 0) {
+              status.textContent = `Uploading file ${i + 1} of ${files.length}...`;
+              publicUrl = await uploadToPermanentCloud(files[i]);
+            }
+
+            if (uploadType === 'notice') {
+              await db.ref('notices').push({ file_url: publicUrl, published_date: noticeDate });
+            } else if (uploadType === 'result') {
+              const safeKey = targetClass.replace(/[^a-zA-Z0-9]/g, '_');
+              await db.ref('results/' + safeKey).set(publicUrl);
+            } else if (uploadType === 'logo') {
+              await db.ref('settings').update({ logo_url: publicUrl });
+            } else if (uploadType === 'leader_photo') {
+              const updates = {};
+              if (publicUrl) updates[`${leaderKey}_photo`] = publicUrl;
+              if (leaderMessage) updates[`${leaderKey}_message`] = leaderMessage;
+              if (leaderName) updates[`${leaderKey}_name`] = leaderName;
+              await db.ref('settings').update(updates);
+            } else if (uploadType === 'hero_slide') {
+              await db.ref('hero_slides').push({ file_url: publicUrl, caption: caption || 'Campus View' });
+            } else if (uploadType === 'staff') {
+              if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
+              await db.ref('staff').push({
+                assignedClass: staffClass,
+                name: staffName,
+                designation: staffDesignation,
+                qualification: staffQualification || '',
+                message: staffMessage || '',
+                photo_url: publicUrl
+              });
+            }
           }
 
-          const today = new Date().toISOString().split('T')[0];
-
-          if (uploadType === 'notice') {
-            await db.ref('notices').push({ file_url: publicUrl, published_date: today });
-          } else if (uploadType === 'result') {
-            const safeKey = targetClass.replace(/[^a-zA-Z0-9]/g, '_');
-            await db.ref('results/' + safeKey).set(publicUrl);
-          } else if (uploadType === 'leader_photo') {
-            const updates = {};
-            if (publicUrl) updates[`${leaderKey}_photo`] = publicUrl;
-            if (leaderMessage) updates[`${leaderKey}_message`] = leaderMessage;
-            if (leaderName) updates[`${leaderKey}_name`] = leaderName;
-            await db.ref('settings').update(updates);
-          } else if (uploadType === 'hero_slide') {
-            await db.ref('hero_slides').push({ file_url: publicUrl, caption: caption || 'Campus View' });
-          } else if (uploadType === 'staff') {
-            if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
-            await db.ref('staff').push({
-              name: staffName,
-              designation: staffDesignation,
-              qualification: staffQualification || '',
-              message: staffMessage || '',
-              photo_url: publicUrl
-            });
-          }
-
-          status.textContent = "Upload complete! Image is permanently online 24/7.";
+          status.textContent = "Upload complete! Synced permanently online.";
           setTimeout(() => {
             modal.classList.remove("active");
             status.textContent = "";
@@ -952,7 +1310,7 @@
             document.getElementById("staff-msg-input").value = "";
             document.getElementById("leader-name-input").value = "";
             document.getElementById("leader-msg-input").value = "";
-            dropText.textContent = "Click or drag & drop photo (.jpg, .png, .pdf)";
+            dropText.textContent = "Click or drag & drop photo(s) (.jpg, .png, .pdf)";
           }, 1200);
 
         } catch (err) {
