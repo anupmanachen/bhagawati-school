@@ -24,6 +24,7 @@
       --secondary-light: #fef3c7;
       --danger: #dc2626;
       --success: #16a34a;
+      --info: #0284c7;
       --slate-50: #f8fafc;
       --slate-100: #f1f5f9;
       --slate-200: #e2e8f0;
@@ -165,8 +166,15 @@
     .staff-card-name { font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
     .staff-card-role { font-size: 0.84rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 6px; }
     .staff-card-qual { font-size: 0.8rem; color: var(--slate-600); font-weight: 600; }
-    .staff-delete-btn { display: none; position: absolute; top: 10px; right: 10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); z-index: 10; }
-    .admin-logged-in .staff-delete-btn { display: flex; }
+    
+    .staff-action-btns { display: none; position: absolute; top: 10px; right: 10px; gap: 6px; z-index: 10; }
+    .admin-logged-in .staff-action-btns { display: flex; }
+    .staff-btn-icon {
+      border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); color: white;
+    }
+    .staff-btn-edit { background: var(--info); }
+    .staff-btn-delete { background: var(--danger); }
 
     /* Staff Modal with Typewriter Animation */
     .staff-modal {
@@ -380,9 +388,9 @@
         <div class="card"><div class="card-icon"><i class="fa-solid fa-child"></i></div><h3 data-i18n="prog1Title">Pre-Primary & Basic Level</h3><p data-i18n="prog1Desc">Montessori-inspired early learning environment.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3 data-i18n="prog2Title">Secondary Level (Grades 9 & 10)</h3><p data-i18n="prog2Desc">Comprehensive SEE curriculum.</p></div>
         <div class="card"><div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div><h3 data-i18n="prog3Title">+2 Computer Science & Mgmt</h3><p data-i18n="prog3Desc">Equipping students with modern computing skills.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
-        <div class="card"><div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-hotel"></i></div><h3 data-i18n="prog4Title">+2 Hotel Management</h3><p data-i18n="prog4Desc">Hands-on hospitality training in kitchen labs.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-scale-balanced"></i></div><h3 data-i18n="prog5Title">+2 Law & Humanities</h3><p data-i18n="prog5Desc">Preparing future legal professionals.</p></div>
+        <div class="card"><div class="card-icon"><i class="fa-pen-nib"></i></div><h3 data-i18n="prog6Title">+2 Education Stream</h3><p data-i18n="prog6Desc">Fostering skilled future educators.</p></div>
       </div>
     </div>
   </section>
@@ -557,7 +565,7 @@
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
       <button class="close-btn" id="close-admin-btn">&times;</button>
-      <h2>Admin Control Center</h2>
+      <h2 id="admin-modal-title">Admin Control Center</h2>
       <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px;">Sign in with authorized administrator credentials to manage live content.</p>
 
       <div id="auth-section">
@@ -578,19 +586,22 @@
         <p id="auth-error" style="color: var(--danger); font-size: 0.85rem; text-align: center; display: none; margin-top: 10px; font-weight: 700;"></p>
       </div>
 
-      <!-- Upload Center -->
+      <!-- Upload / Edit Center -->
       <div id="upload-section" style="display: none;">
         <div class="admin-profile-badge">
           <span class="admin-profile-info"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Logged in: <span id="admin-email-display">studyoutsidenepal@gmail.com</span></span>
           <span class="logout-link" id="logout-btn">Log out</span>
         </div>
 
-        <div class="form-group">
+        <input type="hidden" id="editing-staff-id" value="" />
+        <input type="hidden" id="editing-staff-photo" value="" />
+
+        <div class="form-group" id="upload-type-group">
           <label for="upload-type">What would you like to update?</label>
           <select id="upload-type">
             <option value="notice">1. Notice Board Document(s) [Batch / Multiple]</option>
             <option value="result">2. Examination Result Marksheet(s) [Batch / Multiple]</option>
-            <option value="staff">3. Add Teacher / Faculty Member</option>
+            <option value="staff">3. Add / Edit Teacher / Faculty Member</option>
             <option value="leader_photo">4. Principal / Vice Principal Photo & Message</option>
             <option value="logo">5. Update School Logo</option>
             <option value="hero_slide">6. Hero Slideshow Photo</option>
@@ -683,7 +694,7 @@
         </div>
 
         <button class="btn btn-primary" id="upload-file-btn" style="width: 100%; padding: 12px;">
-          <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Sync Permanently Online
+          <i class="fa-solid fa-cloud-arrow-up"></i> <span id="upload-btn-text">Upload & Sync Permanently Online</span>
         </button>
         <p id="upload-status" style="margin-top: 12px; font-weight: 700; text-align: center; color: var(--primary);"></p>
       </div>
@@ -728,9 +739,7 @@
     let allStaffData = [];
     let typewriterTimer = null;
 
-    // ==========================================================================
-    // COMPLETE ENGLISH <-> NEPALI DICTIONARY
-    // ==========================================================================
+    // Complete Dictionary
     const translations = {
       en: {
         location: "Shankharapur-6, Sankhu, Kathmandu",
@@ -896,7 +905,6 @@
       applyLanguage(this.value);
     });
 
-    // Set today's date as default on notice date input
     document.getElementById("custom-notice-date").value = new Date().toISOString().split('T')[0];
 
     function unlockAdmin(email) {
@@ -921,7 +929,7 @@
       return data.data.url;
     }
 
-    // 1. Dynamic Site Settings (Logo & Leadership)
+    // 1. Dynamic Settings
     function fetchDynamicSettings() {
       if (!db) return;
       db.ref('settings').on('value', snapshot => {
@@ -937,7 +945,7 @@
       });
     }
 
-    // 2. Class-Wise Dynamic Staff Directory
+    // 2. Class-Wise Staff Directory
     function fetchStaffDirectory() {
       if (!db) return;
       db.ref('staff').on('value', snapshot => {
@@ -961,9 +969,14 @@
           const card = document.createElement('div');
           card.className = 'staff-card';
           card.innerHTML = `
-            <button class="staff-delete-btn" title="Delete Staff" onclick="event.stopPropagation(); deleteStaffMember('${member.id}', '${member.name}')">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+            <div class="staff-action-btns">
+              <button class="staff-btn-icon staff-btn-edit" title="Edit Staff Info" onclick="event.stopPropagation(); editStaffMember('${member.id}')">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="staff-btn-icon staff-btn-delete" title="Delete Staff" onclick="event.stopPropagation(); deleteStaffMember('${member.id}', '${member.name}')">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
             <div class="staff-card-img">
               <img src="${member.photo_url}" alt="${member.name}" onerror="this.src='https://placehold.co/300x300?text=Faculty'">
               <span class="staff-card-badge">${member.assignedClass || 'Faculty'}</span>
@@ -1026,6 +1039,32 @@
       document.getElementById('staff-modal').classList.remove('active');
       if (typewriterTimer) clearInterval(typewriterTimer);
     });
+
+    // Edit Staff Functionality
+    window.editStaffMember = function(key) {
+      const staff = allStaffData.find(s => s.id === key);
+      if (!staff) return;
+
+      const modal = document.getElementById("admin-modal");
+      const uploadTypeSelect = document.getElementById("upload-type");
+
+      uploadTypeSelect.value = "staff";
+      uploadTypeSelect.dispatchEvent(new Event("change"));
+
+      document.getElementById("editing-staff-id").value = staff.id;
+      document.getElementById("editing-staff-photo").value = staff.photo_url || "";
+      document.getElementById("staff-class-target").value = staff.assignedClass || "Pre-Primary (ECD / Nursery / KG)";
+      document.getElementById("staff-name-input").value = staff.name || "";
+      document.getElementById("staff-designation-input").value = staff.designation || "";
+      document.getElementById("staff-qual-input").value = staff.qualification || "";
+      document.getElementById("staff-msg-input").value = staff.message || "";
+      
+      document.getElementById("drop-text").textContent = "Keep existing photo or click to choose new photo";
+      document.getElementById("upload-btn-text").textContent = "Update & Save Staff Profile";
+      document.getElementById("admin-modal-title").textContent = "Edit Staff Profile";
+
+      modal.classList.add("active");
+    };
 
     window.deleteStaffMember = function(key, name) {
       if (!db) return;
@@ -1203,7 +1242,7 @@
         }
       });
 
-      // Admin Form Dynamic Controls
+      // Form Field Switching
       const modal = document.getElementById("admin-modal");
       const uploadTypeSelect = document.getElementById("upload-type");
       const noticeDateGroup = document.getElementById("notice-date-group");
@@ -1215,8 +1254,29 @@
       const fileInput = document.getElementById("file-input");
       const dropText = document.getElementById("drop-text");
 
-      document.getElementById("open-admin-btn").addEventListener("click", () => modal.classList.add("active"));
-      document.getElementById("close-admin-btn").addEventListener("click", () => modal.classList.remove("active"));
+      function resetAdminForm() {
+        document.getElementById("editing-staff-id").value = "";
+        document.getElementById("editing-staff-photo").value = "";
+        document.getElementById("admin-modal-title").textContent = "Admin Control Center";
+        document.getElementById("upload-btn-text").textContent = "Upload & Sync Permanently Online";
+        document.getElementById("staff-name-input").value = "";
+        document.getElementById("staff-designation-input").value = "";
+        document.getElementById("staff-qual-input").value = "";
+        document.getElementById("staff-msg-input").value = "";
+        document.getElementById("leader-name-input").value = "";
+        document.getElementById("leader-msg-input").value = "";
+        fileInput.value = "";
+        dropText.textContent = "Click or drag & drop photo(s) (.jpg, .png, .pdf)";
+      }
+
+      document.getElementById("open-admin-btn").addEventListener("click", () => {
+        resetAdminForm();
+        modal.classList.add("active");
+      });
+      document.getElementById("close-admin-btn").addEventListener("click", () => {
+        modal.classList.remove("active");
+        resetAdminForm();
+      });
 
       uploadTypeSelect.addEventListener("change", function() {
         noticeDateGroup.style.display = this.value === "notice" ? "block" : "none";
@@ -1231,11 +1291,11 @@
         if (fileInput.files.length) {
           dropText.textContent = fileInput.files.length === 1 
             ? `Selected: ${fileInput.files[0].name}`
-            : `Selected: ${fileInput.files.length} files ready for batch upload`;
+            : `Selected: ${fileInput.files.length} files ready for upload`;
         }
       });
 
-      // Unified Cloud Upload Submission (Single & Multiple Batch)
+      // Upload / Update Submission
       document.getElementById("upload-file-btn").addEventListener("click", async () => {
         if (!db) return alert("Firebase database could not be reached.");
 
@@ -1253,64 +1313,82 @@
         const staffMessage = document.getElementById("staff-msg-input").value;
         const noticeDate = document.getElementById("custom-notice-date").value || new Date().toISOString().split('T')[0];
 
+        const editingStaffId = document.getElementById("editing-staff-id").value;
+        const existingStaffPhoto = document.getElementById("editing-staff-photo").value;
+
         const files = fileInput.files;
         const status = document.getElementById("upload-status");
 
-        if (uploadType !== 'leader_photo' && (!files || files.length === 0)) {
+        if (uploadType !== 'leader_photo' && uploadType !== 'staff' && (!files || files.length === 0)) {
           return alert("Please select photo(s) or document(s) first.");
         }
 
-        status.textContent = `Uploading ${files.length || 1} file(s) to 24/7 cloud CDN...`;
+        if (uploadType === 'staff' && !editingStaffId && (!files || files.length === 0)) {
+          return alert("Please select a photo for the new staff member.");
+        }
+
+        status.textContent = "Processing and uploading to 24/7 cloud CDN...";
 
         try {
-          // Process multiple files in batch
-          for (let i = 0; i < (files.length || 1); i++) {
-            let publicUrl = null;
+          if (uploadType === 'staff' && editingStaffId) {
+            // Update Existing Staff
+            let photoUrl = existingStaffPhoto;
             if (files && files.length > 0) {
-              status.textContent = `Uploading file ${i + 1} of ${files.length}...`;
-              publicUrl = await uploadToPermanentCloud(files[i]);
+              photoUrl = await uploadToPermanentCloud(files[0]);
             }
+            if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
 
-            if (uploadType === 'notice') {
-              await db.ref('notices').push({ file_url: publicUrl, published_date: noticeDate });
-            } else if (uploadType === 'result') {
-              const safeKey = targetClass.replace(/[^a-zA-Z0-9]/g, '_');
-              await db.ref('results/' + safeKey).set(publicUrl);
-            } else if (uploadType === 'logo') {
-              await db.ref('settings').update({ logo_url: publicUrl });
-            } else if (uploadType === 'leader_photo') {
-              const updates = {};
-              if (publicUrl) updates[`${leaderKey}_photo`] = publicUrl;
-              if (leaderMessage) updates[`${leaderKey}_message`] = leaderMessage;
-              if (leaderName) updates[`${leaderKey}_name`] = leaderName;
-              await db.ref('settings').update(updates);
-            } else if (uploadType === 'hero_slide') {
-              await db.ref('hero_slides').push({ file_url: publicUrl, caption: caption || 'Campus View' });
-            } else if (uploadType === 'staff') {
-              if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
-              await db.ref('staff').push({
-                assignedClass: staffClass,
-                name: staffName,
-                designation: staffDesignation,
-                qualification: staffQualification || '',
-                message: staffMessage || '',
-                photo_url: publicUrl
-              });
+            await db.ref('staff/' + editingStaffId).update({
+              assignedClass: staffClass,
+              name: staffName,
+              designation: staffDesignation,
+              qualification: staffQualification || '',
+              message: staffMessage || '',
+              photo_url: photoUrl
+            });
+          } else {
+            // Standard Batch & New Uploads
+            for (let i = 0; i < (files.length || 1); i++) {
+              let publicUrl = null;
+              if (files && files.length > 0) {
+                status.textContent = `Uploading file ${i + 1} of ${files.length}...`;
+                publicUrl = await uploadToPermanentCloud(files[i]);
+              }
+
+              if (uploadType === 'notice') {
+                await db.ref('notices').push({ file_url: publicUrl, published_date: noticeDate });
+              } else if (uploadType === 'result') {
+                const safeKey = targetClass.replace(/[^a-zA-Z0-9]/g, '_');
+                await db.ref('results/' + safeKey).set(publicUrl);
+              } else if (uploadType === 'logo') {
+                await db.ref('settings').update({ logo_url: publicUrl });
+              } else if (uploadType === 'leader_photo') {
+                const updates = {};
+                if (publicUrl) updates[`${leaderKey}_photo`] = publicUrl;
+                if (leaderMessage) updates[`${leaderKey}_message`] = leaderMessage;
+                if (leaderName) updates[`${leaderKey}_name`] = leaderName;
+                await db.ref('settings').update(updates);
+              } else if (uploadType === 'hero_slide') {
+                await db.ref('hero_slides').push({ file_url: publicUrl, caption: caption || 'Campus View' });
+              } else if (uploadType === 'staff') {
+                if (!staffName || !staffDesignation) throw new Error("Staff name and designation are required.");
+                await db.ref('staff').push({
+                  assignedClass: staffClass,
+                  name: staffName,
+                  designation: staffDesignation,
+                  qualification: staffQualification || '',
+                  message: staffMessage || '',
+                  photo_url: publicUrl
+                });
+              }
             }
           }
 
-          status.textContent = "Upload complete! Synced permanently online.";
+          status.textContent = "Saved successfully! Live worldwide 24/7.";
           setTimeout(() => {
             modal.classList.remove("active");
             status.textContent = "";
-            fileInput.value = "";
-            document.getElementById("staff-name-input").value = "";
-            document.getElementById("staff-designation-input").value = "";
-            document.getElementById("staff-qual-input").value = "";
-            document.getElementById("staff-msg-input").value = "";
-            document.getElementById("leader-name-input").value = "";
-            document.getElementById("leader-msg-input").value = "";
-            dropText.textContent = "Click or drag & drop photo(s) (.jpg, .png, .pdf)";
+            resetAdminForm();
           }, 1200);
 
         } catch (err) {
